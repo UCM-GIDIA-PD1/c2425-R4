@@ -26,6 +26,9 @@ try:
         
         # Extraer todas las URLs de los eventos en la página actual
         eventos_elements = driver.find_elements(By.CSS_SELECTOR, "tr.b-statistics__table-row a.b-link.b-link_style_black")
+        fechas_elements = driver.find_elements(By.CSS_SELECTOR, "span.b-statistics__date")
+        fechas = [fecha.text for fecha in fechas_elements]
+        cont_fecha = 0
         event_urls = [evento.get_attribute("href") for evento in eventos_elements]
         
         # Recorrer cada evento en la lista
@@ -52,11 +55,6 @@ try:
                     
                     WINNER = 1
                     first_person_status = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__person-status")
-                    if "b-fight-details__person-status_style_green" in first_person_status.get_attribute("class"):
-                        WINNER = 0
-                        print("Ha ganado")
-                    else:
-                        print("Ha perdido")
                     
                     tabla = driver.find_elements(By.CSS_SELECTOR, "tr.b-fight-details__table-row td")
                     # Verifica que se hayan encontrado todos los elementos necesarios
@@ -121,7 +119,7 @@ try:
                     STR_GROUND_B = STR_GROUND[1]
                     datos = {
                         "Peleador_A": peleadorA,
-                        "Peleador_B": peleadorB,
+                        "Peleador_B": peleadorB,"DATE":fechas[cont_fecha],
                         "WINNER": WINNER,
                         "KD_A": KD_A, "KD_B": KD_B,
                         "SIG_STR_A": SIG_STR_A, "SIG_STR_B": SIG_STR_B,
@@ -139,6 +137,7 @@ try:
                         "STR_GROUND_A": STR_GROUND_A, "STR_GROUND_B": STR_GROUND_B
                     }
                     data.append(datos)
+                    cont_fecha += 1
                     
 
             except Exception as e:
