@@ -61,6 +61,21 @@ try:
                     if len(tabla) < 18:
                         print("No se encontraron todas las columnas esperadas en la tabla de la pelea.")
                         continue
+
+                    try:
+                        method_element = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__text-item_first i[style='font-style: normal']")
+                        fight_method = method_element.text.strip()
+                    except Exception as e:
+                        print(f"No se pudo extraer el método de finalización: {e}")
+                        fight_method = "N/A"
+                    try:
+                        time_element = driver.find_elements(By.CSS_SELECTOR, ".b-fight-details__text-item")                        
+                        fight_time = time_element[1].text
+                    except Exception as e:
+                        print(f"No se pudo extraer el tiempo de la pelea: {e}")
+                        fight_time = "Time"  # Lo puedes filtrar después si prefieres
+
+                    print(fight_time)
                     
                     tabla_filtrada = [elem for elem in tabla if elem.text.strip() != ""]
                     nombres = tabla_filtrada[0].text.split("\n")
@@ -120,7 +135,8 @@ try:
                     datos = {
                         "Peleador_A": peleadorA,
                         "Peleador_B": peleadorB,"DATE":fechas[cont_fecha],
-                        "WINNER": WINNER,
+                        "WINNER": WINNER,"METHOD":fight_method,
+                        "TIME":fight_time,
                         "KD_A": KD_A, "KD_B": KD_B,
                         "SIG_STR_A": SIG_STR_A, "SIG_STR_B": SIG_STR_B,
                         "TOTAL_STR_A": TOTAL_STR_A, "TOTAL_STR_B": TOTAL_STR_B,
@@ -137,7 +153,7 @@ try:
                         "STR_GROUND_A": STR_GROUND_A, "STR_GROUND_B": STR_GROUND_B
                     }
                     data.append(datos)
-                    cont_fecha += 1
+                cont_fecha += 1
                     
 
             except Exception as e:
