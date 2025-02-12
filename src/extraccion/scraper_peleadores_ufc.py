@@ -13,7 +13,8 @@ options = webdriver.ChromeOptions()
 # options.add_argument('--disable-dev-shm-usage')
 
 # Inicializar el driver
-driver = uc.Chrome(options=options)
+#driver = uc.Chrome()
+driver = webdriver.Chrome()
 url = "https://www.ufc.com/athletes/all"
 driver.get(url)
 time.sleep(1)  # Esperar carga inicial
@@ -40,7 +41,7 @@ def cargar_mas():
             break  # Sale del bucle cuando ya no hay más botón
 
 # Cargar todos los peleadores
-cargar_mas()
+#cargar_mas()
 
 # Obtener los enlaces de los peleadores
 fighter_links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/athlete/']")
@@ -186,7 +187,9 @@ try:
                 porcentaje_de_pie = porcentaje_de_pie.replace(")", "")  
                 fighter_data["Golpes De Pie"] = golpes_de_pie
                 fighter_data["Porcentaje De Pie"] = porcentaje_de_pie
-
+            except Exception as e:
+                print(f"Error al extraer los datos: {e}")
+            try:
                 # Extraer datos para "Clinch"
                 clinch = driver.find_element(By.XPATH, '//div[@class="c-stat-3bar__label" and contains(text(), "Clinch")]/following-sibling::div[@class="c-stat-3bar__value"]')
                 clinch_text = clinch.text.strip()  
@@ -194,7 +197,9 @@ try:
                 porcentaje_clinch = porcentaje_clinch.replace(")", "")  
                 fighter_data["Golpes Clinch"] = golpes_clinch
                 fighter_data["Porcentaje Clinch"] = porcentaje_clinch
-
+            except Exception as e:
+                print(f"Error al extraer los datos: {e}")
+            try:
                 # Extraer datos para "Suelo"
                 suelo = driver.find_element(By.XPATH, '//div[@class="c-stat-3bar__label" and contains(text(), "Ground ")]/following-sibling::div[@class="c-stat-3bar__value"]')
                 suelo_text = suelo.text.strip()  
@@ -213,13 +218,15 @@ try:
                 porcentaje_cabeza = driver.find_element(By.ID, "e-stat-body_x5F__x5F_head_percent").text.strip()
                 fighter_data["Golpes Cabeza"] = golpes_cabeza
                 fighter_data["Porcentaje Cabeza"] = porcentaje_cabeza
+            except Exception as e:
+                print(f"Error al extraer los datos: {e}")
 
                 # Extraer datos para "Cuerpo"
                 golpes_cuerpo = driver.find_element(By.ID, "e-stat-body_x5F__x5F_body_value").text.strip()
                 porcentaje_cuerpo = driver.find_element(By.ID, "e-stat-body_x5F__x5F_body_percent").text.strip()
                 fighter_data["Golpes Cuerpo"] = golpes_cuerpo
                 fighter_data["Porcentaje Cuerpo"] = porcentaje_cuerpo
-
+            try:
                 # Extraer datos para "Pierna"
                 golpes_pierna = driver.find_element(By.ID, "e-stat-body_x5F__x5F_leg_value").text.strip()
                 porcentaje_pierna = driver.find_element(By.ID, "e-stat-body_x5F__x5F_leg_percent").text.strip()
@@ -239,7 +246,9 @@ try:
                 ko_tko_percent = ko_tko_percent.replace(")", "")  # Eliminar el paréntesis final
                 fighter_data["KO/TKO"] = ko_tko_value
                 fighter_data["Porcentaje KO/TKO"] = ko_tko_percent
-
+            except Exception as e:
+                print(f"Error al extraer los datos: {e}")
+            try:
                 # Extraer datos para "DEC"
                 dec = driver.find_element(By.XPATH, '//div[@class="c-stat-3bar__label" and contains(text(), "DEC")]/following-sibling::div[@class="c-stat-3bar__value"]')
                 dec_text = dec.text.strip()  
@@ -247,7 +256,9 @@ try:
                 dec_percent = dec_percent.replace(")", "")  # Eliminar el paréntesis final
                 fighter_data["DEC"] = dec_value
                 fighter_data["Porcentaje DEC"] = dec_percent
-
+            except Exception as e:
+                print(f"Error al extraer los datos: {e}")
+            try:
                 # Extraer datos para "SUB"
                 sub = driver.find_element(By.XPATH, '//div[@class="c-stat-3bar__label" and contains(text(), "SUB")]/following-sibling::div[@class="c-stat-3bar__value"]')
                 sub_text = sub.text.strip()  
@@ -255,9 +266,68 @@ try:
                 sub_percent = sub_percent.replace(")", "")  # Eliminar el paréntesis final
                 fighter_data["SUB"] = sub_value
                 fighter_data["Porcentaje SUB"] = sub_percent
-
+                
             except Exception as e:
                 print(f"Error al extraer los datos: {e}")
+            ####################################
+            #AÑADIDO NUEVO
+            ###########################
+            
+            ###########DATOS DEL PELEADOR###################
+            try:
+                status = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Status")]/following-sibling::div')
+                fighter_data["Status"] = status.text.strip()
+            except:
+                pass
+
+            try:
+                place_of_birth = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Place of Birth")]/following-sibling::div')
+                fighter_data["Place of Birth"] = place_of_birth.text.strip()
+            except:
+                pass
+
+            try:
+                fighting_style = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Fighting style")]/following-sibling::div')
+                fighter_data["Fighting Style"] = fighting_style.text.strip()
+            except:
+                pass
+
+            try:
+                age = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Age")]/following-sibling::div')
+                fighter_data["Age"] = age.text.strip()
+            except:
+                pass
+
+            try:
+                height = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Height")]/following-sibling::div')
+                fighter_data["Height"] = height.text.strip()
+            except:
+                pass
+
+            try:
+                weight = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Weight")]/following-sibling::div')
+                fighter_data["Weight"] = weight.text.strip()
+            except:
+                pass
+
+            try:
+                debut = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Octagon Debut")]/following-sibling::div')
+                fighter_data["Octagon Debut"] = debut.text.strip()
+            except:
+                pass
+
+            try:
+                reach = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Reach")]/following-sibling::div')
+                fighter_data["Reach"] = reach.text.strip()
+            except:
+                pass
+
+            try:
+                leg_reach = driver.find_element(By.XPATH, '//div[@class="c-bio__label" and contains(text(), "Leg reach")]/following-sibling::div')
+                fighter_data["Leg Reach"] = leg_reach.text.strip()
+            except:
+                pass
+                        
                 
             # Agregar los datos del peleador a la lista
             data.append(fighter_data)
