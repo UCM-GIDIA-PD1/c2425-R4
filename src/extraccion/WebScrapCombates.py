@@ -53,8 +53,14 @@ try:
                     driver.get(pelea_url)
                     time.sleep(1)
                     
+                     
                     WINNER = 1
                     first_person_status = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__person-status")
+                    if "b-fight-details__person-status_style_green" in first_person_status.get_attribute("class"):
+                        WINNER = 0
+                        print("Ha ganado")
+                    else:
+                        print("Ha perdido")
                     
                     tabla = driver.find_elements(By.CSS_SELECTOR, "tr.b-fight-details__table-row td")
                     # Verifica que se hayan encontrado todos los elementos necesarios
@@ -69,14 +75,13 @@ try:
                         print(f"No se pudo extraer el método de finalización: {e}")
                         fight_method = "N/A"
                     try:
-                        time_element = driver.find_elements(By.CSS_SELECTOR, ".b-fight-details__text-item")                        
+                        time_element = driver.find_elements(By.CSS_SELECTOR, ".b-fight-details__text-item")             
+                        round = time_element[0].text
                         fight_time = time_element[1].text
                     except Exception as e:
                         print(f"No se pudo extraer el tiempo de la pelea: {e}")
                         fight_time = "Time"  # Lo puedes filtrar después si prefieres
-
-                    print(fight_time)
-                    
+                    print(round)
                     tabla_filtrada = [elem for elem in tabla if elem.text.strip() != ""]
                     nombres = tabla_filtrada[0].text.split("\n")
                     peleadorA = nombres[0]
@@ -136,7 +141,7 @@ try:
                         "Peleador_A": peleadorA,
                         "Peleador_B": peleadorB,"DATE":fechas[cont_fecha],
                         "WINNER": WINNER,"METHOD":fight_method,
-                        "TIME":fight_time,
+                        "TIME":fight_time,"ROUND":round,
                         "KD_A": KD_A, "KD_B": KD_B,
                         "SIG_STR_A": SIG_STR_A, "SIG_STR_B": SIG_STR_B,
                         "TOTAL_STR_A": TOTAL_STR_A, "TOTAL_STR_B": TOTAL_STR_B,
