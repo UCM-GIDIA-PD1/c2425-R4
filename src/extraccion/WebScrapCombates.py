@@ -53,7 +53,8 @@ try:
                     driver.get(pelea_url)
                     time.sleep(1)
                     
-                     
+                    category = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__fight-title").text
+                    print(category)
                     WINNER = 1
                     first_person_status = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__person-status")
                     if "b-fight-details__person-status_style_green" in first_person_status.get_attribute("class"):
@@ -139,7 +140,7 @@ try:
                     STR_GROUND_B = STR_GROUND[1]
                     datos = {
                         "Peleador_A": peleadorA,
-                        "Peleador_B": peleadorB,"DATE":fechas[cont_fecha],
+                        "Peleador_B": peleadorB,"DATE":fechas[cont_fecha],"CATEGORY":category,
                         "WINNER": WINNER,"METHOD":fight_method,
                         "TIME":fight_time,"ROUND":round,
                         "KD_A": KD_A, "KD_B": KD_B,
@@ -168,7 +169,7 @@ try:
 finally:
     # Guardar los datos en un CSV
     df = pd.DataFrame(data)
-    df.to_csv("primeras_peleas_ufc.csv", index=False, encoding="utf-8")
+    df.to_csv("primeras_peleas_ufc_v2.csv", index=False, encoding="utf-8")
     print("Datos guardados en primeras_peleas_ufc.csv")
 
     # Cerrar el navegador
