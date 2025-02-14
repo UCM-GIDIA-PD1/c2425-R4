@@ -52,11 +52,20 @@ links = [link.get_attribute("href") for link in fighter_links]
 letra_inicial = "B"
 letra_final = "D"
 
-# Filtrar los enlaces dentro del rango especificado
+# Función para extraer el apellido del enlace o de la página del peleador
+def obtener_apellido(url):
+    # Extraer el nombre del peleador de la URL
+    nombre_completo = url.split('/')[-1]  # Obtiene la última parte de la URL (nombre del peleador)
+    # Asumimos que el apellido es la última palabra del nombre completo
+    apellido = nombre_completo.split('-')[-1].upper()  # Convertir a mayúsculas para comparar
+    return apellido
+
+# Filtrar los enlaces dentro del rango especificado por la letra inicial del apellido
 filtered_links = [
     link for link in links
-    if letra_inicial <= link.split('/')[-1][0].upper() <= letra_final
+    if letra_inicial <= obtener_apellido(link)[0] <= letra_final
 ]
+
 
 # Lista para almacenar los datos
 data = []
