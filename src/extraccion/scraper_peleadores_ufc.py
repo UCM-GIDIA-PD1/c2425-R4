@@ -16,6 +16,7 @@ options = webdriver.ChromeOptions()
 #driver = uc.Chrome()
 driver = webdriver.Chrome()
 url = "https://www.ufc.com/athletes/all"
+url = "https://www.ufc.com/athletes/all?filters%5B0%5D=fighting_style%3A7144&filters%5B1%5D=status%3A23"
 driver.get(url)
 time.sleep(1)  # Esperar carga inicial
 
@@ -41,18 +42,28 @@ def cargar_mas():
             break  # Sale del bucle cuando ya no hay más botón
 
 # Cargar todos los peleadores
-#cargar_mas()
+cargar_mas()
 
 # Obtener los enlaces de los peleadores
 fighter_links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/athlete/']")
 links = [link.get_attribute("href") for link in fighter_links]
+
+# Solicitar el rango de letras al usuario
+letra_inicial = "B"
+letra_final = "D"
+
+# Filtrar los enlaces dentro del rango especificado
+filtered_links = [
+    link for link in links
+    if letra_inicial <= link.split('/')[-1][0].upper() <= letra_final
+]
 
 # Lista para almacenar los datos
 data = []
 
 try:
     # Recorrer cada enlace y extraer la información
-    for link in links:
+    for link in filtered_links:
         driver.get(link)
         time.sleep(1.5)  # Esperar a que la página del peleador cargue
 
@@ -62,6 +73,7 @@ try:
 
             # Diccionario para almacenar los datos del peleador
             fighter_data = {"Nombre": name}
+
 
             ######################### EFECTIVIDAD DE GOLPEO #####################
             try:
