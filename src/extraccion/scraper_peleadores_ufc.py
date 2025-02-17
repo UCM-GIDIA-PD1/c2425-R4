@@ -348,6 +348,21 @@ try:
                 fighter_data["Leg Reach"] = leg_reach.text.strip()
             except:
                 pass
+            try:
+                # Extraer la división
+                division_element = driver.find_element(By.XPATH, '//p[@class="hero-profile__division-title"]')
+                division = division_element.text.strip()
+                fighter_data["Division"] = division
+            except:
+                print("No se encontró la división")
+
+            try:
+                # Extraer el récord
+                record_element = driver.find_element(By.XPATH, '//p[@class="hero-profile__division-body"]')
+                record = record_element.text.strip()
+                fighter_data["Record"] = record
+            except:
+                print("No se encontró el récord")
                         
                 
             # Agregar los datos del peleador a la lista
