@@ -8,15 +8,15 @@ import undetected_chromedriver as uc
 
 # Configuración del navegador
 options = webdriver.ChromeOptions()
-# options.add_argument('--headless')  # Ejecutar en segundo plano
+#options.add_argument('--headless')  # Ejecutar en segundo plano
 # options.add_argument('--no-sandbox')
 # options.add_argument('--disable-dev-shm-usage')
 
 # Inicializar el driver
 #driver = uc.Chrome()
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options = options)
 url = "https://www.ufc.com/athletes/all"
-url = "https://www.ufc.com/athletes/all?filters%5B0%5D=fighting_style%3A7144&filters%5B1%5D=status%3A23"
+# url = "https://www.ufc.com/athletes/all?filters%5B0%5D=fighting_style%3A7144&filters%5B1%5D=status%3A23"
 driver.get(url)
 time.sleep(1)  # Esperar carga inicial
 
@@ -49,8 +49,8 @@ fighter_links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/athlete/']")
 links = [link.get_attribute("href") for link in fighter_links]
 
 # Solicitar el rango de letras al usuario
-letra_inicial = "B"
-letra_final = "D"
+letra_inicial = "A"
+letra_final = "Z"
 
 # Función para extraer el apellido del enlace o de la página del peleador
 def obtener_apellido(url):

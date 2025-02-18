@@ -1,12 +1,11 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import requests
 from bs4 import BeautifulSoup
 import re
 import time
+import pandas as pd
 
 # Función para obtener la fecha de nacimiento usando requests y BeautifulSoup
 def get_birthdate(url):
@@ -25,11 +24,12 @@ def get_birthdate(url):
     
     return match.group(0) if match else "Fecha de nacimiento no encontrada"
 
-# Lista de nombres de peleadores
-peleadores = ["Ilia Topuria", "Conor McGregor", "Khabib Nurmagomedov"]  # Ejemplo
+# Cargar el archivo CSV
+df = pd.read_csv("C:/Users/andre/OneDrive - Universidad Complutense de Madrid (UCM)/Escritorio/UNIVERSIDAD/2º/2º Cuatrimestre/PD1/peleadores.csv")
+peleadores = df["Nombre"].tolist()
+
 # Configurar opciones de Selenium
 options = webdriver.ChromeOptions()
-options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-gpu")
 options.add_argument("--disable-software-rasterizer")
@@ -41,41 +41,44 @@ options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Apple
 # Inicializar el navegador
 driver = webdriver.Chrome(options=options)
 
-
-# URL de la página de búsqueda
+fechas = []
 url_busqueda = 'https://www.tapology.com/search'
 
 try:
     for peleador in peleadores:
-        # Abre la página de búsqueda
-        driver.get(url_busqueda)
-
-        # Espera a que el campo de búsqueda esté presente
-        search_box = driver.find_element(By.NAME, "term")
-
-
-        search_box = driver.find_element(By.NAME, "term")
-        search_box.clear()
-        search_box.send_keys(peleador)
-        search_box.send_keys(Keys.RETURN)
-        time.sleep(3)  # Esperar a que se carguen los resultados
-
-        # Seleccionar el primer resultado de la lista
-        fighter_link = driver.find_element(By.CSS_SELECTOR, "a[href*='/fighters/']")
-        fighter_url = fighter_link.get_attribute("href")
-        driver.get(fighter_url)  # Ir al perfil del peleador
-        time.sleep(3)  # Esperar a que cargue el perfil
-     
-
-        # Obtén la fecha de nacimiento usando requests y BeautifulSoup
-        birthdate = get_birthdate(fighter_url)
-        print(f"Peleador: {peleador} | Fecha de nacimiento: {birthdate}")
-
-        # Espera un momento antes de la siguiente búsqueda
-        time.sleep(2)
-
+        try:
+            driver.get(url_busqueda)
+            time.sleep(1)
+            
+            search_box = driver.find_element(By.NAME, "term")
+            search_box.clear()
+            search_box.send_keys(peleador)
+            search_box.send_keys(Keys.RETURN)
+            time.sleep(1)
+            
+            fighter_link = driver.find_element(By.CSS_SELECTOR, "a[href*='/fighters/']")
+            fighter_url = fighter_link.get_attribute("href")
+            driver.get(fighter_url)
+            time.sleep(1)
+            
+            birthdate = get_birthdate(fighter_url)
+            print(f"Peleador: {peleador} | Fecha de nacimiento: {birthdate}")
+            fechas.append(birthdate)
+            
+        except Exception as e:
+            print(f"Error con {peleador}: {e}")
+            fechas.append("No encontrado")
+        
+        time.sleep(1)
+        
 except Exception as e:
     print("Error durante el scraping:", e)
 finally:
-    # Cierra el navegador
     driver.quit()
+    
+    df_resultado = pd.DataFrame({
+        "Nombre": peleadores,
+        "Nacimiento": fechas
+    })
+    df_resultado.to_csv("fechas.csv", index=False)
+    print("Datos guardados en fighters.csv")
