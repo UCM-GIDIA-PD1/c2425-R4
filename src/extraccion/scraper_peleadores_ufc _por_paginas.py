@@ -75,7 +75,7 @@ def extract_fighters(start_page, end_page=None):
     return all_links
 
 # Obtener los enlaces de los peleadores
-fighter_links = extract_fighters(273)
+fighter_links = extract_fighters(1,2)
 
 # Lista para almacenar los datos
 data = []
@@ -373,6 +373,13 @@ try:
                 fighter_data["Record"] = record
             except:
                 print("No se encontró el récord")
+                
+            ######IMAGEN###########
+            try:
+                img_element = driver.find_element(By.XPATH, '//div[@class="hero-profile__image-wrap"]/img')
+                fighter_data["Imagen"] = img_element.get_attribute("src")
+            except:
+                print(f"No se encontró la imagen para {name}")
                         
                 
             # Agregar los datos del peleador a la lista
