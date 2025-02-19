@@ -1,4 +1,6 @@
 import pandas as pd
+import re
+
 df = pd.read_csv("peleadores_con_fechas.csv")
 
 #CAMBIO NOMBRES
@@ -61,10 +63,19 @@ def convertir_a_segundos(tiempo):
 df['time_fight(avg)']=df['time_fight(avg)'].apply(convertir_a_segundos)
 
 #Tratamiento nan
-
 filas_vacias=df[df.drop(columns='name').isna().all(axis=1)].index
 df=df.drop(index=filas_vacias)
 df['takedowns_landed']=df['takedowns_landed'].fillna(df['takedowns_attempted']*df['efectividad_de_derribo_(%)'])
+
+def extract_numbers(record):
+    matches = re.findall(r'\d+', record)  # Extraer números
+    return tuple(map(int, matches))  # Convertir a enteros y devolver como tupla
+
+# Aplicar la función y crear nuevas columnas
+df[['Wins', 'Losses', 'Draws']] = df['record'].apply(lambda x: pd.Series(extract_numbers(x)))
+
+# Eliminar la columna 'record' original si ya no es necesaria
+df.drop(columns=['record'], inplace=True)
 
 #Guardo df
 
