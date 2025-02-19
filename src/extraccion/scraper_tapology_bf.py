@@ -25,7 +25,7 @@ def get_birthdate(url):
     return match.group(0) if match else "Fecha de nacimiento no encontrada"
 
 # Cargar el archivo CSV
-df = pd.read_csv("C:/Users/andre/OneDrive - Universidad Complutense de Madrid (UCM)/Escritorio/UNIVERSIDAD/2º/2º Cuatrimestre/PD1/peleadores.csv")
+df = pd.read_csv("peleadores.csv")
 peleadores = df["Nombre"].tolist()
 
 # Configurar opciones de Selenium
@@ -76,9 +76,9 @@ except Exception as e:
 finally:
     driver.quit()
     
-    df_resultado = pd.DataFrame({
-        "Nombre": peleadores,
-        "Nacimiento": fechas
-    })
-    df_resultado.to_csv("fechas.csv", index=False)
-    print("Datos guardados en fighters.csv")
+    # Añadir la columna "Nacimiento" al DataFrame original
+    df["Nacimiento"] = fechas
+    
+    # Guardar el archivo actualizado
+    df.to_csv("peleadores_con_fechas.csv", index=False)
+    

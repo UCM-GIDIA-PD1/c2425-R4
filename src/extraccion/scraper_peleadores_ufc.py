@@ -15,8 +15,8 @@ options = webdriver.ChromeOptions()
 # Inicializar el driver
 #driver = uc.Chrome()
 driver = webdriver.Chrome(options = options)
-url = "https://www.ufc.com/athletes/all"
-# url = "https://www.ufc.com/athletes/all?filters%5B0%5D=fighting_style%3A7144&filters%5B1%5D=status%3A23"
+#url = "https://www.ufc.com/athletes/all"
+url = "https://www.ufc.com/athletes/all?filters%5B0%5D=fighting_style%3A7144&filters%5B1%5D=status%3A23"
 driver.get(url)
 time.sleep(1)  # Esperar carga inicial
 
