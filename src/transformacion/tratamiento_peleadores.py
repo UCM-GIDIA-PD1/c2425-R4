@@ -1,8 +1,5 @@
 import pandas as pd
-
-#Leo datos
-
-df=pd.read_csv('C:\\Users\\Mario\\Documents\\pd1\\fighters_inicial.csv')
+df = pd.read_csv("peleadores_con_fechas.csv")
 
 #CAMBIO NOMBRES
 
@@ -50,7 +47,8 @@ for col in df.columns:
         columnas.append(col)
 for col in columnas:
     df[col]=df[col].str.replace('%','').astype(float)/100
-
+    
+    
 #PASO MINUTOS A SEGUNDOS
 
 def convertir_a_segundos(tiempo):
@@ -69,4 +67,5 @@ df=df.drop(index=filas_vacias)
 df['takedowns_landed']=df['takedowns_landed'].fillna(df['takedowns_attempted']*df['efectividad_de_derribo_(%)'])
 
 #Guardo df
-df.to_csv("C:\\Users\\Mario\\Documents\\pd1\\fighters_final.csv", index=False)
+
+df.to_csv("fighters_final_limpio.csv", index=False)

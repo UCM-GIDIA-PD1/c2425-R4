@@ -25,7 +25,7 @@ def get_birthdate(url):
     return match.group(0) if match else "Fecha de nacimiento no encontrada"
 
 # Cargar el archivo CSV
-df = pd.read_csv("peleadores.csv")
+df = pd.read_csv("fighters.csv")
 peleadores = df["Nombre"].tolist()
 
 # Configurar opciones de Selenium
