@@ -8,7 +8,7 @@ import undetected_chromedriver as uc
 
 # Configuración del navegador
 options = webdriver.ChromeOptions()
-#options.add_argument('--headless')  # Ejecutar en segundo plano
+options.add_argument('--headless')  # Ejecutar en segundo plano
 # options.add_argument('--no-sandbox')
 # options.add_argument('--disable-dev-shm-usage')
 
@@ -75,7 +75,7 @@ def extract_fighters(start_page, end_page=None):
     return all_links
 
 # Obtener los enlaces de los peleadores
-fighter_links = extract_fighters(1,2)
+fighter_links = extract_fighters(201)
 
 # Lista para almacenar los datos
 data = []
@@ -393,7 +393,7 @@ try:
 finally:
     # Guardar los datos antes de cerrar el navegador
     df = pd.DataFrame(data)
-    df.to_csv("fighters.csv", index=False)
+    df.to_csv("fighters_201_274.csv", index=False)
     print("Datos guardados en peleadores.csv")
 
     # Cerrar el navegador
