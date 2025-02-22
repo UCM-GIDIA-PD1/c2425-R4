@@ -8,7 +8,7 @@ import undetected_chromedriver as uc
 
 # Configuración del navegador
 options = webdriver.ChromeOptions()
-#options.add_argument('--headless')  # Ejecutar en segundo plano
+options.add_argument('--headless')  # Ejecutar en segundo plano
 # options.add_argument('--no-sandbox')
 # options.add_argument('--disable-dev-shm-usage')
 
@@ -19,11 +19,6 @@ url = "https://www.ufc.com/athletes/all"
 #url = "https://www.ufc.com/athletes/all?filters%5B0%5D=fighting_style%3A7144&filters%5B1%5D=status%3A23"
 driver.get(url)
 time.sleep(1)  # Esperar carga inicial
-
-# Solicitar el rango de letras al usuario
-letra_inicial = "A"
-letra_final = "B"
-
 
 def cargar_mas():
     # Cargar más elementos mientras el botón esté disponible
@@ -47,34 +42,47 @@ def cargar_mas():
             break  # Sale del bucle cuando ya no hay más botón
 
 # Cargar todos los peleadores
-cargar_mas()
+#cargar_mas()
+
+def extract_fighters(start_page, end_page=None):
+    base_url = "https://www.ufc.com/athletes/all?page="
+    all_links = []
+
+    # Si no se especifica end_page, se extraen todas las páginas hasta que no haya más peleadores
+    if end_page is None:
+        end_page = float('inf')
+
+    current_page = start_page
+    while current_page <= end_page:
+        url = base_url + str(current_page)
+        driver.get(url)
+        time.sleep(1)  # Esperar carga inicial
+
+        # Cargar más elementos mientras el botón esté disponible
+        #cargar_mas()
+
+        # Obtener los enlaces de los peleadores
+        fighter_links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/athlete/']")
+        links = [link.get_attribute("href") for link in fighter_links]
+
+        if not links:
+            print(f"No se encontraron más peleadores en la página {current_page}.")
+            break
+
+        all_links.extend(links)
+        current_page += 1
+
+    return all_links
 
 # Obtener los enlaces de los peleadores
-fighter_links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/athlete/']")
-links = [link.get_attribute("href") for link in fighter_links]
-
-
-# Función para extraer el apellido del enlace o de la página del peleador
-def obtener_apellido(url):
-    # Extraer el nombre del peleador de la URL
-    nombre_completo = url.split('/')[-1]  # Obtiene la última parte de la URL (nombre del peleador)
-    # Asumimos que el apellido es la última palabra del nombre completo
-    apellido = nombre_completo.split('-')[-1].upper()  # Convertir a mayúsculas para comparar
-    return apellido
-
-# Filtrar los enlaces dentro del rango especificado por la letra inicial del apellido
-filtered_links = [
-    link for link in links
-    if letra_inicial <= obtener_apellido(link)[0] <= letra_final
-]
-
+fighter_links = extract_fighters(201)
 
 # Lista para almacenar los datos
 data = []
 
 try:
     # Recorrer cada enlace y extraer la información
-    for link in filtered_links:
+    for link in fighter_links:
         driver.get(link)
         time.sleep(1.5)  # Esperar a que la página del peleador cargue
 
@@ -365,6 +373,13 @@ try:
                 fighter_data["Record"] = record
             except:
                 print("No se encontró el récord")
+                
+            ######IMAGEN###########
+            try:
+                img_element = driver.find_element(By.XPATH, '//div[@class="hero-profile__image-wrap"]/img')
+                fighter_data["Imagen"] = img_element.get_attribute("src")
+            except:
+                print(f"No se encontró la imagen para {name}")
                         
                 
             # Agregar los datos del peleador a la lista
@@ -378,7 +393,7 @@ try:
 finally:
     # Guardar los datos antes de cerrar el navegador
     df = pd.DataFrame(data)
-    df.to_csv("fighters.csv", index=False)
+    df.to_csv("fighters_201_274.csv", index=False)
     print("Datos guardados en peleadores.csv")
 
     # Cerrar el navegador
