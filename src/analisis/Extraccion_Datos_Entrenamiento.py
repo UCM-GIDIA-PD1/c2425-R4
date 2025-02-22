@@ -112,7 +112,7 @@ for _, row in df_peleas.iterrows():
     historial_datos.append(historial_a)
     historial_datos.append(historial_b)
 
-    pelea_data = {"Fecha": fecha_pelea, "Peleador_A": peleador_a, "Peleador_B": peleador_b}
+    pelea_data = {"Fecha": fecha_pelea, "Peleador_A": peleador_a, "Peleador_B": peleador_b, "WINNER": ganador}
     for stat in stats_columns + stats_columns_2:
         pelea_data[stat+"_A"] = historial_a.get(stat+"_A", 0)
         pelea_data[stat+"_R_A"] = historial_a.get(stat+"_R", 0)
