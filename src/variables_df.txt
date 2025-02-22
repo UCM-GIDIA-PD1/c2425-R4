@@ -1,0 +1,20 @@
+DF peleadores:
+-Caraterísticas propias del peleador:
+    -Age  
+    -Fecha nacimiento
+    -Height
+    -Reach
+    -Leg Reach
+    -Division
+    -Record
+    -Imagen
+
+DF peleas:
+-Conservar:
+    -Date   
+    -Winner
+    -Tiempo
+    -
+
+
+-Obtener:
