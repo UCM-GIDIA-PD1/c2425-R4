@@ -1,7 +1,7 @@
 import pandas as pd
 import re
 
-df = pd.read_csv("peleadores_con_fechas.csv")
+df = pd.read_csv("fighters_completo.csv")
 
 #CAMBIO NOMBRES
 
@@ -48,7 +48,8 @@ for col in df.columns:
     if '%' in col:
         columnas.append(col)
 for col in columnas:
-    df[col]=df[col].str.replace('%','').astype(float)/100
+    df[col] = df[col].astype(str).str.replace('%','', regex=False).astype(float)/100
+
     
     
 #PASO MINUTOS A SEGUNDOS
