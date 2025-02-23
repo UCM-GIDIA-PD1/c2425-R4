@@ -3,7 +3,7 @@ import numpy as np
 from datetime import datetime, timedelta
 
 # Cargar datos
-df_peleas = pd.read_csv("df_peleas.csv")
+df_peleas = pd.read_csv("df_limpio.csv")
 df_peleas["DATE"] = pd.to_datetime(df_peleas["DATE"], errors='coerce')
 
 df_peleas = df_peleas.sort_values(by=["DATE"])

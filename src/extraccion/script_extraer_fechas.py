@@ -105,7 +105,7 @@ def procesar_grupo(grupo_num):
     print(f"Archivo guardado en: {archivo_destino}")
 
 # Define aquí el número de grupo que deseas procesar
-grupo = 1  # Cambia este valor al grupo deseado
+grupo = 11  # Cambia este valor al grupo deseado
 
 # Ejecutar la función con el grupo definido
 procesar_grupo(grupo)
