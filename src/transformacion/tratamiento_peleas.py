@@ -89,7 +89,9 @@ def nuevas_columnas(df):
 
     df['SIG_STR_DIFF'] = df['SIG_STR_A'] - df['SIG_STR_B'] #Diferencia de golpes significativos
 
-    df['TD_DIFF'] = (df['TD_A_x']/df['TD_A_y']) - (df['TD_B_x']/df['TD_B_y']) #Diferencia de efectividad en derribos
+
+    df['TD_DIFF'] = (df['TD_A_x']/(df['TD_A_y']+1)) - (df['TD_B_x']/(df['TD_B_y']+1)) #Diferencia de efectividad en derribos
+
 
     df['SUB_ATT_DIFF'] = df['SUB_ATT_A'] - df['SUB_ATT_B'] #Diferencia intentos de submisión
 
@@ -146,6 +148,7 @@ def pasar_a_dummies(df,col):
 
 df = lectura("C:/Users/mattu/OneDrive/Documentos/GitHub/c2425-R4/src/transformacion/csv_peleas.csv")
 print(df.head())
+
 df = limpieza_of(df)
 df = limpieza_na(df)
 df = limpieza_porcentajes(df)
