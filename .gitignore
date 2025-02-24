@@ -6,3 +6,4 @@ src/analisis/.ipynb_checkpoints/RANKING_V3-checkpoint.ipynb
 src/transformacion/csv_peleas.csv
 df_limpio.csv
 df_peleas_limpio.csv
+src/extraccion/fighters_completos.csv
