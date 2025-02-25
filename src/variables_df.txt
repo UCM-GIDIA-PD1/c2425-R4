@@ -35,6 +35,10 @@ DF medias_peleadores:
 -Añadir la x y la y
 -Quital la T y la M
 -Racha derrotas seguidas
+-Edad
+-Height
+-Reach
+-Leg Reach
 
 DF peleas:
 -Poner contadores de tipo de victorias a cada peleador
@@ -42,3 +46,7 @@ DF peleas:
 -Poner contadores de tipo de derrotas a cada peleador
 -Añadir peleas peleador
 -Racha victorias seguidas
+-Edad
+-Height
+-Reach
+-Leg Reach
