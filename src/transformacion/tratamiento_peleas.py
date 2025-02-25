@@ -179,6 +179,60 @@ df = filtrar_por_categorias(df)
 df = pasar_a_dummies(df,'METHOD')
 df["ROUND"] = df["ROUND"].str.replace('ROUND: ','',regex=False)
 
+#Crear dataframe invirtiendo los datos de los peleadores 
+df_invertido=df.rename(columns={
+    'Peleador_A':'Peleador_B',
+    'Peleador_B':'Peleador_A',
+    'KD_A':'KD_B',
+    'KD_B':'KD_A',
+    'SIG_STR_A':'SIG_STR_B',
+    'SIG_STR_B':'SIG_STR_A',
+    'TD_PORC_A':'TD_PORC_B',
+    'TD_PORC_B':'TD_PORC_A',
+    'SUB_ATT_A':'SUB_ATT_B',
+    'SUB_ATT_B':'SUB_ATT_A',
+    'REV_A':'REV_B',
+    'REV_B':'REV_A',
+    'CTRL_A':'CTRL_B',
+    'CTRL_B':'CTRL_A',
+    'TOTAL_STR_A_x':'TOTAL_STR_B_x',
+    'TOTAL_STR_B_x':'TOTAL_STR_A_x',
+    'TOTAL_STR_A_y':'TOTAL_STR_B_y',
+    'TOTAL_STR_B_y':'TOTAL_STR_A_y',
+    'TD_A_x':'TD_B_x',
+    'TD_B_x':'TD_A_x',
+    'TD_A_y':'TD_B_y',
+    'TD_B_y':'TD_A_y',
+    'STR_HEAD_A_x':'STR_HEAD_B_x',
+    'STR_HEAD_B_x':'STR_HEAD_A_x',
+    'STR_HEAD_A_y':'STR_HEAD_B_y',
+    'STR_HEAD_B_y':'STR_HEAD_A_y',
+    'STR_BODY_A_x':'STR_BODY_B_x',
+    'STR_BODY_B_x':'STR_BODY_A_x',
+    'STR_BODY_A_y':'STR_BODY_B_y',
+    'STR_BODY_B_y':'STR_BODY_A_y',
+    'STR_LEG_A_x':'STR_LEG_B_x',
+    'STR_LEG_B_x':'STR_LEG_A_x',
+    'STR_LEG_A_y':'STR_LEG_B_y',
+    'STR_LEG_B_y':'STR_LEG_A_y',
+    'STR_DISTANCE_A_x':'STR_DISTANCE_B_x',
+    'STR_DISTANCE_B_x':'STR_DISTANCE_A_x',
+    'STR_DISTANCE_A_y':'STR_DISTANCE_B_y',
+    'STR_DISTANCE_B_y':'STR_DISTANCE_A_y',
+    'STR_CLINCH_A_x':'STR_CLINCH_B_x',
+    'STR_CLINCH_B_x':'STR_CLINCH_A_x',
+    'STR_CLINCH_A_y':'STR_CLINCH_B_y',
+    'STR_CLINCH_B_y':'STR_CLINCH_A_y',
+    'STR_GROUND_A_x':'STR_GROUND_B_x',
+    'STR_GROUND_B_x':'STR_GROUND_A_x',
+    'STR_GROUND_A_y':'STR_GROUND_B_y',
+    'STR_GROUND_B_y':'STR_GROUND_A_y',
+
+})[df.columns]
+
+#Unir ambos dataframe
+df=pd.concat([df,df_invertido],ignore_index=True)
+
 df.to_csv("df_peleas_limpio.csv")
 
 
