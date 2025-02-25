@@ -18,6 +18,9 @@ def lectura(archivo):
     return df
 
 def limpieza_na(df):
+    """Función para limpiar los NAs, tras estudiar el dataframe vemos que los NAs están representados con ---
+    por lo tanto primero sustituyo los --- por NAs e imputo los NAs calculando los valores manualmente,
+    ya que las columnas con NAs eran porcentajes los cuales se podían hallar"""
     columnas_con_na = []
 
     for columnas in df.columns:
@@ -44,6 +47,8 @@ def limpieza_na(df):
     return df
 
 def limpieza_of(df):
+    """Elimino las columnas que tenían el tipo x of y, creando dos columnas la columna x y la columna y separando los valores 
+    y estableciendo estas columnas como numéricas"""
     columnas_con_of = ['TOTAL_STR_A', 'TOTAL_STR_B', 
                      'TD_A', 'TD_B', 'STR_HEAD_A', 'STR_HEAD_B', 'STR_BODY_A', 'STR_BODY_B', 
                      'STR_LEG_A', 'STR_LEG_B', 'STR_DISTANCE_A', 'STR_DISTANCE_B',	'STR_CLINCH_A',	'STR_CLINCH_B',	'STR_GROUND_A'	,'STR_GROUND_B']
@@ -61,12 +66,14 @@ def limpieza_of(df):
     return df
 
 def convertir_porcentaje(valor):
+    """"Convierto el valor con porcentajes a tipo float eliminando también el símbolo(%)"""
     if isinstance(valor, str) and "%" in valor:
         return float(valor.strip("%")) / 100
-    return valor
+    
+    return valor/100
 
 def limpieza_porcentajes(df):
-
+    """Aplico convertir_porcentaje a las columnas con porcentajes"""
     # Columnas que contienen porcentajes
     columnas_porcentaje = ["SIG_STR_A", "SIG_STR_B", "TD_PORC_A", "TD_PORC_B"]
 
@@ -79,12 +86,16 @@ def limpieza_porcentajes(df):
     return df
 
 def convertir_a_segundos(tiempo):
+    """Función que pasa de escala segundos:minutos a solo segundos"""
     if isinstance(tiempo, str) and ":" in tiempo:
         minutos, segundos = map(int, tiempo.split(":"))
         return minutos * 60 + segundos
     return 0  # Si el valor no es un string con formato válido, poner 0
 
 def nuevas_columnas(df):
+    """"Creo nuevas columnas que podrán ser útiles en el futuro
+    como diferencias entre los peleadores durante el combate o el tipo de 
+    estilo de cada luchador"""
     df['KD_DIFF'] = df['KD_A'] - df['KD_B'] #Creo columna de diferencia de knockdowns
 
     df['SIG_STR_DIFF'] = df['SIG_STR_A'] - df['SIG_STR_B'] #Diferencia de golpes significativos
@@ -110,8 +121,8 @@ def nuevas_columnas(df):
     return df
 
 def obtener_peleas_por_titulo(df):
+    """Obtengo si la pelea es por un titulo o no creando una nueva columna"""
     #Filtrar peleas por titulo 
-
     df["TITLE_FIGHT"] =  df["CATEGORY"].str.contains("TITLE", case=False, na=False)
 
     print(df[["TITLE_FIGHT","CATEGORY"]])
@@ -119,11 +130,13 @@ def obtener_peleas_por_titulo(df):
     return df
 
 def obtener_peleas_mujeres(df):
+    """Creo una nueva columna sobre el género del comabate(Masculino o Femenino)"""
     df["WOMEN"] = df["CATEGORY"].str.contains("WOMEN",case=False,na=False)
 
     return df
 
 def filtrar_por_categorias(df):
+    """Creo una nueva columna la cual guarda el peso del combate(Peso Pluma, Peso Pesado...)"""
     df["CATEGORY"] = df["CATEGORY"].str.replace(
     r"\bLIGHT HEAVYWEIGHT\b", "LIGHTHEAVYWEIGHT", regex=True
     )
@@ -135,11 +148,13 @@ def filtrar_por_categorias(df):
     return df
 
 def limpiar_round(df):
+        """Limpio la columna Round"""
         df["ROUND"] = df["ROUND"].str.replace('ROUND: ','',regex=False)
 
         df["ROUND"]
 
 def pasar_a_dummies(df,col):
+    """"Paso a columnas dummies ciertas columnas"""
     df = pd.get_dummies(df, columns=[col], drop_first=True)
 
     return df
@@ -152,6 +167,7 @@ print(df.head())
 df = limpieza_of(df)
 df = limpieza_na(df)
 df = limpieza_porcentajes(df)
+df['WINNER'] = df['WINNER'].astype(bool)
 df["CTRL_A"] = df["CTRL_A"].apply(convertir_a_segundos)
 df["CTRL_B"] = df["CTRL_B"].apply(convertir_a_segundos)
 df = nuevas_columnas(df)
@@ -165,50 +181,5 @@ df["ROUND"] = df["ROUND"].str.replace('ROUND: ','',regex=False)
 
 df.to_csv("df_peleas_limpio.csv")
 
-df = df.drop(columns=['Peleador_A', 'Peleador_B', 'DATE','KD_A','KD_B','CATEGORY'])
-
-
-# 1. Definir la variable objetivo y las predictoras
-X = df.drop('WINNER', axis=1)  # Variables predictoras
-y = df['WINNER']               # Variable objetivo
-
-# 2. Dividir en conjunto de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# 3. Crear el modelo de clasificación (Random Forest en este caso)
-modelo = RandomForestClassifier(random_state=42)
-
-# 4. Entrenar el modelo
-modelo.fit(X_train, y_train)
-
-# 5. Obtener las importancias de las características
-importancias = modelo.feature_importances_
-
-# 6. Crear un DataFrame con las importancias
-importancia_df = pd.DataFrame({
-    'Característica': X.columns,
-    'Importancia': importancias
-})
-
-# 7. Eliminar las características con importancia menor a 0.2
-importancia_df = importancia_df[importancia_df['Importancia'] >= 0.01]
-
-# 8. Filtrar el conjunto de datos X con solo las características seleccionadas
-X_train_reducido = X_train[importancia_df['Característica']]
-X_test_reducido = X_test[importancia_df['Característica']]
-
-# 9. Crear y entrenar un nuevo modelo con las características seleccionadas
-modelo_reducido = RandomForestClassifier(random_state=42)
-modelo_reducido.fit(X_train_reducido, y_train)
-
-# 10. Hacer predicciones con el modelo reducido
-y_pred_reducido = modelo_reducido.predict(X_test_reducido)
-
-# 11. Evaluar el rendimiento (Accuracy)
-accuracy_reducido = accuracy_score(y_test, y_pred_reducido)
-
-# Mostrar los resultados
-print(f'Accuracy del modelo con variables importantes: {accuracy_reducido:.4f}')
-print(importancia_df)
 
 
