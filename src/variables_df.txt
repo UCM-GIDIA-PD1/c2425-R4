@@ -18,3 +18,27 @@ DF peleas:
 
 
 -Obtener:
+
+
+
+
+---------------------------------
+
+
+
+
+DF medias_peleadores:
+-Poner contadores de tipo de victorias a cada peleador
+-Poner contadores de tipo de derrotas a cada peleador
+-Quitar variables de recibidas del df de medias_peleadores
+-Añadir tiempo pelea medio a cada peleador
+-Añadir la x y la y
+-Quital la T y la M
+-Racha derrotas seguidas
+
+DF peleas:
+-Poner contadores de tipo de victorias a cada peleador
+-Poner contadores de tipo de victorias a cada peleador
+-Poner contadores de tipo de derrotas a cada peleador
+-Añadir peleas peleador
+-Racha victorias seguidas
