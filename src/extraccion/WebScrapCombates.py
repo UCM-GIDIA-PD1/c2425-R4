@@ -18,7 +18,7 @@ url_base = "http://ufcstats.com/statistics/events/completed?page="
 data = []
 cont = 0
 
-def extraer_peleas(pag_inicio = 1, pag_final = 29):
+def extraer_peleas(pag_inicio, pag_final):
     try:
         # Recorrer las páginas de eventos
         for num in range(pag_inicio, pag_final):
@@ -171,8 +171,8 @@ def extraer_peleas(pag_inicio = 1, pag_final = 29):
     finally:
         # Guardar los datos en un CSV
         df = pd.DataFrame(data)
-        df.to_csv(r"c2425-R4\data\raw\peleadores_webscraping.csv", index=False, encoding="utf-8")
-        print("Datos guardados en primeras_peleas_ufc.csv")
+        df.to_csv(r"c2425-R4\src\data\raw\peleas.csv", index=False, encoding="utf-8")
+        print("Datos guardados en peleas.csv")
 
         # Cerrar el navegador
         driver.quit()
