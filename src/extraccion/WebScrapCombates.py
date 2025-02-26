@@ -171,7 +171,7 @@ def extraer_peleas(pag_inicio = 1, pag_final = 29):
     finally:
         # Guardar los datos en un CSV
         df = pd.DataFrame(data)
-        df.to_csv("primeras_peleas_ufc_v2.csv", index=False, encoding="utf-8")
+        df.to_csv(r"c2425-R4\data\raw\peleadores_webscraping.csv", index=False, encoding="utf-8")
         print("Datos guardados en primeras_peleas_ufc.csv")
 
         # Cerrar el navegador
