@@ -10,6 +10,42 @@ peleadores['Record'] = peleadores['Record'].apply(lambda x: list(map(int, x.spli
 
 r = dict(zip(peleadores['Nombre'].str.title(), peleadores['Record'].apply(lambda x: x.copy())))
 
+#Hay 31 peleadores que tienen mal puesto el record en la página de donde lo hemos sacado, por lo que hemos sacado a mano sus records
+#ya que era la única opción para tenerlos
+r['Tito Ortiz'] = [21, 12, 1]
+r['Rodrigo Ruas'] = [4, 5, 1]
+r['Eddie Mendez'] = [8, 3, 1]
+r['Amaury Bitetti'] = [5, 2, 0]
+r['Joey Gilbert'] = [2, 3, 1]
+r['Nate Loughran'] = [11, 2, 0]
+r['Maurice Smith'] = [14, 17, 0]
+r['Curtis Stout'] = [11, 12, 1]
+r['Yuki Kondo'] = [65, 40, 9]
+r['Daiju Takase'] = [12, 15, 2]
+r['Luiz Cane'] = [17, 7, 0]
+r['Ron Faircloth'] = [33, 20, 0]
+r['Bas Rutten'] = [28, 4, 1]
+r['Mark Hughes'] = [6, 2, 0]
+r['Phil Johns'] = [30, 14, 1]
+r['John Lewis'] = [3, 4, 3]
+r['Kenichi Yamamoto'] = [5, 17, 2]
+r['Joao Pierini'] = [4, 1, 0]
+r['Paul Rodriguez'] = [10, 9, 2]
+r['Frank Shamrock'] = [23, 10, 2]
+r['Ben Earwood'] = [13, 3, 0]
+r['Benji Radach'] = [16, 7, 0]
+r['Scott Smith'] = [18, 11, 0]
+r['Nick Serra'] = [7, 3, 0]
+r['Kit Cope'] = [6, 7, 0]
+r['Chris Sanford'] = [5, 1, 0]
+r['Lodune Sincaid'] = [15, 9, 0]
+r['Bobby Southworth'] = [10, 6, 0]
+r['Jason Thacker'] = [0, 1, 0]
+r['Yoji Anjo'] = [0, 5, 1]
+r['Danillo Villefort'] = [15, 6, 0]
+
+
+
 for idx, row in peleas.iterrows():
     peleador1, peleador2 = row['Peleador_A'], row['Peleador_B']
 
@@ -40,8 +76,8 @@ for idx, row in peleas.iterrows():
     peleas.loc[idx, 'Record_A'] = formatear_record(rec1)
     peleas.loc[idx, 'Record_B'] = formatear_record(rec2)
 
-r = dict(zip(peleadores['Nombre'].str.title(), peleadores['Record'].apply(lambda x: x.copy())))
 
+peleas = peleas.sort_values(by='DATE', ascending = True)
 peleas.to_csv('peleasConElRecord.csv', index=False)
 
 ##########EJEMPLO##########
