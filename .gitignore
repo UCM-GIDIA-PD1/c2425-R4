@@ -8,3 +8,4 @@ df_limpio.csv
 df_peleas_limpio.csv
 data
 src/extraccion/fighters_completos.csv
+.venv
