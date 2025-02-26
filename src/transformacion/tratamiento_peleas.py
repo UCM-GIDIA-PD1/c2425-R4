@@ -235,5 +235,51 @@ df=pd.concat([df,df_invertido],ignore_index=True)
 
 df.to_csv("df_peleas_limpio.csv")
 
+"""df = df.drop(columns=['Peleador_A', 'Peleador_B', 'DATE','KD_A','KD_B','CATEGORY','index','Unnamed: 0'])
 
+#df = df[df['WOMEN'] == 1]
+# 1. Definir la variable objetivo y las predictoras
+X = df.drop('WINNER', axis=1)  # Variables predictoras
+y = df['WINNER']               # Variable objetivo
 
+# 2. Dividir en conjunto de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 3. Crear el modelo de clasificación (Random Forest en este caso)
+modelo = RandomForestClassifier(random_state=42)
+
+# 4. Entrenar el modelo
+modelo.fit(X_train, y_train)
+
+# 5. Obtener las importancias de las características
+importancias = modelo.feature_importances_
+
+# 6. Crear un DataFrame con las importancias
+importancia_df = pd.DataFrame({
+    'Característica': X.columns,
+    'Importancia': importancias
+})
+
+# Ordenar las características por importancia de mayor a menor
+importancia_df = importancia_df.sort_values(by='Importancia', ascending=False)
+
+# 7. Eliminar las características con importancia menor a 0.2
+importancia_df = importancia_df[importancia_df['Importancia'] >= 0.01]
+
+# 8. Filtrar el conjunto de datos X con solo las características seleccionadas
+X_train_reducido = X_train[importancia_df['Característica']]
+X_test_reducido = X_test[importancia_df['Característica']]
+
+# 9. Crear y entrenar un nuevo modelo con las características seleccionadas
+modelo_reducido = RandomForestClassifier(random_state=42)
+modelo_reducido.fit(X_train_reducido, y_train)
+
+# 10. Hacer predicciones con el modelo reducido
+y_pred_reducido = modelo_reducido.predict(X_test_reducido)
+
+# 11. Evaluar el rendimiento (Accuracy)
+accuracy_reducido = accuracy_score(y_test, y_pred_reducido)
+
+# Mostrar los resultados
+print(f'Accuracy del modelo con variables importantes: {accuracy_reducido:.4f}')
+print(importancia_df)"""
