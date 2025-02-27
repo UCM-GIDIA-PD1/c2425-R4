@@ -8,7 +8,7 @@ import pandas as pd
 
 # Configuración del navegador
 options = webdriver.ChromeOptions()
-options.add_argument('--headless')  # Ejecutar en segundo plano
+#options.add_argument('--headless')  # Ejecutar en segundo plano
 # options.add_argument('--no-sandbox')
 # options.add_argument('--disable-dev-shm-usage')
 
@@ -389,7 +389,7 @@ def extraer_peleadores(pag_ini, pag_fin):
     finally:
         # Guardar los datos antes de cerrar el navegador
         df = pd.DataFrame(data)
-        df.to_csv(r"c2425-R4\data\raw\peleadores.csv", index=False)
+        df.to_csv(r"../data/raw/peleadores.csv", index=False, encoding="utf-8")
         print("Datos guardados en peleadores.csv")
 
         # Cerrar el navegador

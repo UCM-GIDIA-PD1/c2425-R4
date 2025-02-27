@@ -171,8 +171,11 @@ def extraer_peleas(pag_inicio, pag_final):
     finally:
         # Guardar los datos en un CSV
         df = pd.DataFrame(data)
-        df.to_csv(r"c2425-R4\src\data\raw\peleas.csv", index=False, encoding="utf-8")
+        df.to_csv(r"../data/raw/peleas.csv", index=False, encoding="utf-8")
         print("Datos guardados en peleas.csv")
 
         # Cerrar el navegador
         driver.quit()
+
+#python main.py peleadores --pagina_inicio 1 --pagina_final 2
+#python main.py fechas --fila_inicio 1 --fila_final 10

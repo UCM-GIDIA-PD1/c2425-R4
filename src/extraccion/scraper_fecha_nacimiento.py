@@ -23,7 +23,7 @@ def get_birthdate(url):
     return match.group(0) if match else "Fecha de nacimiento no encontrada"
 
 def extraer_fecha_nacimiento(fila_inicial, fila_final):
-    archivo_general = r"c2425-R4\data\raw\peleadores.csv"
+    archivo_general = r"../data/raw/peleadores.csv"
     
     if not os.path.exists(archivo_general):
         print(f"El archivo {archivo_general} no existe.")
@@ -35,7 +35,7 @@ def extraer_fecha_nacimiento(fila_inicial, fila_final):
     peleadores = df_rango["Nombre"].tolist()
     
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
+    #options.add_argument('--headless')
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-gpu")
     options.add_argument("--disable-software-rasterizer")
@@ -85,5 +85,5 @@ def extraer_fecha_nacimiento(fila_inicial, fila_final):
     carpeta_destino = "fecha"
     os.makedirs(carpeta_destino, exist_ok=True)
 
-    df_rango.to_csv(r"c2425-R4\data\raw\peleadores_fecha_nacimiento.csv", index=False)
+    df_rango.to_csv(r"../data/raw/peleadores_fechas_nacimiento.csv", index=False, encoding="utf-8")
     print(f"Archivo guardado en peleadores_fecha_nacimiento")

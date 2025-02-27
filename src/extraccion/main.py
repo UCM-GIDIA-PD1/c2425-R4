@@ -1,29 +1,36 @@
 import argparse
 from WebScrapCombates import extraer_peleas
 from scraper_peleadores import extraer_peleadores
-from scraper_fecha_nacimiento import extrar_fechas_nacimiento
+from scraper_fecha_nacimiento import extraer_fecha_nacimiento  # Corregido
 
 def main():
-    parser = argparse.ArgumentParser(description="Extracción de datos de combates")
-    parser.add_argument("--pagina_inicio", default=1, help="Página por la que se inica la extracción de los combates")
-    parser.add_argument("--pagina_final", default= 29, help="Página hasta la que se extraen los combates")
+    parser = argparse.ArgumentParser(description="Extracción de datos de combates y peleadores")
+    subparsers = parser.add_subparsers(dest="comando", required=True)
+
+    # Subcomando para extraer peleas
+    parser_peleas = subparsers.add_parser("peleas", help="Extraer datos de combates")
+    parser_peleas.add_argument("--pagina_inicio", type=int, default=1, help="Página de inicio")
+    parser_peleas.add_argument("--pagina_final", type=int, default=29, help="Página final")
+
+    # Subcomando para extraer peleadores
+    parser_peleadores = subparsers.add_parser("peleadores", help="Extraer datos de peleadores")
+    parser_peleadores.add_argument("--pagina_inicio", type=int, default=1, help="Página de inicio")
+    parser_peleadores.add_argument("--pagina_final", type=int, default=None, help="Página final (None para llegar al final)")
+
+    # Subcomando para extraer fechas de nacimiento
+    parser_fechas = subparsers.add_parser("fechas", help="Extraer fechas de nacimiento de peleadores")
+    parser_fechas.add_argument("--fila_inicio", type=int, default=0, help="Fila de inicio")
+    parser_fechas.add_argument("--fila_final", type=int, default=200, help="Fila final")
+
     args = parser.parse_args()
 
-    extraer_peleas(args.pagina_inicio, args.pagina_final)
-    
-    parser2 = argparse.ArgumentParser(description="Extracción de datos de peleadores")
-    parser2.add_argument("--pagina_inicio", default=1, help="Página por la que se inica la extracción de los peleadores")
-    parser2.add_argument("--pagina_final", default=None, help="Página hasta la que se extraen los peleadores, no poner nada para llegar al final")
-    args2 = parser2.parse_args()
-    
-    extraer_peleadores(args2.pagina_inicio, args2.pagina_final)
-    
-    parser3 = argparse.ArgumentParser(description="Extracción de la fecha de nacimiento de los peleadores. Rango 0 - N (N = nº filas peleadores.csv). Solo se pueden hacer seguidas 100 filas. Y aproximadamente 500 filas por día")
-    parser3.add_argument("--fila_inicio", default=0, help="Fila desde la que se extrae la fecha de nacimiento")
-    parser3.add_argument("--fila_final", default=200 , help="Fila desde la que se extrae la fecha de nacimiento")
-    args3 = parser3.parse_args()
-
-    extrar_fechas_nacimiento(args3.fila_inicio, args3.fila_final)
+    # Ejecutar la función correspondiente según el subcomando elegido
+    if args.comando == "peleas":
+        extraer_peleas(args.pagina_inicio, args.pagina_final)
+    elif args.comando == "peleadores":
+        extraer_peleadores(args.pagina_inicio, args.pagina_final)
+    elif args.comando == "fechas":
+        extraer_fecha_nacimiento(args.fila_inicio, args.fila_final)
 
 if __name__ == "__main__":
     main()
