@@ -61,9 +61,6 @@ def extraer_peleas(pag_inicio, pag_final):
                         first_person_status = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__person-status")
                         if "b-fight-details__person-status_style_green" in first_person_status.get_attribute("class"):
                             WINNER = 0
-                            print("Ha ganado")
-                        else:
-                            print("Ha perdido")
                         
                         tabla = driver.find_elements(By.CSS_SELECTOR, "tr.b-fight-details__table-row td")
                         # Verifica que se hayan encontrado todos los elementos necesarios
@@ -84,7 +81,6 @@ def extraer_peleas(pag_inicio, pag_final):
                         except Exception as e:
                             print(f"No se pudo extraer el tiempo de la pelea: {e}")
                             fight_time = "Time"  # Lo puedes filtrar después si prefieres
-                        print(round)
                         tabla_filtrada = [elem for elem in tabla if elem.text.strip() != ""]
                         nombres = tabla_filtrada[0].text.split("\n")
                         peleadorA = nombres[0]
