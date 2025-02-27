@@ -394,3 +394,4 @@ def extraer_peleadores(pag_ini, pag_fin):
 
         # Cerrar el navegador
         driver.quit()
+        
