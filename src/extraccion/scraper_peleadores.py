@@ -6,16 +6,10 @@ import time
 import pandas as pd
 
 
-# Configuración del navegador
-options = webdriver.ChromeOptions()
-#options.add_argument('--headless')  # Ejecutar en segundo plano
-# options.add_argument('--no-sandbox')
-# options.add_argument('--disable-dev-shm-usage')
 
 # Inicializar el driver
-driver = webdriver.Chrome(options = options)
+driver = webdriver.Chrome()
 url = "https://www.ufc.com/athletes/all"
-#url = "https://www.ufc.com/athletes/all?filters%5B0%5D=fighting_style%3A7144&filters%5B1%5D=status%3A23"
 driver.get(url)
 time.sleep(1)  # Esperar carga inicial
 

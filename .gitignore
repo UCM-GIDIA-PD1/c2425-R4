@@ -11,3 +11,4 @@ src/extraccion/fighters_completos.csv
 .venv
 src/data
 src/extraccion/__pycache__
+src/transformacion/__pycache__

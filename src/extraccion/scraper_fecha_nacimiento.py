@@ -92,72 +92,72 @@ import os
 import re
 import time
 import pandas as pd
-import requests
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+import requests # Solicitudes HTTP
+from bs4 import BeautifulSoup #Librería para parsear HTML
+from selenium import webdriver #Automatización de navegadores
+from selenium.webdriver.common.by import By # Localizar elementos HTML
+from selenium.webdriver.common.keys import Keys # Simular pulsación de teclas
 
 def get_birthdate(url):
+    """Función que extrae fecha de nacimiento desde una URL usando requests y BeautifulSoup"""
     headers = {'User-Agent': 'Mozilla/5.0'}
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers) #Solicitud HTTP
     
-    if response.status_code != 200:
-        return f"Error: No se pudo acceder a la página (Código {response.status_code})"
+    if response.status_code != 200: #Verifica si la solicitud tuvo éxito
+        return f"Error: No se pudo acceder a la página (Código {response.status_code})" 
     
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, 'html.parser') #Parsear HTML
     text = soup.get_text()
     date_pattern = re.compile(r'\b(\d{4}-\d{2}-\d{2})\b')
-    match = date_pattern.search(text)
+    match = date_pattern.search(text) #Buscar la fecha en el texto
     
     return match.group(0) if match else "Fecha de nacimiento no encontrada"
 
+
 def extraer_fecha_nacimiento(fila_inicial, fila_final):
-    archivo_general = r"../data/raw/peleadores.csv"
+    """Función que extrae la fecha de nacimiento de un conjunto de peleadores"""
+    archivo_general = r"../data/raw/peleadores.csv" #Ruta del archivo con los nombres de los peleadores
     
-    if not os.path.exists(archivo_general):
+    if not os.path.exists(archivo_general): #Verifica que existe el archivo
         print(f"El archivo {archivo_general} no existe.")
         return
     
     df_general = pd.read_csv(archivo_general)
-    df_rango = df_general.iloc[fila_inicial:fila_final]
-    
+    df_rango = df_general.iloc[fila_inicial:fila_final] #Selecciona las filas según el rango indicado
+
     peleadores = df_rango["Nombre"].tolist()
     
     options = webdriver.ChromeOptions()
     #options.add_argument('--headless')
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--disable-software-rasterizer")
-    options.add_argument("--ignore-certificate-errors")
-    options.add_argument("--allow-running-insecure-content")
-    options.add_argument("--disable-web-security")
-    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36")
+    options.add_argument("--no-sandbox") #Evita errores en entornos restringidos
+    options.add_argument("--disable-gpu") #Desacctiva la GPU para evitar incompatibilidades 
+    options.add_argument("--disable-web-security") #Desabilita resctricciones de seguridad
+    options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36") #Simula usuario real
     
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=options) #Inicia navegador
     fechas = []
-    url_busqueda = 'https://www.tapology.com/search'
+    url_busqueda = 'https://www.tapology.com/search' #URL base
     
     try:
-        for peleador in peleadores:
+        for peleador in peleadores: #Itera sobre cada peleador
             try:
                 driver.get(url_busqueda)
                 time.sleep(1)
                 
-                search_box = driver.find_element(By.NAME, "term")
+                search_box = driver.find_element(By.NAME, "term") #Busca barra de búsqueda
                 search_box.clear()
-                search_box.send_keys(peleador)
+                search_box.send_keys(peleador) #Escribe el nombre del peleador
                 search_box.send_keys(Keys.RETURN)
                 time.sleep(1)
                 
-                fighter_link = driver.find_element(By.CSS_SELECTOR, "a[href*='/fighters/']")
+                fighter_link = driver.find_element(By.CSS_SELECTOR, "a[href*='/fighters/']") #Selecciona el primer peleador que aparece
                 fighter_url = fighter_link.get_attribute("href")
-                driver.get(fighter_url)
+                driver.get(fighter_url) #Abre la página del peleador 
                 time.sleep(1)
                 
-                birthdate = get_birthdate(fighter_url)
+                birthdate = get_birthdate(fighter_url) #Extrae la fecha de nacimiento con la función anterior 
                 print(f"Peleador: {peleador} | Fecha de nacimiento: {birthdate}")
-                fechas.append(birthdate)
+                fechas.append(birthdate) #Guarda la fecha
                 
             except Exception as e:
                 print(f"Error con {peleador}: {e}")
