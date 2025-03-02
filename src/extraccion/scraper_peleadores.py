@@ -5,37 +5,14 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import pandas as pd
 
-
-
 # Inicializar el driver
 driver = webdriver.Chrome()
 url = "https://www.ufc.com/athletes/all"
 driver.get(url)
-time.sleep(1)  # Esperar carga inicial
-
-def cargar_mas():
-    # Cargar más elementos mientras el botón esté disponible
-    while True:
-        try:
-            # Buscar el botón "Load more items"
-            load_more_button = WebDriverWait(driver, 5).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, 'a.button[rel="next"]'))
-            )
-
-            # Hacer scroll hacia el botón antes de hacer clic
-            driver.execute_script("arguments[0].scrollIntoView();", load_more_button)
-            time.sleep(2)  # Esperar un poco para evitar bloqueos
-
-            # Hacer clic en el botón
-            load_more_button.click()
-            time.sleep(2)  # Esperar a que se carguen más elementos
-
-        except Exception:
-            print("No hay más elementos para cargar.")
-            break  # Sale del bucle cuando ya no hay más botón
-
+time.sleep(1)
 
 def extract_fighters(start_page, end_page=None):
+    """Función que extrae enlaces de los perfiles de los peleadores"""
     base_url = "https://www.ufc.com/athletes/all?page="
     all_links = []
 
@@ -47,7 +24,7 @@ def extract_fighters(start_page, end_page=None):
     while current_page <= end_page:
         url = base_url + str(current_page)
         driver.get(url)
-        time.sleep(1)  # Esperar carga inicial
+        time.sleep(1) 
 
         # Obtener los enlaces de los peleadores
         fighter_links = driver.find_elements(By.CSS_SELECTOR, "a[href*='/athlete/']")
@@ -63,8 +40,9 @@ def extract_fighters(start_page, end_page=None):
     return all_links
 
 
-def extraer_peleadores(pag_ini, pag_fin):    
-    # Obtener los enlaces de los peleadores
+def extraer_peleadores(pag_ini, pag_fin):   
+    """Función principal que extrae datos de los peleadores""" 
+
     fighter_links = extract_fighters(pag_ini, pag_fin)
 
     # Lista para almacenar los datos
@@ -273,8 +251,8 @@ def extraer_peleadores(pag_ini, pag_fin):
                     # Extraer datos para "DEC"
                     dec = driver.find_element(By.XPATH, '//div[@class="c-stat-3bar__label" and contains(text(), "DEC")]/following-sibling::div[@class="c-stat-3bar__value"]')
                     dec_text = dec.text.strip()  
-                    dec_value, dec_percent = dec_text.split(" (")  # Separar número y porcentaje
-                    dec_percent = dec_percent.replace(")", "")  # Eliminar el paréntesis final
+                    dec_value, dec_percent = dec_text.split(" (")  
+                    dec_percent = dec_percent.replace(")", "")  
                     fighter_data["DEC"] = dec_value
                     fighter_data["Porcentaje DEC"] = dec_percent
                 except Exception as e:
@@ -283,16 +261,14 @@ def extraer_peleadores(pag_ini, pag_fin):
                     # Extraer datos para "SUB"
                     sub = driver.find_element(By.XPATH, '//div[@class="c-stat-3bar__label" and contains(text(), "SUB")]/following-sibling::div[@class="c-stat-3bar__value"]')
                     sub_text = sub.text.strip()  
-                    sub_value, sub_percent = sub_text.split(" (")  # Separar número y porcentaje
-                    sub_percent = sub_percent.replace(")", "")  # Eliminar el paréntesis final
+                    sub_value, sub_percent = sub_text.split(" (")  
+                    sub_percent = sub_percent.replace(")", "") 
                     fighter_data["SUB"] = sub_value
                     fighter_data["Porcentaje SUB"] = sub_percent
                     
                 except Exception as e:
                     print(f"Error al extraer los datos: {e}")
-                ####################################
-                #AÑADIDO NUEVO
-                ###########################
+                    
                 
                 ###########DATOS DEL PELEADOR###################
                 try:
@@ -364,7 +340,7 @@ def extraer_peleadores(pag_ini, pag_fin):
                 except:
                     print("No se encontró el récord")
                     
-                ######IMAGEN###########
+                ###########IMAGEN###########
                 try:
                     img_element = driver.find_element(By.XPATH, '//div[@class="hero-profile__image-wrap"]/img')
                     fighter_data["Imagen"] = img_element.get_attribute("src")

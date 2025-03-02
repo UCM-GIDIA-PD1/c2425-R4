@@ -5,7 +5,6 @@ import pandas as pd
 
 # Configuración del navegador
 options = webdriver.ChromeOptions()
-#options.add_argument('--headless') 
 options.add_argument('--no-sandbox')
 options.add_argument('--disable-dev-shm-usage')
 
@@ -24,7 +23,7 @@ def extraer_peleas(pag_inicio, pag_final):
         for num in range(pag_inicio, pag_final):
             url = f"{url_base}{num}"
             driver.get(url)
-            time.sleep(1)  # Espera a que cargue la página
+            time.sleep(1) 
             
             # Extraer todas las URLs de los eventos en la página actual
             eventos_elements = driver.find_elements(By.CSS_SELECTOR, "tr.b-statistics__table-row a.b-link.b-link_style_black")
@@ -40,7 +39,6 @@ def extraer_peleas(pag_inicio, pag_final):
                     time.sleep(1)
                     
                     # Extraer todas las URLs de las peleas del evento.
-                    # Asegúrate de que el selector corresponda con la estructura real del HTML.
                     pelea_elements = driver.find_elements(By.CSS_SELECTOR, "tbody tr")
                     pelea_urls = []
                     for pelea in pelea_elements:
@@ -57,6 +55,7 @@ def extraer_peleas(pag_inicio, pag_final):
                         
                         category = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__fight-title").text
                         print(category)
+                        # Determinar el ganador
                         WINNER = 1
                         first_person_status = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__person-status")
                         if "b-fight-details__person-status_style_green" in first_person_status.get_attribute("class"):
@@ -67,7 +66,8 @@ def extraer_peleas(pag_inicio, pag_final):
                         if len(tabla) < 18:
                             print("No se encontraron todas las columnas esperadas en la tabla de la pelea.")
                             continue
-
+                        
+                        # Extraer método de finalización y tiempo
                         try:
                             method_element = driver.find_element(By.CSS_SELECTOR, ".b-fight-details__text-item_first i[style='font-style: normal']")
                             fight_method = method_element.text.strip()
@@ -86,6 +86,7 @@ def extraer_peleas(pag_inicio, pag_final):
                         peleadorA = nombres[0]
                         peleadorB = nombres[1]
 
+                         # Extraer estadísticas de la pelea
                         KD = tabla_filtrada[1].text.split("\n")
                         KD_A = KD[0]
                         KD_B = KD[1]
@@ -136,6 +137,8 @@ def extraer_peleas(pag_inicio, pag_final):
                         
                         STR_GROUND_A = STR_GROUND[0]
                         STR_GROUND_B = STR_GROUND[1]
+                        
+                        #Almacenar los datos en un diccionario
                         datos = {
                             "Peleador_A": peleadorA,
                             "Peleador_B": peleadorB,"DATE":fechas[cont_fecha],"CATEGORY":category,
@@ -172,6 +175,3 @@ def extraer_peleas(pag_inicio, pag_final):
 
         # Cerrar el navegador
         driver.quit()
-
-#python main.py peleadores --pagina_inicio 1 --pagina_final 2
-#python main.py fechas --fila_inicio 1 --fila_final 10

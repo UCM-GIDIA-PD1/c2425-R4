@@ -1,5 +1,5 @@
 import argparse
-from WebScrapCombates import extraer_peleas
+from scraper_peleas import extraer_peleas
 from scraper_peleadores import extraer_peleadores
 from scraper_fecha_nacimiento import extraer_fecha_nacimiento  # Corregido
 
