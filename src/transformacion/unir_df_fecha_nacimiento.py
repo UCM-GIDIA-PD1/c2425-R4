@@ -4,6 +4,9 @@ import pandas as pd
 # Ruta de la carpeta con los archivos CSV
 carpeta = r"C:\Users\andre\OneDrive - Universidad Complutense de Madrid (UCM)\Escritorio\UNIVERSIDAD\2º\2º Cuatrimestre\PD1\c2425-R4\src\data\raw\nacimiento_peleadores"
 
+# Ruta de salida para el archivo combinado
+ruta_salida = r"C:\Users\andre\OneDrive - Universidad Complutense de Madrid (UCM)\Escritorio\UNIVERSIDAD\2º\2º Cuatrimestre\PD1\c2425-R4\src\data\raw\peleadores.csv"
+
 # Lista para almacenar los DataFrames
 dataframes = []
 
@@ -18,9 +21,8 @@ for archivo in os.listdir(carpeta):
 if dataframes:
     df_final = pd.concat(dataframes, ignore_index=True)
     
-    # Guardar el archivo final
-    salida = os.path.join(carpeta, "peleadores.csv")
-    df_final.to_csv(salida, index=False)
-    print(f"Archivo combinado guardado en: {salida}")
+    # Guardar el archivo final en la ruta de salida
+    df_final.to_csv(ruta_salida, index=False)
+    print(f"Archivo combinado guardado en: {ruta_salida}")
 else:
     print("No se encontraron archivos CSV en la carpeta especificada.")

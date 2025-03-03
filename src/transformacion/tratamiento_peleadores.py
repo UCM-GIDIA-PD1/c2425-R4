@@ -77,7 +77,4 @@ def transformacion_peleadores(archivo):
     # Aplicar la función y crear nuevas columnas
     df[['Wins', 'Losses', 'Draws']] = df['record'].apply(lambda x: pd.Series(extract_numbers(x)))
 
-    # Eliminar la columna 'record' original si ya no es necesaria
-    df.drop(columns=['record'], inplace=True)
-
     return df
