@@ -1,5 +1,5 @@
 import pandas as pd
-
+import numpy as np
 
 def edadesPeleadores(peleadores,peleas):
 
@@ -43,7 +43,7 @@ def edadesPeleadores(peleadores,peleas):
         f1 = dic.get(peleador1.title())
         f2 = dic.get(peleador2.title())
         # print(f1,f2)
-        if f1 and f1 != 'No encontrado':
+        if pd.notna(f1) and f1 != 'No encontrado':
             f1 = pd.to_datetime(f1)
             edad1 = (fechaPelea - f1).days / 365.25
             #if ((edad1 <= 0) & (peleador1.title() not in incorrectos)):
@@ -52,8 +52,8 @@ def edadesPeleadores(peleadores,peleas):
             fechas1.append(int(edad1))
             # print(peleador1, f1, fechaPelea, edad1)
         else:
-            fechas1.append('')
-        if f2 and f2 not in ['No encontrado', 'Fecha de nacimiento no encontrada',
+            fechas1.append(np.nan)
+        if pd.notna(f2) and f2 not in ['No encontrado', 'Fecha de nacimiento no encontrada',
                             'Error: No se pudo acceder a la página (Código 503)']:
             f2 = pd.to_datetime(f2)
             edad2 = (fechaPelea - f2).days / 365.25
@@ -63,7 +63,7 @@ def edadesPeleadores(peleadores,peleas):
             fechas2.append(int(edad2))
             # print(peleador2, f2, fechaPelea, edad2)
         else:
-            fechas2.append('')
+            fechas2.append(np.nan)
 
     peleas['Edad_A'] = fechas1
     peleas['Edad_B'] = fechas2
