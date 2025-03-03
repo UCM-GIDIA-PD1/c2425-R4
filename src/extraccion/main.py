@@ -2,8 +2,21 @@ import argparse
 from scraper_peleas import extraer_peleas
 from scraper_peleadores import extraer_peleadores
 from scraper_fecha_nacimiento import extraer_fecha_nacimiento  # Corregido
+import os
 
 def main():
+
+    # Obtener la ruta del script actual
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Definir la ruta correcta dentro del proyecto
+    ruta = os.path.join(base_dir, "..", "data", "raw", "nacimiento_peleadores")
+
+    # Crear las carpetas si no existen
+    os.makedirs(ruta, exist_ok=True)
+
+    print(f"Carpeta creada o ya existente: {os.path.abspath(ruta)}")
+    
     parser = argparse.ArgumentParser(description="Extracción de datos de combates y peleadores")
     subparsers = parser.add_subparsers(dest="comando", required=True)
 
