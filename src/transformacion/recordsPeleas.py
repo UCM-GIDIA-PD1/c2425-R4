@@ -5,9 +5,9 @@ def recordPeleas(peleadores,peleas):
     peleadores['name'] = peleadores['name'].str.title()
     peleas = peleas.iloc[:,2:]
     peleas = peleas.sort_values(by='DATE', ascending = False)
-    peleadores['Record'] = peleadores['Record'].apply(lambda x: list(map(int, x.split(" ")[0].split("-"))))
+    peleadores['record'] = peleadores['record'].apply(lambda x: list(map(int, x.split(" ")[0].split("-"))))
 
-    r = dict(zip(peleadores['name'].str.title(), peleadores['Record'].apply(lambda x: x.copy())))
+    r = dict(zip(peleadores['name'].str.title(), peleadores['record'].apply(lambda x: x.copy())))
 
     #Hay 31 peleadores que tienen mal puesto el record en la página de donde lo hemos sacado, por lo que hemos sacado a mano sus records
     #ya que era la única opción para tenerlos
