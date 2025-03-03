@@ -26,7 +26,7 @@ def main():
     df_peleadores = transformacion_peleadores(args.dir_peleadores)
     df_peleas = nuevas_col(df_peleas, df_peleadores)
     df_peleas = recordPeleas(df_peleadores,df_peleas)
-    df_peleas = edadesPeleadores(df_peleadores,df_peleas)
+
 
     # Guardar los DataFrames transformados en 'data/processed'
     df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False)
