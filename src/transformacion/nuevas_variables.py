@@ -1,13 +1,7 @@
 import pandas as pd
 
-# Supongamos que tienes dos DataFrames:
-# df_enfrentamientos: Contiene las peleas entre dos peleadores
-# df_info_peleadores: Contiene la información de cada peleador (Height, Reach, Leg Reach)
-
-# Ejemplo de DataFrames
-
-def nuevas_col(df_pelea,df_peleadores):
-    df_peleas = df_pelea
+def nuevas_col(df_peleas,df_peleadores):
+    """Función que añade a cada pelea la variables 'height', 'reach', 'leg_reach' de cada peleador"""
 
     df_info_peleadores = df_peleadores
 
