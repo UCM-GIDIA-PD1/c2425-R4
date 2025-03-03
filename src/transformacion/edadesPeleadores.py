@@ -31,41 +31,57 @@ def edadesPeleadores(peleadores,peleas):
     peleadores.loc[peleadores['name'] == 'Curt Warburton', 'Nacimiento'] = '1981-06-03'
     peleadores.loc[peleadores['name'] == 'Jorge Gonzalez', 'Nacimiento'] = '1984-2-29'
 
+    r = dict(zip(peleadores['name'].str.title(), peleadores['Age']))
     dic = dict(zip(peleadores['name'].str.title(), peleadores['Nacimiento']))
     fechas1 = []
     fechas2 = []
-    incorrectos = [] #hay peleadores cuya fecha de nacimiento es 2025
+    incorrectos = []
     for i, row in peleas.iterrows():
         peleador1, peleador2, fechaPelea = row['Peleador_A'], row['Peleador_B'], row['DATE']
         # print(peleador1,peleador2)
         fechaPelea = pd.to_datetime(fechaPelea)
+        anoPelea = str(fechaPelea)[0] + str(fechaPelea)[1] + str(fechaPelea)[2] + str(fechaPelea)[3]
         # print(fecha)
         f1 = dic.get(peleador1.title())
         f2 = dic.get(peleador2.title())
+        if peleador1 in r:
+            age1 = r[peleador1.title()]
+        if peleador2 in r:
+            age2 = r[peleador2.title()]
         # print(f1,f2)
-        if f1 and f1 != 'No encontrado':
-            f1 = pd.to_datetime(f1)
-            edad1 = (fechaPelea - f1).days / 365.25
-            #if ((edad1 <= 0) & (peleador1.title() not in incorrectos)):
-                #print("No se ha extraido bien la fecha de", peleador1.title(), edad1)
-                #incorrectos.append(peleador1.title())
+        if f1 and f1 != "No encontrado":
+            f1 = pd.to_datetime(f1, errors='coerce')  # 'coerce' convierte valores inválidos en NaT (Not a Time)
+            if pd.notna(f1):
+                edad1 = (fechaPelea - f1).days / 365.25
+                if ((edad1 <= 0) & (peleador1.title() not in incorrectos) & (peleador1 in r)):
+                    d = 2025 - r[peleador1.title()]
+                    edad1 = int(anoPelea) - d
+                    if ((peleador1.title() not in incorrectos) & (edad1 <= 0)):
+                        # print("No se ha extraido bien la fecha de", peleador1.title(), edad1)
+                        incorrectos.append(peleador1.title())
             fechas1.append(int(edad1))
             # print(peleador1, f1, fechaPelea, edad1)
         else:
-            fechas1.append('')
+            fechas1.append("")
         if f2 and f2 not in ['No encontrado', 'Fecha de nacimiento no encontrada',
-                            'Error: No se pudo acceder a la página (Código 503)']:
+                             'Error: No se pudo acceder a la página (Código 503)']:
             f2 = pd.to_datetime(f2)
             edad2 = (fechaPelea - f2).days / 365.25
-            #if ((edad2 < 0) & (peleador2.title() not in incorrectos)):
-                #print("No se ha extraido bien la fecha de", peleador2.title(), edad2)
-                #incorrectos.append(peleador2.title())
+            if ((peleador2.title() not in incorrectos) & (peleador2 in r)):
+                d = 2025 - r[peleador2.title()]
+                edad2 = int(anoPelea) - d
+                if ((edad2 <= 0) & (peleador2.title() not in incorrectos)):
+                    # print("No se ha extraido bien la fecha de", peleador2.title(), edad2)
+                    incorrectos.append(peleador2.title())
             fechas2.append(int(edad2))
             # print(peleador2, f2, fechaPelea, edad2)
         else:
-            fechas2.append('')
+            fechas2.append("")
 
     peleas['Edad_A'] = fechas1
     peleas['Edad_B'] = fechas2
+
+    peleas['Edad_A'] = pd.to_numeric(peleas['Edad_A'], errors='coerce').fillna(0).astype(int)
+    peleas['Edad_B'] = pd.to_numeric(peleas['Edad_B'], errors='coerce').fillna(0).astype(int)
 
     return peleas
