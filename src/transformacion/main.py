@@ -2,6 +2,8 @@ import argparse
 from tratamiento_peleadores import transformacion_peleadores
 from tratamiento_peleas import transformacion_peleas
 from nuevas_variables import nuevas_col
+from recordsPeleas import recordPeleas
+from edadesPeleadores import edadesPeleadores
 import os
 
 def main():
@@ -23,12 +25,15 @@ def main():
     df_peleas = transformacion_peleas(args.dir_peleas)
     df_peleadores = transformacion_peleadores(args.dir_peleadores)
     df_peleas = nuevas_col(df_peleas, df_peleadores)
+    df_peleas = recordPeleas(df_peleadores,df_peleas)
+    df_peleas = edadesPeleadores(df_peleadores,df_peleas)
 
     # Guardar los DataFrames transformados en 'data/processed'
     df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False)
     df_peleadores.to_parquet(os.path.join(ruta_processed, "peleadores.parquet"), index=False)
-
+    print(df_peleas)
     print("Archivos guardados en 'data/processed'.")
+
 
 if __name__ == "__main__":
     main()
