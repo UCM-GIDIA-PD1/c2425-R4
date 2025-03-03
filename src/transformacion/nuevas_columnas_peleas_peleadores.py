@@ -3,7 +3,7 @@ from datetime import datetime
 import numpy as np
 import unicodedata
 
-def transformacion(df_peleas_or,df_peleadores):
+def transformacion(df_peleas_or,df_peleadores_2):
 
     # Función para calcular la importancia del tiempo con caída gradual
     def calcular_factor_tiempo(fecha_pelea):
@@ -49,20 +49,19 @@ def transformacion(df_peleas_or,df_peleadores):
     df_peleas["DATE"] = pd.to_datetime(df_peleas["DATE"], errors='coerce')
 
 
-    df_info_peleadores = df_peleadores
+    df_info_peleadores = df_peleadores_2
 
     for col in ["Peleas", "Puntos", "Racha", "Victorias_KO", "Victorias_Sub", 
-                "Victorias_Decision", "Derrotas_KO", "Derrotas_Sub", "Derrotas_Decision",
-                "height", "reach", "leg_reach"]:
+                "Victorias_Decision", "Derrotas_KO", "Derrotas_Sub", "Derrotas_Decision"]: #"height", "reach", "leg_reach" eliminadas
         df_peleas[f"{col}_A"] = None
         df_peleas[f"{col}_B"] = None
     # Crear columnas vacías para la información de cada peleador
-
+    
     # Recorrer cada fila del DataFrame de peleas
     for index, row in df_peleas.iterrows():
         peleador_a = row['Peleador_A']
         peleador_b = row['Peleador_B']
-        
+        """
         # Buscar la información del Peleador_A en df_info_peleadores
         info_peleador_a = df_info_peleadores[df_info_peleadores['name'] == peleador_a.upper()]
         if not info_peleador_a.empty:
@@ -76,8 +75,9 @@ def transformacion(df_peleas_or,df_peleadores):
             df_peleas.at[index, 'height_B'] = info_peleador_b['height'].values[0]
             df_peleas.at[index, 'reach_B'] = info_peleador_b['reach'].values[0]
             df_peleas.at[index, 'leg_reach_B'] = info_peleador_b['leg_reach'].values[0]
+            """
 
-
+    
     df_peleas = df_peleas.sort_values(by=["DATE"])
 
     # Diccionario de historial
@@ -347,15 +347,3 @@ def transformacion(df_peleas_or,df_peleadores):
 
     return df_peleas_actualizado,df_stats
 
-# Cargar los DataFrames de los archivos CSV originales
-df_peleas_or = pd.read_csv("peleas_fran.csv")
-df_peleadores_2 = pd.read_csv("peleadores_fran.csv")
-
-# Llamar a la función transformacion
-df_peleas_actualizado, df_stats = transformacion(df_peleas_or, df_peleadores_2)
-
-# Guardar los DataFrames resultantes en archivos CSV
-df_peleas_actualizado.to_csv("df_peleas_actualizado.csv", index=False)
-df_stats.to_csv("peleadores_stats_actualizado.csv", index=False)
-
-print("Archivos guardados: df_peleas_actualizado.csv y peleadores_stats_actualizado.csv")
