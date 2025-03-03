@@ -1,5 +1,5 @@
 import pandas as pd
-
+import numpy as np
 
 def recordPeleas(peleadores,peleas):
     peleadores['name'] = peleadores['name'].str.title()
@@ -56,24 +56,24 @@ def recordPeleas(peleadores,peleas):
 
         # Actualiza los récords según el ganador
         if ganador == 0:
-            rec1[0] -= 1
-            rec2[1] -= 1
+            rec1[0] -= 1  # Loss_A
+            rec2[1] -= 1  # Win_B
         elif ganador == 1:
-            rec2[0] -= 1
-            rec1[1] -= 1
+            rec2[0] -= 1  # Loss_B
+            rec1[1] -= 1  # Win_A
         else:
-            rec1[2] -= 1
-            rec2[2] -= 1
+            rec1[2] -= 1  # Draw_A
+            rec2[2] -= 1  # Draw_B
 
+        # Asigna los valores a las columnas correspondientes
+        peleas.loc[idx, 'Loss_A'] = rec1[0] if rec1[0] >= 0 else np.nan
+        peleas.loc[idx, 'Win_A'] = rec1[1] if rec1[1] >= 0 else np.nan
+        peleas.loc[idx, 'Draw_A'] = rec1[2] if rec1[2] >= 0 else np.nan
+        
+        peleas.loc[idx, 'Loss_B'] = rec2[0] if rec2[0] >= 0 else np.nan
+        peleas.loc[idx, 'Win_B'] = rec2[1] if rec2[1] >= 0 else np.nan
+        peleas.loc[idx, 'Draw_B'] = rec2[2] if rec2[2] >= 0 else np.nan
 
-        # Función para formatear el récord o devolver vacío si todos son < 0
-        def formatear_record(rec):
-            return "" if all(x < 0 for x in rec) else f"{rec[0]}-{rec[1]}-{rec[2]}"
-
-
-        # Asigna los valores formateados a las columnas correspondientes
-        peleas.loc[idx, 'Record_A'] = formatear_record(rec1)
-        peleas.loc[idx, 'Record_B'] = formatear_record(rec2)
 
 
     peleas = peleas.sort_values(by='DATE', ascending = True)
