@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-
+import os
 
 def lectura(archivo):
     df = pd.read_csv(archivo)
@@ -153,133 +153,80 @@ def limpiar_round(df):
 
         df["ROUND"]
 
-def pasar_a_dummies(df,col):
-    """"Paso a columnas dummies ciertas columnas"""
-    df = pd.get_dummies(df, columns=[col], drop_first=True)
+
+
+
+def transformacion_peleas(archivo):
+    df = lectura(archivo)
+    print(df.head())
+
+    df = limpieza_of(df)
+    df = limpieza_na(df)
+    df = limpieza_porcentajes(df)
+    df['WINNER'] = df['WINNER'].astype(bool)
+    df["CTRL_A"] = df["CTRL_A"].apply(convertir_a_segundos)
+    df["CTRL_B"] = df["CTRL_B"].apply(convertir_a_segundos)
+    df = nuevas_columnas(df)
+    df["TIME"] = df["TIME"].str.replace('TIME: ', '',regex=False)
+    df["TIME"] = df["TIME"].apply(convertir_a_segundos)
+    df = obtener_peleas_por_titulo(df)
+    df = obtener_peleas_mujeres(df)
+    df = filtrar_por_categorias(df)
+    #Crear dataframe invirtiendo los datos de los peleadores 
+    df_invertido=df.rename(columns={
+        'Peleador_A':'Peleador_B',
+        'Peleador_B':'Peleador_A',
+        'KD_A':'KD_B',
+        'KD_B':'KD_A',
+        'SIG_STR_A':'SIG_STR_B',
+        'SIG_STR_B':'SIG_STR_A',
+        'TD_PORC_A':'TD_PORC_B',
+        'TD_PORC_B':'TD_PORC_A',
+        'SUB_ATT_A':'SUB_ATT_B',
+        'SUB_ATT_B':'SUB_ATT_A',
+        'REV_A':'REV_B',
+        'REV_B':'REV_A',
+        'CTRL_A':'CTRL_B',
+        'CTRL_B':'CTRL_A',
+        'TOTAL_STR_A_x':'TOTAL_STR_B_x',
+        'TOTAL_STR_B_x':'TOTAL_STR_A_x',
+        'TOTAL_STR_A_y':'TOTAL_STR_B_y',
+        'TOTAL_STR_B_y':'TOTAL_STR_A_y',
+        'TD_A_x':'TD_B_x',
+        'TD_B_x':'TD_A_x',
+        'TD_A_y':'TD_B_y',
+        'TD_B_y':'TD_A_y',
+        'STR_HEAD_A_x':'STR_HEAD_B_x',
+        'STR_HEAD_B_x':'STR_HEAD_A_x',
+        'STR_HEAD_A_y':'STR_HEAD_B_y',
+        'STR_HEAD_B_y':'STR_HEAD_A_y',
+        'STR_BODY_A_x':'STR_BODY_B_x',
+        'STR_BODY_B_x':'STR_BODY_A_x',
+        'STR_BODY_A_y':'STR_BODY_B_y',
+        'STR_BODY_B_y':'STR_BODY_A_y',
+        'STR_LEG_A_x':'STR_LEG_B_x',
+        'STR_LEG_B_x':'STR_LEG_A_x',
+        'STR_LEG_A_y':'STR_LEG_B_y',
+        'STR_LEG_B_y':'STR_LEG_A_y',
+        'STR_DISTANCE_A_x':'STR_DISTANCE_B_x',
+        'STR_DISTANCE_B_x':'STR_DISTANCE_A_x',
+        'STR_DISTANCE_A_y':'STR_DISTANCE_B_y',
+        'STR_DISTANCE_B_y':'STR_DISTANCE_A_y',
+        'STR_CLINCH_A_x':'STR_CLINCH_B_x',
+        'STR_CLINCH_B_x':'STR_CLINCH_A_x',
+        'STR_CLINCH_A_y':'STR_CLINCH_B_y',
+        'STR_CLINCH_B_y':'STR_CLINCH_A_y',
+        'STR_GROUND_A_x':'STR_GROUND_B_x',
+        'STR_GROUND_B_x':'STR_GROUND_A_x',
+        'STR_GROUND_A_y':'STR_GROUND_B_y',
+        'STR_GROUND_B_y':'STR_GROUND_A_y',
+
+    })[df.columns]
+
+    df["ROUND"] = df["ROUND"].str.replace('ROUND: ','',regex=False)
+
+
+    #Unir ambos dataframe
+    df=pd.concat([df,df_invertido],ignore_index=True)
 
     return df
-
-
-
-df = lectura("C:/Users/mattu/OneDrive/Documentos/GitHub/c2425-R4/src/transformacion/csv_peleas.csv")
-print(df.head())
-
-df = limpieza_of(df)
-df = limpieza_na(df)
-df = limpieza_porcentajes(df)
-df['WINNER'] = df['WINNER'].astype(bool)
-df["CTRL_A"] = df["CTRL_A"].apply(convertir_a_segundos)
-df["CTRL_B"] = df["CTRL_B"].apply(convertir_a_segundos)
-df = nuevas_columnas(df)
-df["TIME"] = df["TIME"].str.replace('TIME: ', '',regex=False)
-df["TIME"] = df["TIME"].apply(convertir_a_segundos)
-df = obtener_peleas_por_titulo(df)
-df = obtener_peleas_mujeres(df)
-df = filtrar_por_categorias(df)
-df = pasar_a_dummies(df,'METHOD')
-df["ROUND"] = df["ROUND"].str.replace('ROUND: ','',regex=False)
-
-#Crear dataframe invirtiendo los datos de los peleadores 
-df_invertido=df.rename(columns={
-    'Peleador_A':'Peleador_B',
-    'Peleador_B':'Peleador_A',
-    'KD_A':'KD_B',
-    'KD_B':'KD_A',
-    'SIG_STR_A':'SIG_STR_B',
-    'SIG_STR_B':'SIG_STR_A',
-    'TD_PORC_A':'TD_PORC_B',
-    'TD_PORC_B':'TD_PORC_A',
-    'SUB_ATT_A':'SUB_ATT_B',
-    'SUB_ATT_B':'SUB_ATT_A',
-    'REV_A':'REV_B',
-    'REV_B':'REV_A',
-    'CTRL_A':'CTRL_B',
-    'CTRL_B':'CTRL_A',
-    'TOTAL_STR_A_x':'TOTAL_STR_B_x',
-    'TOTAL_STR_B_x':'TOTAL_STR_A_x',
-    'TOTAL_STR_A_y':'TOTAL_STR_B_y',
-    'TOTAL_STR_B_y':'TOTAL_STR_A_y',
-    'TD_A_x':'TD_B_x',
-    'TD_B_x':'TD_A_x',
-    'TD_A_y':'TD_B_y',
-    'TD_B_y':'TD_A_y',
-    'STR_HEAD_A_x':'STR_HEAD_B_x',
-    'STR_HEAD_B_x':'STR_HEAD_A_x',
-    'STR_HEAD_A_y':'STR_HEAD_B_y',
-    'STR_HEAD_B_y':'STR_HEAD_A_y',
-    'STR_BODY_A_x':'STR_BODY_B_x',
-    'STR_BODY_B_x':'STR_BODY_A_x',
-    'STR_BODY_A_y':'STR_BODY_B_y',
-    'STR_BODY_B_y':'STR_BODY_A_y',
-    'STR_LEG_A_x':'STR_LEG_B_x',
-    'STR_LEG_B_x':'STR_LEG_A_x',
-    'STR_LEG_A_y':'STR_LEG_B_y',
-    'STR_LEG_B_y':'STR_LEG_A_y',
-    'STR_DISTANCE_A_x':'STR_DISTANCE_B_x',
-    'STR_DISTANCE_B_x':'STR_DISTANCE_A_x',
-    'STR_DISTANCE_A_y':'STR_DISTANCE_B_y',
-    'STR_DISTANCE_B_y':'STR_DISTANCE_A_y',
-    'STR_CLINCH_A_x':'STR_CLINCH_B_x',
-    'STR_CLINCH_B_x':'STR_CLINCH_A_x',
-    'STR_CLINCH_A_y':'STR_CLINCH_B_y',
-    'STR_CLINCH_B_y':'STR_CLINCH_A_y',
-    'STR_GROUND_A_x':'STR_GROUND_B_x',
-    'STR_GROUND_B_x':'STR_GROUND_A_x',
-    'STR_GROUND_A_y':'STR_GROUND_B_y',
-    'STR_GROUND_B_y':'STR_GROUND_A_y',
-
-})[df.columns]
-
-#Unir ambos dataframe
-df=pd.concat([df,df_invertido],ignore_index=True)
-
-df.to_csv("df_peleas_limpio.csv")
-
-"""df = df.drop(columns=['Peleador_A', 'Peleador_B', 'DATE','KD_A','KD_B','CATEGORY','index','Unnamed: 0'])
-
-#df = df[df['WOMEN'] == 1]
-# 1. Definir la variable objetivo y las predictoras
-X = df.drop('WINNER', axis=1)  # Variables predictoras
-y = df['WINNER']               # Variable objetivo
-
-# 2. Dividir en conjunto de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# 3. Crear el modelo de clasificación (Random Forest en este caso)
-modelo = RandomForestClassifier(random_state=42)
-
-# 4. Entrenar el modelo
-modelo.fit(X_train, y_train)
-
-# 5. Obtener las importancias de las características
-importancias = modelo.feature_importances_
-
-# 6. Crear un DataFrame con las importancias
-importancia_df = pd.DataFrame({
-    'Característica': X.columns,
-    'Importancia': importancias
-})
-
-# Ordenar las características por importancia de mayor a menor
-importancia_df = importancia_df.sort_values(by='Importancia', ascending=False)
-
-# 7. Eliminar las características con importancia menor a 0.2
-importancia_df = importancia_df[importancia_df['Importancia'] >= 0.01]
-
-# 8. Filtrar el conjunto de datos X con solo las características seleccionadas
-X_train_reducido = X_train[importancia_df['Característica']]
-X_test_reducido = X_test[importancia_df['Característica']]
-
-# 9. Crear y entrenar un nuevo modelo con las características seleccionadas
-modelo_reducido = RandomForestClassifier(random_state=42)
-modelo_reducido.fit(X_train_reducido, y_train)
-
-# 10. Hacer predicciones con el modelo reducido
-y_pred_reducido = modelo_reducido.predict(X_test_reducido)
-
-# 11. Evaluar el rendimiento (Accuracy)
-accuracy_reducido = accuracy_score(y_test, y_pred_reducido)
-
-# Mostrar los resultados
-print(f'Accuracy del modelo con variables importantes: {accuracy_reducido:.4f}')
-print(importancia_df)"""
