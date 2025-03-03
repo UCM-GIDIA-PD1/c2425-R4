@@ -318,7 +318,7 @@ def transformacion(df_peleas_or,df_peleadores):
     df_stats.index = df_stats.index.map(normalizar_nombre)  # Normalizar nombres en el índice
 
     # Cargar el DataFrame con la información física de los peleadores
-    df_info_peleadores = df_peleadores
+    df_info_peleadores = df_peleadores_2
 
     # Normalizar nombres en df_info_peleadores
     df_info_peleadores['name'] = df_info_peleadores['name'].apply(normalizar_nombre)
@@ -349,10 +349,10 @@ def transformacion(df_peleas_or,df_peleadores):
 
 # Cargar los DataFrames de los archivos CSV originales
 df_peleas_or = pd.read_csv("peleas_fran.csv")
-df_peleadores = pd.read_csv("peleadores_fran.csv")
+df_peleadores_2 = pd.read_csv("peleadores_fran.csv")
 
 # Llamar a la función transformacion
-df_peleas_actualizado, df_stats = transformacion(df_peleas_or, df_peleadores)
+df_peleas_actualizado, df_stats = transformacion(df_peleas_or, df_peleadores_2)
 
 # Guardar los DataFrames resultantes en archivos CSV
 df_peleas_actualizado.to_csv("df_peleas_actualizado.csv", index=False)
