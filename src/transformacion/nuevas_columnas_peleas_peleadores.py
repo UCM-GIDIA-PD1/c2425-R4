@@ -1,5 +1,9 @@
-def transformacion(df_peleas_or,df_peleadores):
+import pandas as pd
+from datetime import datetime
+import numpy as np
+import unicodedata
 
+def transformacion(df_peleas_or,df_peleadores):
 
     # Función para calcular la importancia del tiempo con caída gradual
     def calcular_factor_tiempo(fecha_pelea):
@@ -40,9 +44,6 @@ def transformacion(df_peleas_or,df_peleadores):
 
         return max(1, min(5, factor_oponente))
 
-    import pandas as pd
-    from datetime import datetime
-    import numpy as np
     # Cargar los datos
     df_peleas = df_peleas_or
     df_peleas["DATE"] = pd.to_datetime(df_peleas["DATE"], errors='coerce')
@@ -176,6 +177,8 @@ def transformacion(df_peleas_or,df_peleadores):
         ganador = row["WINNER"]
         historial_a = obtener_historial(peleador_a, fecha_pelea)
         historial_b = obtener_historial(peleador_b, fecha_pelea)
+        historial_a["Fecha"] = fecha_pelea
+        historial_b["Fecha"] = fecha_pelea
         actualizar_victorias_derrotas(historial_a, historial_b, ganador, row["METHOD"])
 
         historial_datos.append(historial_a.copy())
@@ -186,10 +189,6 @@ def transformacion(df_peleas_or,df_peleadores):
             
             df_peleas.loc[index, f"{col}_A"] = peleadores_historial[peleador_a][col]
             df_peleas.loc[index, f"{col}_B"] = peleadores_historial[peleador_b][col]
-            if(peleador_a=="Ilia Topuria"):
-                print(peleadores_historial[peleador_a][col])
-                print(df_peleas.at[index, f"{col}_A"])
-                print(df_peleas[df_peleas["Peleador_A"]=="Ilia Topuria"])
         
     
 
@@ -251,8 +250,6 @@ def transformacion(df_peleas_or,df_peleadores):
         peleadores_historial[peleador_a]["Puntos"] = max(0, peleadores_historial[peleador_a]["Puntos"])
         peleadores_historial[peleador_b]["Puntos"] = max(0, peleadores_historial[peleador_b]["Puntos"])
 
-    import pandas as pd
-
     # Crear DataFrame con el historial completo de peleadores en cada pelea
     df_historial = pd.DataFrame(historial_datos)
 
@@ -271,11 +268,11 @@ def transformacion(df_peleas_or,df_peleadores):
 
         # Obtener el historial más reciente **antes** de la pelea
         historial_a = df_historial[
-            (df_historial["Peleador"] == peleador_a) & (df_historial["Fecha"] < fecha_pelea)
+            (df_historial["Peleador"] == peleador_a) & (df_historial["Fecha"] == fecha_pelea)
         ].sort_values(by="Fecha", ascending=True)
 
         historial_b = df_historial[
-            (df_historial["Peleador"] == peleador_b) & (df_historial["Fecha"] < fecha_pelea)
+            (df_historial["Peleador"] == peleador_b) & (df_historial["Fecha"] == fecha_pelea)
         ].sort_values(by="Fecha", ascending=True)
 
         # Si hay historial previo, tomar la última fila antes de la pelea
@@ -301,10 +298,13 @@ def transformacion(df_peleas_or,df_peleadores):
     # Mostrar los puntos de Ilia Topuria antes de cada pelea
     print(df_topuria_peleas[["DATE", "Peleador_A", "Peleador_B", "Puntos_A", "Puntos_B"]])
 
-    # Mostrar el resultado
-    import pandas as pd
-    import numpy as np
-    import unicodedata
+
+    df_peleadores = pd.DataFrame.from_dict(peleadores_historial, orient="index")
+
+    # Ordenar por puntos y mostrar los 15 mejores
+    df_top15 = df_peleadores.sort_values(by="Puntos", ascending=False).head(15)
+
+    print(df_top15)
 
     # Función para normalizar nombres eliminando acentos y caracteres especiales
     def normalizar_nombre(nombre):
@@ -345,4 +345,17 @@ def transformacion(df_peleas_or,df_peleadores):
 
     print(df_stats.loc["CHARLES OLIVEIRA"])
 
-    return df_peleas,df_peleadores
+    return df_peleas_actualizado,df_stats
+
+# Cargar los DataFrames de los archivos CSV originales
+df_peleas_or = pd.read_csv("peleas_fran.csv")
+df_peleadores = pd.read_csv("peleadores_fran.csv")
+
+# Llamar a la función transformacion
+df_peleas_actualizado, df_stats = transformacion(df_peleas_or, df_peleadores)
+
+# Guardar los DataFrames resultantes en archivos CSV
+df_peleas_actualizado.to_csv("df_peleas_actualizado.csv", index=False)
+df_stats.to_csv("peleadores_stats_actualizado.csv", index=False)
+
+print("Archivos guardados: df_peleas_actualizado.csv y peleadores_stats_actualizado.csv")
