@@ -2,6 +2,7 @@ import argparse
 from scraper_peleas import extraer_peleas
 from scraper_peleadores import extraer_peleadores
 from scraper_fecha_nacimiento import extraer_fecha_nacimiento  # Corregido
+from unir_df_fecha_nacimiento import unir
 import os
 
 def main():
@@ -14,8 +15,6 @@ def main():
 
     # Crear las carpetas si no existen
     os.makedirs(ruta, exist_ok=True)
-
-    print(f"Carpeta creada o ya existente: {os.path.abspath(ruta)}")
     
     parser = argparse.ArgumentParser(description="Extracción de datos de combates y peleadores")
     subparsers = parser.add_subparsers(dest="comando", required=True)
@@ -44,6 +43,7 @@ def main():
         extraer_peleadores(args.pagina_inicio, args.pagina_final)
     elif args.comando == "fechas":
         extraer_fecha_nacimiento(args.fila_inicio, args.fila_final)
+        unir()
 
 if __name__ == "__main__":
     main()
