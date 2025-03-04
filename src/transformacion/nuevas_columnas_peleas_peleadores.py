@@ -345,5 +345,6 @@ def transformacion(df_peleas_or,df_peleadores_2):
 
     #print(df_stats.loc["CHARLES OLIVEIRA"])
 
+    df_stats = df_stats.drop(columns=["height","reach","leg_reach"])
     return df_peleas_actualizado,df_stats
 
