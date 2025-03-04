@@ -1,9 +1,10 @@
 import argparse
+import os
 from scraper_peleas import extraer_peleas
 from scraper_peleadores import extraer_peleadores
 from scraper_fecha_nacimiento import extraer_fecha_nacimiento  # Corregido
 from unir_df_fecha_nacimiento import unir
-import os
+
 
 def main():
 
