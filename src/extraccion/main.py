@@ -11,6 +11,8 @@ def main():
 
     # Obtener la ruta del script actual
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    ruta_peleas = os.path.join(base_dir, "data", "raw", "peleas.csv")
+    ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
 
     # Definir la ruta correcta dentro del proyecto
     ruta = os.path.join(base_dir, "data", "raw", "nacimiento_peleadores")
@@ -19,7 +21,7 @@ def main():
     os.makedirs(ruta, exist_ok=True)
     
     parser = argparse.ArgumentParser(description="Extracción de datos de combates y peleadores")
-    subparsers = parser.add_subparsers(dest="comando", required=True)
+    subparsers = parser.add_subparsers(dest="comando")
 
     # Subcomando para extraer peleas
     parser_peleas = subparsers.add_parser("peleas", help="Extraer datos de combates")
@@ -38,24 +40,24 @@ def main():
 
     args = parser.parse_args()
     
-    # Rutas relativas desde la carpeta extraccion/
-    ruta_peleas = os.path.join(base_dir, "data", "raw", "peleas.csv")
-    ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
     ruta_peleadores_fechas = os.path.join(base_dir, "data", "raw", "peleadores_fechas.csv")
 
-    # Ejecutar la función correspondiente según el subcomando elegido
-    if args.comando == "peleas":
-        df_peleas = extraer_peleas(args.pagina_inicio, args.pagina_final)
-        df_peleas.to_csv(os.path.join(ruta_peleas, "peleas.csv"), index=False)
+# Si no se proporciona un subcomando, ejecutar todos los procesos
+    if args.comando is None or args.comando == "peleas":
+        print("Extrayendo peleas...")
+        df_peleas = extraer_peleas(1, 29)  # Valores por defecto
+        df_peleas.to_csv(ruta_peleas, index=False)
 
-    elif args.comando == "peleadores":
-        df_peleadores = extraer_peleadores(args.pagina_inicio, args.pagina_final)
-        df_peleadores.to_csv(os.path.join(ruta_peleadores, "peleadores.csv"), index=False)
+    if args.comando is None or args.comando == "peleadores":
+        print("Extrayendo peleadores...")
+        df_peleadores = extraer_peleadores(1, None)  # Valores por defecto
+        df_peleadores.to_csv(ruta_peleadores, index=False)
 
-    elif args.comando == "fechas":
-        extraer_fecha_nacimiento(args.fila_inicio, args.fila_final)
+    if args.comando is None or args.comando == "fechas":
+        print("Extrayendo fechas de nacimiento...")
+        extraer_fecha_nacimiento(0, 200)  # Valores por defecto
         df_final = unir()
-        df_final.to_csv(os.path.join(ruta_peleadores_fechas, "peleadores_fechas.csv"), index=False)
+        df_final.to_csv(ruta_peleadores_fechas, index=False)
 
 
 if __name__ == "__main__":

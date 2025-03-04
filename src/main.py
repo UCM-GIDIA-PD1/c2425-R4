@@ -18,23 +18,27 @@ def main():
     os.makedirs(raw_data_dir, exist_ok=True)
     os.makedirs(processed_data_dir, exist_ok=True)
 
+
+    ruta_peleas = os.path.join(base_dir, "data", "raw", "peleas.csv")
+    ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
+
     #Extracción de datos
     
     print("Extrayendo datos de peleas...")
-    df_peleas = extraer_peleas(1, 1)
+    df_peleas = extraer_peleas(1, 29)
 
-    df_peleas.to_csv(r"c2425-R4/data/raw/peleas.csv", index=False, encoding="utf-8")
+    df_peleas.to_csv(ruta_peleas, index=False)
 
     print("Extrayendo datos de peleadores...")
-    df_peleadores = extraer_peleadores(1, 1)
+    df_peleadores = extraer_peleadores(1, None)
 
-    df_peleadores.to_csv(r"c2425-R4/data/raw/peleadores.csv", index=False, encoding="utf-8")
-
+    df_peleadores = extraer_peleadores(args.pagina_inicio, args.pagina_final)
+    ruta_peleadores_fechas = os.path.join(base_dir, "data", "raw", "peleadores_fechas.csv")
     print("Extrayendo fechas de nacimiento...")
-    extraer_fecha_nacimiento(0, 4)
+    extraer_fecha_nacimiento(0, 200)
     df_fechas = unir()
     
-    df_fechas.to_csv(r"c2425-R4/data/raw/peleadores_fechas.csv", index=False, encoding="utf-8")
+    df_fechas.to_csv(rutas_peleadores_fechas, index=False)
     
     # Transformaciones
     ruta_peleas = os.path.join(raw_data_dir, "peleas.csv")
