@@ -7,6 +7,7 @@ from transformacion.tratamiento_peleadores import transformacion_peleadores
 from transformacion.tratamiento_peleas import transformacion_peleas
 from transformacion.nuevas_variables import nuevas_col
 from transformacion.recordsPeleas import recordPeleas
+import pandas as pd
 
 def main():
     # Definir rutas
@@ -18,18 +19,19 @@ def main():
     os.makedirs(processed_data_dir, exist_ok=True)
 
     #Extracción de datos
+    
     print("Extrayendo datos de peleas...")
-    df_peleas = extraer_peleas(1, 29)
+    df_peleas = extraer_peleas(1, 1)
 
     df_peleas.to_csv(r"c2425-R4/data/raw/peleas.csv", index=False, encoding="utf-8")
 
     print("Extrayendo datos de peleadores...")
-    df_peleadores = extraer_peleadores(1, None)
+    df_peleadores = extraer_peleadores(1, 1)
 
-    df_peleadores.to_csv(r"c2425-R4/data/raw/peleas.csv", index=False, encoding="utf-8")
+    df_peleadores.to_csv(r"c2425-R4/data/raw/peleadores.csv", index=False, encoding="utf-8")
 
     print("Extrayendo fechas de nacimiento...")
-    extraer_fecha_nacimiento(0, 200)
+    extraer_fecha_nacimiento(0, 4)
     df_fechas = unir()
     
     df_fechas.to_csv(r"c2425-R4/data/raw/peleadores_fechas.csv", index=False, encoding="utf-8")
