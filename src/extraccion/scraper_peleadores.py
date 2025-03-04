@@ -359,9 +359,7 @@ def extraer_peleadores(pag_ini, pag_fin):
     finally:
         # Guardar los datos antes de cerrar el navegador
         df = pd.DataFrame(data)
-        df.to_csv(r"../data/raw/peleadores.csv", index=False, encoding="utf-8")
-        print("Datos guardados en peleadores.csv")
-
         # Cerrar el navegador
         driver.quit()
+        return df
         

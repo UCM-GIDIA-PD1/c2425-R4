@@ -11,19 +11,23 @@ from transformacion.recordsPeleas import recordPeleas
 def main():
     # Definir rutas
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    raw_data_dir = os.path.join(base_dir, "..", "data", "raw")
+    raw_data_dir = os.path.join(base_dir, "..","data", "raw")
     processed_data_dir = os.path.join(base_dir, "..", "data", "processed")
-    
+
     os.makedirs(raw_data_dir, exist_ok=True)
     os.makedirs(processed_data_dir, exist_ok=True)
-    
-    # Extracción de datos
+
+    #Extracción de datos
     print("Extrayendo datos de peleas...")
-    extraer_peleas(1, 29)
-    
+    df_peleas = extraer_peleas(1, 29)
+
+    df_peleas.to_csv(r"c2425-R4/data/raw/peleas.csv", index=False, encoding="utf-8")
+
     print("Extrayendo datos de peleadores...")
-    extraer_peleadores(1, None)
-    
+    df_peleadores = extraer_peleadores(1, None)
+
+    df_peleadores.to_csv(r"c2425-R4/data/raw/peleas.csv", index=False, encoding="utf-8")
+
     print("Extrayendo fechas de nacimiento...")
     extraer_fecha_nacimiento(0, 200)
     unir()

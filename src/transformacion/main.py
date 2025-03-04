@@ -8,9 +8,10 @@ import os
 
 def main():
     # Rutas relativas desde la carpeta transformacion/
-    ruta_peleas = os.path.join("..", "data", "raw", "peleas.csv")
-    ruta_peleadores = os.path.join("..", "data", "raw", "peleadores.csv")
-    ruta_processed = os.path.join("..", "data", "processed")
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    ruta_peleas = os.path.join(base_dir, "data", "raw", "peleas.csv")
+    ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
+    ruta_processed = os.path.join(base_dir, "data", "processed")
 
     # Crear carpeta 'processed' si no existe
     os.makedirs(ruta_processed, exist_ok=True)
@@ -26,9 +27,7 @@ def main():
     df_peleadores = transformacion_peleadores(args.dir_peleadores)
     df_peleas = recordPeleas(df_peleadores,df_peleas)
     df_peleas,df_peleadores = transformacion(df_peleas,df_peleadores)
-    #df_peleas = nuevas_col(df_peleas, df_peleadores)
     # Guardar los DataFrames transformados en 'data/processed'
-    #print(df_peleas)
     df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False)
     df_peleadores.to_parquet(os.path.join(ruta_processed, "peleadores.parquet"), index=False)
 
