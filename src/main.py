@@ -5,7 +5,6 @@ from extraccion.scraper_fecha_nacimiento import extraer_fecha_nacimiento
 from extraccion.unir_df_fecha_nacimiento import unir
 from transformacion.tratamiento_peleadores import transformacion_peleadores
 from transformacion.tratamiento_peleas import transformacion_peleas
-from transformacion.nuevas_variables import nuevas_col
 from transformacion.recordsPeleas import recordPeleas
 import pandas as pd
 
@@ -32,13 +31,12 @@ def main():
     print("Extrayendo datos de peleadores...")
     df_peleadores = extraer_peleadores(1, None)
 
-    df_peleadores = extraer_peleadores(args.pagina_inicio, args.pagina_final)
     ruta_peleadores_fechas = os.path.join(base_dir, "data", "raw", "peleadores_fechas.csv")
     print("Extrayendo fechas de nacimiento...")
     extraer_fecha_nacimiento(0, 200)
     df_fechas = unir()
     
-    df_fechas.to_csv(rutas_peleadores_fechas, index=False)
+    df_fechas.to_csv(ruta_peleadores_fechas, index=False)
     
     # Transformaciones
     ruta_peleas = os.path.join(raw_data_dir, "peleas.csv")
@@ -49,7 +47,6 @@ def main():
     
     print("Transformando datos de peleas...")
     df_peleas = transformacion_peleas(ruta_peleas)
-    df_peleas = nuevas_col(df_peleas, df_peleadores)
     df_peleas = recordPeleas(df_peleadores, df_peleas)
     
     # Guardar archivos

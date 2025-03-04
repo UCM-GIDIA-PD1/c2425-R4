@@ -1,7 +1,6 @@
 import argparse
 from tratamiento_peleadores import transformacion_peleadores
 from tratamiento_peleas import transformacion_peleas
-from nuevas_variables import nuevas_col
 from recordsPeleas import recordPeleas
 from nuevas_columnas_peleas_peleadores import transformacion
 import os
