@@ -10,10 +10,10 @@ import pandas as pd
 def main():
 
     # Obtener la ruta del script actual
-    base_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 
     # Definir la ruta correcta dentro del proyecto
-    ruta = os.path.join(base_dir, "..", "data", "raw", "nacimiento_peleadores")
+    ruta = os.path.join(base_dir, "data", "raw", "nacimiento_peleadores")
 
     # Crear las carpetas si no existen
     os.makedirs(ruta, exist_ok=True)
@@ -39,7 +39,6 @@ def main():
     args = parser.parse_args()
     
     # Rutas relativas desde la carpeta extraccion/
-    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     ruta_peleas = os.path.join(base_dir, "data", "raw", "peleas.csv")
     ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
     ruta_peleadores_fechas = os.path.join(base_dir, "data", "raw", "peleadores_fechas.csv")
