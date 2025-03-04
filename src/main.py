@@ -30,7 +30,9 @@ def main():
 
     print("Extrayendo fechas de nacimiento...")
     extraer_fecha_nacimiento(0, 200)
-    unir()
+    df_fechas = unir()
+    
+    df_fechas.to_csv(r"c2425-R4/data/raw/peleadores_fechas.csv", index=False, encoding="utf-8")
     
     # Transformaciones
     ruta_peleas = os.path.join(raw_data_dir, "peleas.csv")
