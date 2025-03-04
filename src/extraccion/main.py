@@ -34,7 +34,7 @@ def main():
     parser_peleadores.add_argument("--pagina_final", type=int, default=None, help="Página final (None para llegar al final)")
 
     # Subcomando para extraer fechas de nacimiento
-    parser_fechas = subparsers.add_parser("fechas", help="Extraer fechas de nacimiento de peleadores")
+    parser_fechas = subparsers.add_parser("fechas", help="Extraer fechas de nacimiento de peleadores. Máximo 200 consultas por hora.")
     parser_fechas.add_argument("--fila_inicio", type=int, default=0, help="Fila de inicio")
     parser_fechas.add_argument("--fila_final", type=int, default=200, help="Fila final")
 
