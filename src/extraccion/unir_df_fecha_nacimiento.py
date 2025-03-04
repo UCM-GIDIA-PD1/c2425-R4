@@ -23,7 +23,6 @@ def unir():
         df_final = pd.concat(dataframes, ignore_index=True)
         
         # Guardar el archivo final en la ruta de salida
-        df_final.to_csv(ruta_salida, index=False)
-        print(f"Archivo combinado guardado en: {ruta_salida}")
+        return df_final
     else:
         print("No se encontraron archivos CSV en la carpeta especificada.")

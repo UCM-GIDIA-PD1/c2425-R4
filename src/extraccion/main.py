@@ -4,6 +4,7 @@ from scraper_peleas import extraer_peleas
 from scraper_peleadores import extraer_peleadores
 from scraper_fecha_nacimiento import extraer_fecha_nacimiento  # Corregido
 from unir_df_fecha_nacimiento import unir
+import pandas as pd
 
 
 def main():
@@ -36,15 +37,27 @@ def main():
     parser_fechas.add_argument("--fila_final", type=int, default=200, help="Fila final")
 
     args = parser.parse_args()
+    
+    # Rutas relativas desde la carpeta extraccion/
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    ruta_peleas = os.path.join(base_dir, "data", "raw", "peleas.csv")
+    ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
+    ruta_peleadores_fechas = os.path.join(base_dir, "data", "raw", "peleadores_fechas.csv")
 
     # Ejecutar la función correspondiente según el subcomando elegido
     if args.comando == "peleas":
-        extraer_peleas(args.pagina_inicio, args.pagina_final)
+        df_peleas = extraer_peleas(args.pagina_inicio, args.pagina_final)
+        df_peleas.to_csv(os.path.join(ruta_peleas, "peleas.csv"), index=False)
+
     elif args.comando == "peleadores":
-        extraer_peleadores(args.pagina_inicio, args.pagina_final)
+        df_peleadores = extraer_peleadores(args.pagina_inicio, args.pagina_final)
+        df_peleadores.to_csv(os.path.join(ruta_peleadores, "peleadores.csv"), index=False)
+
     elif args.comando == "fechas":
         extraer_fecha_nacimiento(args.fila_inicio, args.fila_final)
-        unir()
+        df_final = unir()
+        df_final.to_csv(os.path.join(ruta_peleadores_fechas, "peleadores_fechas.csv"), index=False)
+
 
 if __name__ == "__main__":
     main()
