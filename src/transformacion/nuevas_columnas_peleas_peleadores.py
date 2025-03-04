@@ -69,7 +69,7 @@ def transformacion(df_peleas_or,df_peleadores_2):
             df_peleas.at[index, 'reach_A'] = info_peleador_a['reach'].values[0]
             df_peleas.at[index, 'leg_reach_A'] = info_peleador_a['leg_reach'].values[0]
         
-        # Buscar la información del Peleador_B en df_info_peleadores
+        # Buscar la información del Peleador_B en 
         info_peleador_b = df_info_peleadores[df_info_peleadores['name'] == peleador_b.upper()]
         if not info_peleador_b.empty:
             df_peleas.at[index, 'height_B'] = info_peleador_b['height'].values[0]
@@ -296,7 +296,7 @@ def transformacion(df_peleas_or,df_peleadores_2):
     ]
 
     # Mostrar los puntos de Ilia Topuria antes de cada pelea
-    print(df_topuria_peleas[["DATE", "Peleador_A", "Peleador_B", "Puntos_A", "Puntos_B"]])
+    #print(df_topuria_peleas[["DATE", "Peleador_A", "Peleador_B", "Puntos_A", "Puntos_B"]])
 
 
     df_peleadores = pd.DataFrame.from_dict(peleadores_historial, orient="index")
@@ -304,7 +304,7 @@ def transformacion(df_peleas_or,df_peleadores_2):
     # Ordenar por puntos y mostrar los 15 mejores
     df_top15 = df_peleadores.sort_values(by="Puntos", ascending=False).head(15)
 
-    print(df_top15)
+    #print(df_top15)
 
     # Función para normalizar nombres eliminando acentos y caracteres especiales
     def normalizar_nombre(nombre):
@@ -343,7 +343,7 @@ def transformacion(df_peleas_or,df_peleadores_2):
     # Guardar el DataFrame actualizado
     #df_stats.to_csv("peleadores_stats_actualizado.csv")
 
-    print(df_stats.loc["CHARLES OLIVEIRA"])
+    #print(df_stats.loc["CHARLES OLIVEIRA"])
 
     return df_peleas_actualizado,df_stats
 

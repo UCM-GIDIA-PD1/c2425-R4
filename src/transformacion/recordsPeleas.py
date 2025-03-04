@@ -66,13 +66,18 @@ def recordPeleas(peleadores,peleas):
             rec2[2] -= 1  # Draw_B
 
         # Asigna los valores a las columnas correspondientes
-        peleas.loc[idx, 'Loss_A'] = rec1[0] if rec1[0] >= 0 else np.nan
-        peleas.loc[idx, 'Win_A'] = rec1[1] if rec1[1] >= 0 else np.nan
-        peleas.loc[idx, 'Draw_A'] = rec1[2] if rec1[2] >= 0 else np.nan
+        peleas.loc[idx, 'Loss_A'] = rec1[0] if rec1[0] >= 0 else 0
+        peleas.loc[idx, 'Win_A'] = rec1[1] if rec1[1] >= 0 else 0
+        peleas.loc[idx, 'Draw_A'] = rec1[2] if rec1[2] >= 0 else 0
         
-        peleas.loc[idx, 'Loss_B'] = rec2[0] if rec2[0] >= 0 else np.nan
-        peleas.loc[idx, 'Win_B'] = rec2[1] if rec2[1] >= 0 else np.nan
-        peleas.loc[idx, 'Draw_B'] = rec2[2] if rec2[2] >= 0 else np.nan
+        peleas.loc[idx, 'Loss_B'] = rec2[0] if rec2[0] >= 0 else 0
+        peleas.loc[idx, 'Win_B'] = rec2[1] if rec2[1] >= 0 else 0
+        peleas.loc[idx, 'Draw_B'] = rec2[2] if rec2[2] >= 0 else 0
+    
+    peleas["Record_A"] = peleas["Win_A"] - peleas["Loss_A"]
+    peleas["Record_B"] = peleas["Win_B"] - peleas["Loss_B"]
+    peleas = peleas.drop(columns=['Loss_A', 'Win_A', 'Draw_A', 'Loss_B', 'Win_B', 'Draw_B'])
+
 
 
 

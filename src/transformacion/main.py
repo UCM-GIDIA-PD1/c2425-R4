@@ -28,7 +28,7 @@ def main():
     df_peleas,df_peleadores = transformacion(df_peleas,df_peleadores)
     #df_peleas = nuevas_col(df_peleas, df_peleadores)
     # Guardar los DataFrames transformados en 'data/processed'
-    print(df_peleas)
+    #print(df_peleas)
     df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False)
     df_peleadores.to_parquet(os.path.join(ruta_processed, "peleadores.parquet"), index=False)
 
