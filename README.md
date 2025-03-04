@@ -7,3 +7,5 @@
   - Main transformación, ejecución por defecto obteniendo los datos de data/raw pero se puede pasar como argumento una dirección en caso de que se quiera obtener los dataframes de otro lugar.
 # Problema con parquet:
   - No nos deja leer de parquet sin instalar pyarrow, la cual no funciona bien descargandose en requirements.txt, por lo que hay que instalarlo manualmente.
+# Carpeta data en drive: 
+- https://drive.google.com/drive/folders/1jX3HSEBXGX7HC6WhPOpthBHoO4UmwI8O?usp=drive_link
