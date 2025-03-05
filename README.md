@@ -57,7 +57,7 @@ Durante el último Sprint, el uso del **tablero de tareas** ha disminuido. Es fu
 ### **2.2 Revisar todo el codigo subido**
 Asignar a un integrante del grupo encargado de revisar todo el código que se sube funcione correctamente.
 ### **2.3 Mayor documentación del código**
-Todo el código debe estar correctamente documentado:
+Todo el código debe estar correctamente documentado:  
 Para cada archivo:  
 - Descripción breve del propósito del archivo
 - Tarea a la que corresponde del backlog
