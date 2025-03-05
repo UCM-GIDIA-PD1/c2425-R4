@@ -53,7 +53,16 @@ Es obligatorio el uso de entornos virtuales y del archivo **requirements.txt** p
 ## **2️⃣ Mejoras a implementar**  
 
 ### **2.1 Uso del tablero de tareas**  
-Durante el último Sprint, el uso del **tablero de tareas** ha disminuido. Es fundamental mantenerlo actualizado y seguir un orden de trabajo estructurado para mejorar la organización del equipo.  
+Durante el último Sprint, el uso del **tablero de tareas** ha disminuido. Es fundamental mantenerlo actualizado y seguir un orden de trabajo estructurado para mejorar la organización del equipo. 
+### **2.2 Revisar todo el codigo subido**
+Asignar a un integrante del grupo encargado de revisar todo el código que se sube funcione correctamente.
+### **2.3 Mayor documentación del código**
+Todo el código debe estar correctamente documentado:
+Para cada archivo:  
+- Descripción breve del propósito del archivo
+- Tarea a la que corresponde del backlog
+- Autor(es)
+
 
 ## **3️⃣ Comentarios y sugerencias**  
 Cualquier mejora adicional que se considere necesaria para el próximo Sprint podéis escribirla. Si alguien no está de acuerdo con algún punto de este documento o tiene problemas con alguna de las instrucciones, es importante comunicarlo para buscar una solución en conjunto.  
