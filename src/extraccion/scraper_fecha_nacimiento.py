@@ -26,8 +26,9 @@ def get_birthdate(url):
 
 def extraer_fecha_nacimiento(fila_inicial, fila_final):
     """Función que extrae la fecha de nacimiento de un conjunto de peleadores"""
-    archivo_general = r"../data/raw/peleadores.csv" #Ruta del archivo con los nombres de los peleadores
-    
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    archivo_general = os.path.join(base_dir, "data", "raw", "peleadores.csv")
+
     if not os.path.exists(archivo_general): #Verifica que existe el archivo
         print(f"El archivo {archivo_general} no existe.")
         return
@@ -80,16 +81,16 @@ def extraer_fecha_nacimiento(fila_inicial, fila_final):
     finally:
         driver.quit()
     
-    df_rango["Nacimiento"] = fechas
+        df_rango["Nacimiento"] = fechas
 
-    # Crear la carpeta si no existe
-    carpeta_destino = "../data/raw/nacimiento_peleadores"
-    os.makedirs(carpeta_destino, exist_ok=True)
+        # Crear la carpeta si no existe
+        carpeta_destino = "../data/raw/nacimiento_peleadores"
+        os.makedirs(carpeta_destino, exist_ok=True)
 
-    # Definir el nombre del archivo con el rango de filas
-    nombre_archivo = f"peleadores_{fila_inicial}_{fila_final}_fecha_nacimiento.csv"
-    ruta_archivo = os.path.join(carpeta_destino, nombre_archivo)
+        # Definir el nombre del archivo con el rango de filas
+        nombre_archivo = f"peleadores_{fila_inicial}_{fila_final}_fecha_nacimiento.csv"
+        ruta_archivo = os.path.join(carpeta_destino, nombre_archivo)
 
-    # Guardar el archivo
-    df_rango.to_csv(ruta_archivo, index=False, encoding="utf-8")
-    print(f"Archivo guardado en {ruta_archivo}")
+        # Guardar el archivo
+        df_rango.to_csv(ruta_archivo, index=False, encoding="utf-8")
+        print(f"Archivo guardado en {ruta_archivo}")

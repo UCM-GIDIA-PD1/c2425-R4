@@ -26,3 +26,4 @@ def unir():
         return df_final
     else:
         print("No se encontraron archivos CSV en la carpeta especificada.")
+        return pd.DataFrame()
