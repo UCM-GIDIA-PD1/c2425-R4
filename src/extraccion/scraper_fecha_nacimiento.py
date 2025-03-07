@@ -84,7 +84,7 @@ def extraer_fecha_nacimiento(fila_inicial, fila_final):
         df_rango["Nacimiento"] = fechas
 
         # Crear la carpeta si no existe
-        carpeta_destino = "../data/raw/nacimiento_peleadores"
+        carpeta_destino = os.path.join(base_dir, "data", "raw", "nacimiento_peleadores")
         os.makedirs(carpeta_destino, exist_ok=True)
 
         # Definir el nombre del archivo con el rango de filas

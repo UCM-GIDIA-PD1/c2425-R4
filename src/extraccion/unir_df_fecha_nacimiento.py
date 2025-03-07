@@ -3,10 +3,8 @@ import pandas as pd
 
 def unir():
     # Ruta de la carpeta con los archivos CSV
-    carpeta = r"../../data/raw/nacimiento_peleadores"
-
-    # Ruta de salida para el archivo combinado
-    ruta_salida = r"../../data/raw/peleadores_fechas.csv"
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+    carpeta = os.path.join(base_dir, "data", "raw", "nacimiento_peleadores")
 
     # Lista para almacenar los DataFrames
     dataframes = []

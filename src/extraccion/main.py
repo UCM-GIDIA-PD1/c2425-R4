@@ -45,17 +45,17 @@ def main():
 # Si no se proporciona un subcomando, ejecutar todos los procesos
     if args.comando is None or args.comando == "peleas":
         print("Extrayendo peleas...")
-        df_peleas = extraer_peleas(1, 29)  # Valores por defecto
+        df_peleas = extraer_peleas(args.pagina_inicio,args.pagina_final)  # Valores por defecto
         df_peleas.to_csv(ruta_peleas, index=False)
 
     if args.comando is None or args.comando == "peleadores":
         print("Extrayendo peleadores...")
-        df_peleadores = extraer_peleadores(1, None)  # Valores por defecto
+        df_peleadores = extraer_peleadores(args.pagina_inicio, args.pagina_final)  # Valores por defecto
         df_peleadores.to_csv(ruta_peleadores, index=False)
 
     if args.comando is None or args.comando == "fechas":
         print("Extrayendo fechas de nacimiento...")
-        extraer_fecha_nacimiento(0, 200)  # Valores por defecto
+        extraer_fecha_nacimiento(args.fila_inicio, args.fila_final)  # Valores por defecto
         df_final = unir()
         df_final.to_csv(ruta_peleadores_fechas, index=False)
 
