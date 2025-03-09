@@ -59,8 +59,8 @@ Asignar a un integrante del grupo encargado de revisar todo el código que se su
 ### **2.3 Mayor documentación del código**
 Todo el código debe estar correctamente documentado:  
 Para cada archivo:  
+- Tarea del backlog que resuelve
 - Descripción breve del propósito del archivo
-- Tarea a la que corresponde del backlog
 - Autor(es)
 
 
