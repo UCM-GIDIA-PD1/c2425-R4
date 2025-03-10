@@ -97,6 +97,21 @@ def calcular_ultimas_tres(df):
 
     # Convertir resultados a un DataFrame
     df_ajustado = pd.DataFrame(peleas_ajustadas)
+
+    df_ajustado['KD_DIFF'] = df_ajustado['KD_A'] - df_ajustado['KD_B'] #Creo columna de diferencia de knockdowns
+
+    df_ajustado['SIG_STR_DIFF'] = df_ajustado['SIG_STR_A'] - df_ajustado['SIG_STR_B'] #Diferencia de golpes significativos
+
+
+    df_ajustado['TD_DIFF'] = (df_ajustado['TD_A_x']/(df_ajustado['TD_A_y']+1)) - (df_ajustado['TD_B_x']/(df_ajustado['TD_B_y']+1)) #Diferencia de efectividad en derribos
+
+
+    df_ajustado['SUB_ATT_DIFF'] = df_ajustado['SUB_ATT_A'] - df['SUB_ATT_B'] #Diferencia intentos de submisión
+
+    df_ajustado['REV_DIFF'] = df_ajustado['REV_A'] - df_ajustado['REV_B'] #Diferencia en reversals
+
+    df_ajustado['CTRL_DIFF'] = df_ajustado['CTRL_A'] - df_ajustado['CTRL_B'] #Diferencia de tiempo controlado
+    print(df_ajustado)
     return df_ajustado
 
 

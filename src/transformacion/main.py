@@ -33,7 +33,7 @@ def main():
     print("Procesando peleas con ponderaciones")
     df_peleas_pond = calcular_ultimas_tres(df_peleas)
     # Guardar los DataFrames transformados en 'data/processed'
-    df_peleas_pond.to_parquet(os.path.join(ruta_processed,"peleas_ponderadas.parquet"))
+    df_peleas_pond.to_parquet(os.path.join(ruta_processed,"peleas_ponderadas.parquet")) 
 
 
 if __name__ == "__main__":
