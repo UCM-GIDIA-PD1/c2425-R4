@@ -13,7 +13,6 @@ def main():
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     ruta_peleas = os.path.join(base_dir, "data", "raw", "peleas.csv")
     ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
-
     # Definir la ruta correcta dentro del proyecto
     ruta = os.path.join(base_dir, "data", "raw", "nacimiento_peleadores")
 

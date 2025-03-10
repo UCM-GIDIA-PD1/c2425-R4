@@ -3,6 +3,7 @@ from tratamiento_peleadores import transformacion_peleadores
 from tratamiento_peleas import transformacion_peleas
 from recordsPeleas import recordPeleas
 from nuevas_columnas_peleas_peleadores import transformacion
+from peleasMediasPond import calcular_ultimas_tres
 import os
 
 def main():
@@ -26,9 +27,13 @@ def main():
     df_peleadores = transformacion_peleadores(args.dir_peleadores)
     df_peleas = recordPeleas(df_peleadores,df_peleas)
     df_peleas,df_peleadores = transformacion(df_peleas,df_peleadores)
-    # Guardar los DataFrames transformados en 'data/processed'
     df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False)
     df_peleadores.to_parquet(os.path.join(ruta_processed, "peleadores.parquet"), index=False)
+    print("Peleas y peleadores guardados")
+    print("Procesando peleas con ponderaciones")
+    df_peleas_pond = calcular_ultimas_tres(df_peleas)
+    # Guardar los DataFrames transformados en 'data/processed'
+    df_peleas_pond.to_parquet(os.path.join(ruta_processed,"peleas_ponderadas.parquet"))
 
 
 if __name__ == "__main__":
