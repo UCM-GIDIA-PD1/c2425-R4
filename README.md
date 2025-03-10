@@ -57,11 +57,31 @@ Durante el último Sprint, el uso del **tablero de tareas** ha disminuido. Es fu
 ### **2.2 Revisar todo el codigo subido**
 Asignar a un integrante del grupo encargado de revisar todo el código que se sube funcione correctamente.
 ### **2.3 Mayor documentación del código**
-Todo el código debe estar correctamente documentado:  
-Para cada archivo:  
-- Tarea del backlog que resuelve
-- Descripción breve del propósito del archivo
-- Autor(es)
+## Guía de Documentación del Código
+
+Todo el código debe estar correctamente documentado siguiendo estas instrucciones:
+
+### Documentación por archivo  
+Cada archivo debe incluir al inicio los siguientes elementos:
+
+- **Tarea del backlog:** Especificar la tarea que este código resuelve.  
+- **Propósito del código:** Breve descripción de la función principal del archivo.  
+- **Autor(es):** Nombre(s) de quienes han trabajado en el código.  
+- **Descripción y uso:** Explicar de manera concisa cómo funciona el código y cómo debe utilizarse.  
+
+En caso de modificar el código, se debe añadir:
+- **Autor:** Modificación realizada.  
+
+⏳ **Tiempo aproximado:** 5 minutos.
+
+### Comentarios dentro del código  
+- Agregar comentarios en aquellas partes que puedan generar dudas sobre el funcionamiento o la lógica aplicada.  
+- Explicar claramente fragmentos de código complejos o poco intuitivos.  
+
+⏳ **Tiempo aproximado:** 10 minutos.
+
+## Revisión antes de hacer push  
+Antes de hacer un `push` de uno o varios archivos, se debe revisar que el archivo cumpla con las reglas anteriores.
 
 
 ## **3️⃣ Comentarios y sugerencias**  
