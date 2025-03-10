@@ -48,7 +48,13 @@ Los archivos de la carpeta **data** se actualizarán periódicamente. No obstant
 Es obligatorio el uso de entornos virtuales y del archivo **requirements.txt** para asegurar que cualquier persona pueda ejecutar el proyecto sin errores.  
 
 - Cada vez que se instale una nueva biblioteca, es necesario registrarla en **requirements.txt** con su versión específica.  
-- Si hay dudas sobre cómo utilizar entornos virtuales, se puede consultar la presentación disponible en el **Campus** o preguntar al equipo.  
+- Si hay dudas sobre cómo utilizar entornos virtuales, se puede consultar la presentación disponible en el **Campus** o preguntar al equipo.
+
+## **1.4 Métricas para probar modelos:
+1) Accuracy: Nuestro principal objetivo es que el modelo acierte el mayor número de comabtes posibles.
+2) Log-loss: También nos interesa que las probabilidades estén lo más cercanas a las reales. Por lo tanto esta métrica es bastante importante
+3) Usando precision, recall, F1-score y Confusion Matrix, con esto podemos ver si acierta muchas veces cuando gana el favorito y poco el "underdog" etc
+Podéis añadir otras métricas que os resulten interesantes.
 
 ## **2️⃣ Mejoras a implementar**  
 
