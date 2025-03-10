@@ -53,7 +53,11 @@ Es obligatorio el uso de entornos virtuales y del archivo **requirements.txt** p
 ## **2️⃣ Mejoras a implementar**  
 
 ### **2.1 Uso del tablero de tareas**  
-Durante el último Sprint, el uso del **tablero de tareas** ha disminuido. Es fundamental mantenerlo actualizado y seguir un orden de trabajo estructurado para mejorar la organización del equipo. 
+Durante el último Sprint, el uso del **tablero de tareas** ha disminuido. Es fundamental mantenerlo actualizado y seguir un orden de trabajo estructurado para mejorar la organización del equipo.  
+Cada tarea añadida al backlog debe estar rellanada con todas las característica: tamaño, iteracion, etc.  
+Cada integrante del grupo debe asignarse la tarea en la que está trabajando, y posicionarla en el lugar adecuado: todo, in progress, review.
+Las tareas pasarán a "done" si son revisadas unicamente por el encargado de ello.
+
 ### **2.2 Revisar todo el codigo subido**
 Asignar a un integrante del grupo encargado de revisar todo el código que se sube funcione correctamente.
 ### **2.3 Mayor documentación del código**
@@ -83,6 +87,8 @@ En caso de modificar el código, se debe añadir:
 ## Revisión antes de hacer push  
 Antes de hacer un `push` de uno o varios archivos, se debe revisar que el archivo cumpla con las reglas anteriores.
 
+### **2.4 Memoria y presentación**
+La memoria y la presentación deben estar terminadas para la clase anterior a la entrega. Para este sprint el 31/3/2025.  
 
 ## **3️⃣ Comentarios y sugerencias**  
 Cualquier mejora adicional que se considere necesaria para el próximo Sprint podéis escribirla. Si alguien no está de acuerdo con algún punto de este documento o tiene problemas con alguna de las instrucciones, es importante comunicarlo para buscar una solución en conjunto.  
