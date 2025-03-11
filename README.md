@@ -10,6 +10,10 @@
 
 # El miércoles empezamos a usar uv para gestionar los entornos virtuales, es bastante fácil.
 - Este video me he visto yo y se entiende todo bien: https://www.youtube.com/watch?v=zgSQr0d5EVg&ab_channel=MattPalmer
+- Guia para usarlo en notebooks que igual no queda claro en el vídeo.
+- Creas el entorno virtual, pones ese comando y ya debería funcionar los notebooks.
+![image](https://github.com/user-attachments/assets/113b576e-d139-4682-9f43-ccf04eacf940)
+Guía oficial sobre uso de notebooks con uv: https://docs.astral.sh/uv/guides/integration/jupyter/
 
 
 
