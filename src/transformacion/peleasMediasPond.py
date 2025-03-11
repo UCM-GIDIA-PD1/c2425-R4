@@ -3,6 +3,16 @@ import pandas as pd
 import numpy as np
 
 def calcular_ultimas_tres(df):
+    """
+    Realizado por Mateo Turati.
+    Dado un dataframe con las columnas Peleador_A, Peleador_B y DATE consulta si existen 
+    tres peleas anteriores para cada peleador. En caso de que existan se crea un nuevo dataframe
+    con las medias ponderadas de cada atributo del dataframe de peleas respecto a sus tres últimas 
+    peleas. 
+    El principal objetivo este nuevo dataframe será que sea usado para realizar un modelo para 
+    predecir peleas futuras basándose en las medias ponderadas de sus últimas peleas.
+    Item Backlog: Script para obtener dataframe de peleas con medias ponderadas
+    """
     # Asegurarse de que DATE esté como datetime
     df['DATE'] = pd.to_datetime(df['DATE'])
     
@@ -21,7 +31,7 @@ def calcular_ultimas_tres(df):
         peleas_b = df[(df['DATE'] < fecha) & 
                       ((df['Peleador_A'] == peleador_b) | (df['Peleador_B'] == peleador_b))].tail(3)
         
-        if len(peleas_a) < 3 or len(peleas_b) < 3:
+        if len(peleas_a) < 3 or len(peleas_b) < 3: #Si no tienen tres peleas anteriores no se procesa ese combate
             continue
 
         # Calcular la media ponderada para cada atributo
@@ -35,7 +45,8 @@ def calcular_ultimas_tres(df):
             pesos_recortados = pesos[:n]
             for cont in range(len(columnas_gen)):
                 values = []
-                for _, pelea in peleas.iterrows():             
+                for _, pelea in peleas.iterrows():     
+                    #Para cada peleo compruebo si fue Peleador_A o Peleador_B y guardo su atributo de dicha pelea        
                     if peleador == pelea["Peleador_A"]:
                         values.append(pelea[columnas_a[cont]])
                     else:
@@ -89,6 +100,7 @@ def calcular_ultimas_tres(df):
             'WINNER': pelea['WINNER']
         }
         
+        #Creo la nueva fila con todas las columnas
         for cont in range(len(columnas_a)):
             pelea_ajustada[columnas_a[cont]] = media_a[atributos_generales[cont]]
             pelea_ajustada[columnas_b[cont]] = media_b[atributos_generales[cont]]
@@ -106,7 +118,7 @@ def calcular_ultimas_tres(df):
     df_ajustado['TD_DIFF'] = (df_ajustado['TD_A_x']/(df_ajustado['TD_A_y']+1)) - (df_ajustado['TD_B_x']/(df_ajustado['TD_B_y']+1)) #Diferencia de efectividad en derribos
 
 
-    df_ajustado['SUB_ATT_DIFF'] = df_ajustado['SUB_ATT_A'] - df['SUB_ATT_B'] #Diferencia intentos de submisión
+    df_ajustado['SUB_ATT_DIFF'] = df_ajustado['SUB_ATT_A'] - df_ajustado['SUB_ATT_B'] #Diferencia intentos de submisión
 
     df_ajustado['REV_DIFF'] = df_ajustado['REV_A'] - df_ajustado['REV_B'] #Diferencia en reversals
 
