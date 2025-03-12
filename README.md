@@ -16,6 +16,17 @@
 - Guía oficial sobre uso de notebooks con uv: https://docs.astral.sh/uv/guides/integration/jupyter/
 
 
+# **Objetivo**
+Hay dos propuestas:
+## Ganador combate:
+Este modelo consiste en predecir el ganador de una pelea a partir de los datos de ese combate. Su función es similar a la que tendría un juez de la UFC.
+Te tomará el dataframe de las peleas, el cual se dividirá en train, validación, test.  
+Se debe predecir la variable winner.
+
+## Predice ganador entre dos peleadores:
+Este modelo predice el ganador de un combate que no se ha dado entre dos peleadores. 
+Te tomará el dataframe de las peleas ponderadas, el cual se dividirá en train, validación, test.  
+Se predice la variable winner, y la probabilidad de victoria para cada peleador. 
 
 # **Mejoras para Sprint 3 / Entregable 3**  
 
