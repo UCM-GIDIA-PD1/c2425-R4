@@ -19,6 +19,7 @@ dependencies = [
     "xgboost>=2.1.4",
     "scipy>=1.15.2",
     "zscore>=0.1",
+    "ipykernel>=6.29.5",
 ]
 
 [dependency-groups]
