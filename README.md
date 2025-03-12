@@ -1,6 +1,7 @@
 # c2425-P4
 
 
+
 # Funcionamiento mains:
   - Main src ejecuta tanto el código de extracción como de transformación, no necesita parámetros
   - Main extracción, ejecución por defecto todas las páginas de las webs, se puede escribir por teclado "peleas", "peleador" y "fechas" para ejecutar solo uno, también se puede poner como argumento las páginas que extrae cada   uno.
