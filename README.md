@@ -75,12 +75,6 @@ Es obligatorio el uso de entornos virtuales y del archivo **requirements.txt** p
 - Cada vez que se instale una nueva biblioteca, es necesario registrarla en **requirements.txt** con su versión específica.  
 - Si hay dudas sobre cómo utilizar entornos virtuales, se puede consultar la presentación disponible en el **Campus** o preguntar al equipo.
 
-### **1.4 Métricas para probar modelos:
-1) Accuracy: Nuestro principal objetivo es que el modelo acierte el mayor número de comabtes posibles.
-2) Log-loss: También nos interesa que las probabilidades estén lo más cercanas a las reales. Por lo tanto esta métrica es bastante importante
-3) Usando precision, recall, F1-score y Confusion Matrix, con esto podemos ver si acierta muchas veces cuando gana el favorito y poco el "underdog" etc
-Podéis añadir otras métricas que os resulten interesantes.
-
 ## **2️⃣ Mejoras a implementar**  
 
 ### **2.1 Uso del tablero de tareas**  
@@ -99,7 +93,7 @@ Todo el código debe estar correctamente documentado siguiendo estas instruccion
 ### Documentación por archivo  
 Cada archivo debe incluir al inicio los siguientes elementos:
 
-- **Tarea del backlog:** Especificar la tarea que este código resuelve.  
+- **Tarea del backlog:** Enlace a la tarea que este código resuelve.
 - **Propósito del código:** Breve descripción de la función principal del archivo.  
 - **Autor(es):** Nombre(s) de quienes han trabajado en el código.  
 - **Descripción y uso:** Explicar de manera concisa cómo funciona el código y cómo debe utilizarse.
@@ -109,6 +103,9 @@ En caso de modificar el código, se debe añadir:
 - **Autor:** Modificación realizada.  
 
 ⏳ **Tiempo aproximado:** 5 minutos.
+
+Ejemplo:  
+![image](https://github.com/user-attachments/assets/ec452b8e-aada-49be-b3e3-661acb170ce1)
 
 ### Comentarios dentro del código  
 - Agregar comentarios en aquellas partes que puedan generar dudas sobre el funcionamiento o la lógica aplicada.  
