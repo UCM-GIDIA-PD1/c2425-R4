@@ -102,7 +102,8 @@ Cada archivo debe incluir al inicio los siguientes elementos:
 - **Tarea del backlog:** Especificar la tarea que este código resuelve.  
 - **Propósito del código:** Breve descripción de la función principal del archivo.  
 - **Autor(es):** Nombre(s) de quienes han trabajado en el código.  
-- **Descripción y uso:** Explicar de manera concisa cómo funciona el código y cómo debe utilizarse.  
+- **Descripción y uso:** Explicar de manera concisa cómo funciona el código y cómo debe utilizarse.
+- **Estado actual:** Explicar como esta el código en este momento(finalizado, en proceso, etc) indicando que estás haciendo y que falta para terminarlo.
 
 En caso de modificar el código, se debe añadir:
 - **Autor:** Modificación realizada.  
