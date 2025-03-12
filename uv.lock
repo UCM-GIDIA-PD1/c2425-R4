@@ -531,6 +531,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "bs4" },
+    { name = "ipykernel" },
     { name = "ipython" },
     { name = "matplotlib" },
     { name = "numpy" },
@@ -552,6 +553,7 @@ dev = [
 requires-dist = [
     { name = "beautifulsoup4", specifier = ">=4.13.3" },
     { name = "bs4", specifier = ">=0.0.2" },
+    { name = "ipykernel", specifier = ">=6.29.5" },
     { name = "ipython", specifier = ">=8.12.2" },
     { name = "matplotlib", specifier = ">=3.8.0" },
     { name = "numpy", specifier = ">=1.26.2" },
