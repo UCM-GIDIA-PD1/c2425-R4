@@ -1,6 +1,10 @@
 import os
 import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+import matplotlib.pyplot as plt
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score,log_loss, make_scorer, f1_score, roc_auc_score, precision_score, recall_score
 
 def calcular_ultimas_tres(df):
     """
@@ -15,6 +19,7 @@ def calcular_ultimas_tres(df):
     """
     # Asegurarse de que DATE esté como datetime
     df['DATE'] = pd.to_datetime(df['DATE'])
+    df = df[df["DATE"] >= "2010-01-01"].reset_index(drop=True)
     
     # Crear listas para almacenar los resultados
     peleas_ajustadas = []
@@ -26,10 +31,10 @@ def calcular_ultimas_tres(df):
         
         # Obtener las últimas tres peleas de cada peleador antes de la pelea actual
         peleas_a = df[(df['DATE'] < fecha) & 
-                      ((df['Peleador_A'] == peleador_a) | (df['Peleador_B'] == peleador_a))].tail(3)
+                    ((df['Peleador_A'] == peleador_a) | (df['Peleador_B'] == peleador_a))].tail(3)
         
         peleas_b = df[(df['DATE'] < fecha) & 
-                      ((df['Peleador_A'] == peleador_b) | (df['Peleador_B'] == peleador_b))].tail(3)
+                    ((df['Peleador_A'] == peleador_b) | (df['Peleador_B'] == peleador_b))].tail(3)
         
         if len(peleas_a) < 3 or len(peleas_b) < 3: #Si no tienen tres peleas anteriores no se procesa ese combate
             continue
@@ -40,18 +45,14 @@ def calcular_ultimas_tres(df):
             dic = {}
             peleas = peleas.sort_values(by='DATE',ascending=False)
             # Tomar los valores como matriz y ajustar los pesos según el número de peleas
-            n = len(peleas)
-            pesos = np.array([0.5, 0.3, 0.2])
-            pesos_recortados = pesos[:n]
-            for cont in range(len(columnas_gen)):
+            for col_a, col_b, col_gen in zip(columnas_a, columnas_b, columnas_gen):
                 values = []
-                for _, pelea in peleas.iterrows():     
-                    #Para cada peleo compruebo si fue Peleador_A o Peleador_B y guardo su atributo de dicha pelea        
-                    if peleador == pelea["Peleador_A"]:
-                        values.append(pelea[columnas_a[cont]])
-                    else:
-                        values.append(pelea[columnas_b[cont]])
-                dic[columnas_gen[cont]] = np.average(values, weights=pesos_recortados)                 
+                for _, pelea in peleas.iterrows():
+                    values.append(pelea[col_a] if peleador == pelea['Peleador_A'] else pelea[col_b])
+                values_series = pd.Series(values)
+                ewm_mean = values_series.ewm(span=4, adjust=False).mean().iloc[-1]
+                dic[col_gen] = ewm_mean
+                    
             return dic
         
         columnas_a = [
@@ -127,4 +128,42 @@ def calcular_ultimas_tres(df):
     return df_ajustado
 
 
+ruta = os.path.join(os.getcwd(), "..", "..", "data", "processed", "peleas.parquet")
+df = pd.read_parquet(ruta)
+print(df.head())
+df_aj = calcular_ultimas_tres(df)
+df_aj = df_aj.sort_values(by="DATE")
+df = df_aj
+# Definir los tamaños de cada subconjunto
+train_size = 0.7  # 70%
+val_size = 0.15    # 15%
+test_size = 0.15   # 15%
 
+# Calcular índices de corte
+n = len(df)
+train_end = int(n * train_size)
+val_end = train_end + int(n * val_size)
+
+# Dividir el DataFrame
+df_train = df.iloc[:train_end]
+df_val = df.iloc[train_end:val_end]
+df_test = df.iloc[val_end:]
+
+# Obtener las fechas de corte
+train_end_date = df_train["DATE"].max()
+val_end_date = df_val["DATE"].max()
+test_end_date = df_test["DATE"].max()
+
+print(f"Última fecha en train: {train_end_date}")
+print(f"Última fecha en validation: {val_end_date}")
+print(f"Última fecha en test: {test_end_date}")
+
+# Mostrar tamaños
+print(f"Train: {len(df_train)}, Validation: {len(df_val)}, Test: {len(df_test)}")
+
+print(df_val.head())
+
+ruta = os.path.join(os.getcwd(), "..", "..", "data", "P2", "validation.parquet")
+df_val2 = pd.read_parquet(ruta)
+
+print(df_val2.head())
