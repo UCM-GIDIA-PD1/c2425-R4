@@ -21,7 +21,7 @@
 Hay dos propuestas:
 ## **P1:** Ganador combate:
 Este modelo consiste en predecir el ganador de una pelea a partir de los datos de ese combate. Su función es similar a la que tendría un juez de la UFC.
-Te tomará el dataframe de las peleas, el cual se dividirá en train, validación, test.  
+Dataframe: carpeta drive: P1
 Se debe predecir la variable winner.  
 Modelos propuestos:
 - Regresión logística
@@ -30,7 +30,7 @@ Modelos propuestos:
 
 ## **P2:** Predice ganador entre dos peleadores:
 Este modelo predice el ganador de un combate que no se ha dado entre dos peleadores. 
-Te tomará el dataframe de las peleas ponderadas, el cual se dividirá en train, validación, test.  
+Dataframe: carpeta drive: P2
 Se predice la variable winner, y la probabilidad de victoria para cada peleador.  
 Modelos propuestos:
 - Regresión logística
