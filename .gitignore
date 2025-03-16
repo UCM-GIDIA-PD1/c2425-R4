@@ -6,11 +6,14 @@ src/analisis/.ipynb_checkpoints/RANKING_V3-checkpoint.ipynb
 src/transformacion/csv_peleas.csv
 df_limpio.csv
 df_peleas_limpio.csv
-data
+data/P1
+data/P2
+data/processed
+data/raw
 src/extraccion/fighters_completos.csv
 .venv
-src/data
 src/transformacion/__pycache__
 src/extraccion/__pycache__
 __pycache__/
 **/__pycache__/
+uv.lock
