@@ -8,8 +8,10 @@ df_limpio.csv
 df_peleas_limpio.csv
 data/P1
 data/P2
+data/P2_dif
 data/processed
 data/raw
+src/data
 src/extraccion/fighters_completos.csv
 .venv
 src/transformacion/__pycache__
