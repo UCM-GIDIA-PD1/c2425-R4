@@ -61,39 +61,35 @@ def calcular_ultimas_tres(df):
             'STR_HEAD_A_y', 'STR_BODY_A_x', 'STR_BODY_A_y', 'STR_LEG_A_x',
             'STR_LEG_A_y', 'STR_DISTANCE_A_x', 'STR_DISTANCE_A_y',
             'STR_CLINCH_A_x', 'STR_CLINCH_A_y', 'STR_GROUND_A_x', 'STR_GROUND_A_y',
-            'STRIKER_A', 'GRAPPLER_A', 'Record_A', 'Peleas_A', 'Puntos_A', 'Racha_A',
-            'Victorias_KO_A', 'Victorias_Sub_A', 'Victorias_Decision_A',
-            'Derrotas_KO_A', 'Derrotas_Sub_A', 'Derrotas_Decision_A'
+            'STRIKER_A', 'GRAPPLER_A','Victorias_KO_A', 'Victorias_Sub_A', 'Victorias_Decision_A',
+                                       'Derrotas_KO_A', 'Derrotas_Sub_A', 'Derrotas_Decision_A'
         ]
-
         
-        columnas_b = [  
-            'KD_B', 'SIG_STR_B', 'TD_PORC_B', 'SUB_ATT_B', 'REV_B', 'CTRL_B',  
-            'TOTAL_STR_B_x', 'TOTAL_STR_B_y', 'TD_B_x', 'TD_B_y', 'STR_HEAD_B_x',  
-            'STR_HEAD_B_y', 'STR_BODY_B_x', 'STR_BODY_B_y', 'STR_LEG_B_x',  
-            'STR_LEG_B_y', 'STR_DISTANCE_B_x', 'STR_DISTANCE_B_y',  
-            'STR_CLINCH_B_x', 'STR_CLINCH_B_y', 'STR_GROUND_B_x', 'STR_GROUND_B_y',  
-            'STRIKER_B', 'GRAPPLER_B', 'Record_B', 'Peleas_B', 'Puntos_B', 'Racha_B',  
-            'Victorias_KO_B', 'Victorias_Sub_B', 'Victorias_Decision_B',  
-            'Derrotas_KO_B', 'Derrotas_Sub_B', 'Derrotas_Decision_B'  
+        columnas_b = [
+            'KD_B', 'SIG_STR_B', 'TD_PORC_B', 'SUB_ATT_B', 'REV_B', 'CTRL_B',
+            'TOTAL_STR_B_x', 'TOTAL_STR_B_y', 'TD_B_x', 'TD_B_y', 'STR_HEAD_B_x',
+            'STR_HEAD_B_y', 'STR_BODY_B_x', 'STR_BODY_B_y', 'STR_LEG_B_x',
+            'STR_LEG_B_y', 'STR_DISTANCE_B_x', 'STR_DISTANCE_B_y',
+            'STR_CLINCH_B_x', 'STR_CLINCH_B_y', 'STR_GROUND_B_x', 'STR_GROUND_B_y',
+            'STRIKER_B', 'GRAPPLER_B','Victorias_KO_B', 'Victorias_Sub_B', 'Victorias_Decision_B',
+                                       'Derrotas_KO_B', 'Derrotas_Sub_B', 'Derrotas_Decision_B'
         ]
-
-        atributos_generales = [  
-            'KD', 'SIG_STR', 'TD_PORC', 'SUB_ATT', 'REV', 'CTRL',  
-            'TOTAL_STR_x', 'TOTAL_STR_y', 'TD_x', 'TD_y', 'STR_HEAD_x',  
-            'STR_HEAD_y', 'STR_BODY_x', 'STR_BODY_y', 'STR_LEG_x',  
-            'STR_LEG_y', 'STR_DISTANCE_x', 'STR_DISTANCE_y',  
-            'STR_CLINCH_x', 'STR_CLINCH_y', 'STR_GROUND_x', 'STR_GROUND_y',  
-            'STRIKER', 'GRAPPLER', 'Record', 'Peleas', 'Puntos', 'Racha',  
-            'Victorias_KO', 'Victorias_Sub', 'Victorias_Decision',  
-            'Derrotas_KO', 'Derrotas_Sub', 'Derrotas_Decision'  
+        
+        atributos_generales = [
+            'KD', 'SIG_STR', 'TD_PORC', 'SUB_ATT', 'REV', 'CTRL',
+            'TOTAL_STR_x', 'TOTAL_STR_y', 'TD_x', 'TD_y', 'STR_HEAD_x',
+            'STR_HEAD_y', 'STR_BODY_x', 'STR_BODY_y', 'STR_LEG_x',
+            'STR_LEG_y', 'STR_DISTANCE_x', 'STR_DISTANCE_y',
+            'STR_CLINCH_x', 'STR_CLINCH_y', 'STR_GROUND_x', 'STR_GROUND_y',
+            'STRIKER', 'GRAPPLER','Victorias_KO', 'Victorias_Sub', 'Victorias_Decision',
+                                       'Derrotas_KO', 'Derrotas_Sub', 'Derrotas_Decision'
         ]
 
 
         media_a = media_ponderada(peleas_a, peleador_a, columnas_a,columnas_b,atributos_generales)
         media_b = media_ponderada(peleas_b, peleador_b, columnas_a,columnas_b,atributos_generales)
+
         
-        # Añadir las medias ponderadas a las columnas del nuevo DataFrame
         pelea_ajustada = {
             'DATE': fecha,
             'Peleador_A': peleador_a,
@@ -101,10 +97,62 @@ def calcular_ultimas_tres(df):
             'WINNER': pelea['WINNER']
         }
         
-        #Creo la nueva fila con todas las columnas
         for cont in range(len(columnas_a)):
             pelea_ajustada[columnas_a[cont]] = media_a[atributos_generales[cont]]
             pelea_ajustada[columnas_b[cont]] = media_b[atributos_generales[cont]]
+
+
+        def actualizar_record(peleador,ult_pelea):
+            """"Actualiza el record teniendo en cuenta el resultado de su última pelea"""
+
+            if peleador == ult_pelea["Peleador_A"] and ult_pelea["WINNER"] == 0:
+                return ult_pelea["Record_A"] +1
+            elif peleador == ult_pelea["Peleador_B"] and ult_pelea["WINNER"] == 1:
+                return ult_pelea["Record_B"] +1
+            elif peleador == ult_pelea["Peleador_B"]:
+                return ult_pelea["Record_B"] - 1
+            else:
+                return ult_pelea["Record_A"] - 1
+
+        pelea_ajustada['Record_A'] = actualizar_record(peleador_a,peleas_a.iloc[-1])
+        pelea_ajustada['Record_B'] = actualizar_record(peleador_b,peleas_b.iloc[-1])
+        
+
+        def actualizar_racha(peleador,ult_pelea):
+            """"Actualiza la racha teniendo en cuenta el resultado de su última pelea"""
+
+            if peleador == ult_pelea["Peleador_A"] and ult_pelea["WINNER"] == 0:
+                return ult_pelea["Racha_A"] +1
+            elif peleador == ult_pelea["Peleador_B"] and ult_pelea["WINNER"] == 1:
+                return ult_pelea["Racha_B"] +1
+            elif peleador == ult_pelea["Peleador_B"]:
+                return 0
+            else:
+                return 0
+
+        pelea_ajustada['Racha_A'] = actualizar_racha(peleador_a,peleas_a.iloc[-1])
+        pelea_ajustada['Racha_B'] = actualizar_racha(peleador_b,peleas_b.iloc[-1])
+
+        def actualizar_puntos(peleador,ult_pelea):
+            """Función que establece los puntos de su futura pelea teniendo en cuenta lo 
+            que paso en la última"""
+            pelea = ult_pelea
+            if peleador == pelea["Peleador_A"]:
+                if pelea["WINNER"] == 0:
+                    nuevos_puntos = max(pelea["Puntos_A"],pelea["Puntos_B"])
+                else:
+                    nuevos_puntos = pelea["Puntos_A"] - pelea["Puntos_A"]* 0.1
+            else:
+                if pelea["WINNER"] == 1:
+                    nuevos_puntos = max(pelea["Puntos_A"],pelea["Puntos_B"])
+                else:
+                    nuevos_puntos = pelea["Puntos_B"] - pelea["Puntos_B"]* 0.1
+            return nuevos_puntos
+
+        pelea_ajustada["Puntos_A"] = actualizar_puntos(peleador_a,peleas_a.iloc[-1])
+        pelea_ajustada["Puntos_B"] = actualizar_puntos(peleador_b,peleas_b.iloc[-1])
+
+
         
         peleas_ajustadas.append(pelea_ajustada)
 
@@ -130,40 +178,8 @@ def calcular_ultimas_tres(df):
 
 ruta = os.path.join(os.getcwd(), "..", "..", "data", "processed", "peleas.parquet")
 df = pd.read_parquet(ruta)
-print(df.head())
-df_aj = calcular_ultimas_tres(df)
-df_aj = df_aj.sort_values(by="DATE")
-df = df_aj
-# Definir los tamaños de cada subconjunto
-train_size = 0.7  # 70%
-val_size = 0.15    # 15%
-test_size = 0.15   # 15%
-
-# Calcular índices de corte
-n = len(df)
-train_end = int(n * train_size)
-val_end = train_end + int(n * val_size)
-
-# Dividir el DataFrame
-df_train = df.iloc[:train_end]
-df_val = df.iloc[train_end:val_end]
-df_test = df.iloc[val_end:]
-
-# Obtener las fechas de corte
-train_end_date = df_train["DATE"].max()
-val_end_date = df_val["DATE"].max()
-test_end_date = df_test["DATE"].max()
-
-print(f"Última fecha en train: {train_end_date}")
-print(f"Última fecha en validation: {val_end_date}")
-print(f"Última fecha en test: {test_end_date}")
-
-# Mostrar tamaños
-print(f"Train: {len(df_train)}, Validation: {len(df_val)}, Test: {len(df_test)}")
-
-print(df_val.head())
-
-ruta = os.path.join(os.getcwd(), "..", "..", "data", "P2", "validation.parquet")
-df_val2 = pd.read_parquet(ruta)
-
-print(df_val2.head())
+df_pond= calcular_ultimas_tres(df)
+print("Ponderadas")
+print(df_pond[(df_pond["Peleador_A"] == "Ilia Topuria") | (df_pond["Peleador_B"] == "Ilia Topuria")][["Peleador_A","Peleador_B","Puntos_A","Puntos_B","Record_A","Record_B","Racha_A","Racha_B","DATE"]])
+print("Original")
+print(df[(df["Peleador_A"] == "Ilia Topuria") | (df["Peleador_B"] == "Ilia Topuria")][["Peleador_A","Peleador_B","Puntos_A","Puntos_B","Record_A","Record_B","Racha_A","Racha_B","DATE"]])
