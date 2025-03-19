@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score,log_loss, make_scorer, f1_score, roc_auc_score, precision_score, recall_score
+import math
 
 def calcular_ultimas_tres(df):
     """
@@ -133,27 +134,45 @@ def calcular_ultimas_tres(df):
         pelea_ajustada['Racha_A'] = actualizar_racha(peleador_a,peleas_a.iloc[-1])
         pelea_ajustada['Racha_B'] = actualizar_racha(peleador_b,peleas_b.iloc[-1])
 
-        def actualizar_puntos(peleador,ult_pelea):
-            """Función que establece los puntos de su futura pelea teniendo en cuenta lo 
-            que paso en la última"""
+        def actualizar_puntos(peleador, ult_pelea, k=20):
+            """Actualiza los puntos del peleador teniendo en cuenta la diferencia de nivel y normalización."""
             pelea = ult_pelea
-            if peleador == pelea["Peleador_A"]:
-                if pelea["WINNER"] == 0:
-                    nuevos_puntos = max(pelea["Puntos_A"],pelea["Puntos_B"])
-                else:
-                    nuevos_puntos = pelea["Puntos_A"] - pelea["Puntos_A"]* 0.1
+            A, B = pelea["Peleador_A"], pelea["Peleador_B"]
+            Ra, Rb = pelea["Puntos_A"], pelea["Puntos_B"]
+
+            if peleador == A:
+                ganador = pelea["WINNER"] == 0
+                R_peleador, R_oponente = Ra, Rb
             else:
-                if pelea["WINNER"] == 1:
-                    nuevos_puntos = max(pelea["Puntos_A"],pelea["Puntos_B"])
-                else:
-                    nuevos_puntos = pelea["Puntos_B"] - pelea["Puntos_B"]* 0.1
-            return nuevos_puntos
+                ganador = pelea["WINNER"] == 1
+                R_peleador, R_oponente = Rb, Ra
+
+            # Evitar divisiones por cero y valores extremos
+            epsilon = 1e-6
+            total_puntos = R_peleador + R_oponente + epsilon
+
+            # Factor de ajuste basado en diferencia de puntos, usando sigmoide para estabilidad
+            ajuste = 1 / (1 + math.exp(-abs(R_peleador - R_oponente) / 50))
+
+            if ganador:
+                nuevos_puntos = R_peleador + k * ajuste * (1 - (R_oponente / total_puntos))
+            else:
+                nuevos_puntos = R_peleador - k * ajuste * (R_peleador / total_puntos)
+
+            # Asegurar que los puntos no sean negativos
+            return max(nuevos_puntos, 0)
 
         pelea_ajustada["Puntos_A"] = actualizar_puntos(peleador_a,peleas_a.iloc[-1])
         pelea_ajustada["Puntos_B"] = actualizar_puntos(peleador_b,peleas_b.iloc[-1])
 
+        def act_peleas(peleador,ult_pelea):
+            if peleador == ult_pelea["Peleador_A"]:
+                return ult_pelea["Peleas_A"] +1
+            elif peleador == ult_pelea["Peleador_B"]:
+                return ult_pelea["Peleas_B"] +1
 
-        
+        pelea_ajustada["Peleas_A"] = act_peleas(peleador_a,peleas_a.iloc[-1])
+        pelea_ajustada["Peleas_B"] = act_peleas(peleador_b,peleas_b.iloc[-1])
         peleas_ajustadas.append(pelea_ajustada)
 
     # Convertir resultados a un DataFrame
