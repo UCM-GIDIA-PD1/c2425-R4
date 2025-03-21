@@ -1,0 +1,16 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/220531053739985843/ea3fa7e516774eec90ac79bf522468eb/artifacts
+end_time: 1742550870154
+entry_point_name: ''
+experiment_id: '220531053739985843'
+lifecycle_stage: active
+run_id: ea3fa7e516774eec90ac79bf522468eb
+run_name: con k=25 y victorias/derrotas fuera de las medias, prueba con min_child_weight
+  alto
+run_uuid: ea3fa7e516774eec90ac79bf522468eb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742550863822
+status: 3
+tags: []
+user_id: mattu
