@@ -20,7 +20,6 @@ def calcular_ultimas_tres(df):
     """
     # Asegurarse de que DATE esté como datetime
     df['DATE'] = pd.to_datetime(df['DATE'])
-    df = df[df["DATE"] >= "2010-01-01"].reset_index(drop=True)
     
     # Crear listas para almacenar los resultados
     peleas_ajustadas = []
@@ -194,11 +193,3 @@ def calcular_ultimas_tres(df):
     print(df_ajustado)
     return df_ajustado
 
-
-ruta = os.path.join(os.getcwd(), "..", "..", "data", "processed", "peleas.parquet")
-df = pd.read_parquet(ruta)
-df_pond= calcular_ultimas_tres(df)
-print("Ponderadas")
-print(df_pond[(df_pond["Peleador_A"] == "Ilia Topuria") | (df_pond["Peleador_B"] == "Ilia Topuria")][["Peleador_A","Peleador_B","Puntos_A","Puntos_B","Record_A","Record_B","Racha_A","Racha_B","DATE"]])
-print("Original")
-print(df[(df["Peleador_A"] == "Ilia Topuria") | (df["Peleador_B"] == "Ilia Topuria")][["Peleador_A","Peleador_B","Puntos_A","Puntos_B","Record_A","Record_B","Racha_A","Racha_B","DATE"]])

@@ -1,0 +1,1 @@
+{'tree_method': 'hist', 'subsample': np.float64(0.8), 'scale_pos_weight': np.float64(1.2905829596412555), 'reg_alpha': 0.1, 'n_estimators': np.int64(250), 'min_child_weight': np.int64(35), 'max_depth': np.int64(33), 'learning_rate': np.float64(0.01892857142857143), 'grow_policy': 'lossguide', 'gamma': np.float64(0.5), 'colsample_bytree': np.float64(1.0)}
