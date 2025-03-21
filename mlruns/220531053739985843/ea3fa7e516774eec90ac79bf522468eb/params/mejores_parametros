@@ -1,0 +1,1 @@
+{'colsample_bytree': 0.5, 'gamma': 0, 'learning_rate': 0.05, 'min_child_weight': 10, 'n_estimators': 250, 'reg_alpha': 1.0, 'reg_lambda': 0.1, 'scale_pos_weight': np.float64(1.2829643888354187), 'subsample': 1.0}
