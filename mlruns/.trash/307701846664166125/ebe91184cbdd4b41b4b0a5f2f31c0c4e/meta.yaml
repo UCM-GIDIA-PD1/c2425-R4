@@ -1,0 +1,16 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/307701846664166125/ebe91184cbdd4b41b4b0a5f2f31c0c4e/artifacts
+deleted_time: 1742411885837
+end_time: null
+entry_point_name: ''
+experiment_id: '307701846664166125'
+lifecycle_stage: deleted
+run_id: ebe91184cbdd4b41b4b0a5f2f31c0c4e
+run_name: big-wren-541
+run_uuid: ebe91184cbdd4b41b4b0a5f2f31c0c4e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742411681828
+status: 1
+tags: []
+user_id: mattu

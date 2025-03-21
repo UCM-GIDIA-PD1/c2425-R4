@@ -134,7 +134,7 @@ def calcular_ultimas_tres(df):
         pelea_ajustada['Racha_A'] = actualizar_racha(peleador_a,peleas_a.iloc[-1])
         pelea_ajustada['Racha_B'] = actualizar_racha(peleador_b,peleas_b.iloc[-1])
 
-        def actualizar_puntos(peleador, ult_pelea, k=20):
+        def actualizar_puntos(peleador, ult_pelea, k=25):
             """Actualiza los puntos del peleador teniendo en cuenta la diferencia de nivel y normalización."""
             pelea = ult_pelea
             A, B = pelea["Peleador_A"], pelea["Peleador_B"]

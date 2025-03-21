@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1742412893859
+current_stage: None
+description: ''
+last_updated_timestamp: 1742412893859
+name: XGBoost
+run_id: dd5909c6655c41e88c9b0cb4c19f8b97
+run_link: ''
+source: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/220531053739985843/dd5909c6655c41e88c9b0cb4c19f8b97/artifacts/modelo_xgboost
+status: READY
+status_message: null
+storage_location: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/220531053739985843/dd5909c6655c41e88c9b0cb4c19f8b97/artifacts/modelo_xgboost
+user_id: null
+version: 1
