@@ -143,11 +143,11 @@ El objetivo de este proyecto es desarrollar dos sistemas de aprendizaje automát
 
 ### 4. Fuentes de datos
 
-- (UFC Stats) [http://ufcstats.com/statistics/events/completed]
+- [UFC Stats](http://ufcstats.com/statistics/events/completed)
 
 Para extraer todas las peleas con su información respectiva, golpes por peleador, porcentajes de knockdowns etc.
 
-- (UFC) [https://www.ufc.com/athletes/all]
+- [UFC](https://www.ufc.com/athletes/all)
 
 Para extraer información de los luchadores y sus fotos, las cuales usaremos para crear la web.
 
