@@ -120,6 +120,8 @@ Antes de hacer un `push` de uno o varios archivos, se debe revisar que el archiv
 ### **2.4 Memoria y presentación**
 La memoria y la presentación deben estar terminadas para la clase anterior a la entrega. Para este sprint el 31/3/2025.  
 
+## **3️⃣ Comentarios y sugerencias**  
+Cualquier mejora adicional que se considere necesaria para el próximo Sprint podéis escribirla. Si alguien no está de acuerdo con algún punto de este documento o tiene problemas con alguna de las instrucciones, es importante comunicarlo para buscar una solución en conjunto.  
 
 # UFC PREDICTOR
 
@@ -150,5 +152,4 @@ El objetivo de este proyecto es desarrollar dos sistemas de aprendizaje automát
 
 ### 7. Trabajo futuro
 
-## **3️⃣ Comentarios y sugerencias**  
-Cualquier mejora adicional que se considere necesaria para el próximo Sprint podéis escribirla. Si alguien no está de acuerdo con algún punto de este documento o tiene problemas con alguna de las instrucciones, es importante comunicarlo para buscar una solución en conjunto.  
+
