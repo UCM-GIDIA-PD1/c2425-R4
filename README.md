@@ -151,7 +151,7 @@ Para extraer todas las peleas con su información respectiva, golpes por peleado
 
 Para extraer información de los luchadores y sus fotos, las cuales usaremos para crear la web.
 
-- Tapology[https://www.tapology.com/]
+- [Tapology][https://www.tapology.com/]
 
 La usamos como fuente secundaria para obtener la edad del luchador, entre otras características.
 
