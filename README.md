@@ -120,5 +120,35 @@ Antes de hacer un `push` de uno o varios archivos, se debe revisar que el archiv
 ### **2.4 Memoria y presentación**
 La memoria y la presentación deben estar terminadas para la clase anterior a la entrega. Para este sprint el 31/3/2025.  
 
+
+# UFC PREDICTOR
+
+### Proyecto Datos I
+
+### 1. Descripción del proyecto
+
+El objetivo de este proyecto es desarrollar dos sistemas de aprendizaje automático. Uno predice el ganador de un combate de la UFC basándose en datos de la pelea. El segundo predice el ganador usando información previa al combate. Para ello utilizamos información sobre peleas previas y peleadores. Esta información se obtiene de la página oficial de la UFC y UFC Stats que tiene todos los combates históricos.
+
+### 2. Integrantes 
+ -  Andrés Fernández Ortega
+ -  Francisco José Pastor Ruiz
+ -  Mario Granados Guerruero
+ -  Telmo Aracama Docampo
+ -  Carlos Vallejo Ros
+
+### 3. Instrucciones de instalación
+
+
+### 4. Fuentes de datos
+
+
+### 5. Estructura del código
+
+
+### 6. Resultados y evaluación
+
+
+### 7. Trabajo futuro
+
 ## **3️⃣ Comentarios y sugerencias**  
 Cualquier mejora adicional que se considere necesaria para el próximo Sprint podéis escribirla. Si alguien no está de acuerdo con algún punto de este documento o tiene problemas con alguna de las instrucciones, es importante comunicarlo para buscar una solución en conjunto.  
