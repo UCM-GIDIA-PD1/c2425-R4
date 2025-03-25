@@ -1,0 +1,1 @@
+uso de Optuna para ajustar hiperparámetros n_trials=100, sampler seed=1

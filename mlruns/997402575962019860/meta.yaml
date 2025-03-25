@@ -1,0 +1,6 @@
+artifact_location: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/997402575962019860
+creation_time: 1742902932680
+experiment_id: '997402575962019860'
+last_update_time: 1742902932680
+lifecycle_stage: active
+name: Prueba con df ponderado P2 usanod P2_dif XGBoost

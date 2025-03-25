@@ -1,0 +1,1 @@
+{'n_estimators': 150, 'max_depth': 3, 'learning_rate': 0.011638036743766822, 'subsample': 0.8899735716768591, 'colsample_bytree': 0.7101018022938637, 'gamma': 0.4854270981677824, 'min_child_weight': 1, 'scale_pos_weight': np.float64(1.2829643888354187), 'reg_alpha': 1, 'tree_method': 'auto', 'grow_policy': 'lossguide'}
