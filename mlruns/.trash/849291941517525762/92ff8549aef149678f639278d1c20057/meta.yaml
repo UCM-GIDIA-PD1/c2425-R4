@@ -1,0 +1,16 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/849291941517525762/92ff8549aef149678f639278d1c20057/artifacts
+deleted_time: 1742897068058
+end_time: 1742896894753
+entry_point_name: ''
+experiment_id: '849291941517525762'
+lifecycle_stage: deleted
+run_id: 92ff8549aef149678f639278d1c20057
+run_name: Modelo usando GridSearch
+run_uuid: 92ff8549aef149678f639278d1c20057
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742896894725
+status: 3
+tags: []
+user_id: mattu
