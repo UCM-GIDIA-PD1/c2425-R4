@@ -1,0 +1,15 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/327375263980051994/9afbb58821884e97aad956c1ed7ec209/artifacts
+end_time: 1742984698795
+entry_point_name: ''
+experiment_id: '327375263980051994'
+lifecycle_stage: active
+run_id: 9afbb58821884e97aad956c1ed7ec209
+run_name: RandomizedSearchCV
+run_uuid: 9afbb58821884e97aad956c1ed7ec209
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742984698715
+status: 3
+tags: []
+user_id: andre
