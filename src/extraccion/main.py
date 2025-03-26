@@ -42,17 +42,17 @@ def main():
     ruta_peleadores_fechas = os.path.join(base_dir, "data", "raw", "peleadores_fechas.csv")
 
 # Si no se proporciona un subcomando, ejecutar todos los procesos
-    if args.comando is None or args.comando == "peleas":
+    if args.comando == "peleas":
         print("Extrayendo peleas...")
         df_peleas = extraer_peleas(args.pagina_inicio,args.pagina_final)  # Valores por defecto
         df_peleas.to_csv(ruta_peleas, index=False)
 
-    if args.comando is None or args.comando == "peleadores":
+    if args.comando == "peleadores":
         print("Extrayendo peleadores...")
         df_peleadores = extraer_peleadores(args.pagina_inicio, args.pagina_final)  # Valores por defecto
         df_peleadores.to_csv(ruta_peleadores, index=False)
 
-    if args.comando is None or args.comando == "fechas":
+    if args.comando == "fechas":
         print("Extrayendo fechas de nacimiento...")
         extraer_fecha_nacimiento(args.fila_inicio, args.fila_final)  # Valores por defecto
         df_final = unir()
