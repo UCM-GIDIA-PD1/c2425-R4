@@ -1,0 +1,16 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/220531053739985843/fe0c5889146748508a8f297d83e1834f/artifacts
+deleted_time: 1742986156639
+end_time: 1742557043313
+entry_point_name: ''
+experiment_id: '220531053739985843'
+lifecycle_stage: deleted
+run_id: fe0c5889146748508a8f297d83e1834f
+run_name: Randomized 57.9 acc
+run_uuid: fe0c5889146748508a8f297d83e1834f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742557039628
+status: 3
+tags: []
+user_id: mattu

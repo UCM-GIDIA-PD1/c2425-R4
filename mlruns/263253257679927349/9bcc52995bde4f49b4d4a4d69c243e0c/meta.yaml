@@ -1,0 +1,15 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/263253257679927349/9bcc52995bde4f49b4d4a4d69c243e0c/artifacts
+end_time: 1742985970927
+entry_point_name: ''
+experiment_id: '263253257679927349'
+lifecycle_stage: active
+run_id: 9bcc52995bde4f49b4d4a4d69c243e0c
+run_name: Modelo usando GridSearch auemento de parámetros
+run_uuid: 9bcc52995bde4f49b4d4a4d69c243e0c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742985970888
+status: 3
+tags: []
+user_id: mattu

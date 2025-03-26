@@ -1,0 +1,16 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/220531053739985843/12f3e094ad854222ace708358d79e7a4/artifacts
+deleted_time: 1742986156639
+end_time: 1742414781638
+entry_point_name: ''
+experiment_id: '220531053739985843'
+lifecycle_stage: deleted
+run_id: 12f3e094ad854222ace708358d79e7a4
+run_name: con k=25 y victorias/derrotas fuera de las medias
+run_uuid: 12f3e094ad854222ace708358d79e7a4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742414778608
+status: 3
+tags: []
+user_id: mattu

@@ -1,0 +1,7 @@
+artifact_location: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/327116567849198651
+creation_time: 1742982419121
+experiment_id: '327116567849198651'
+last_update_time: 1742986151587
+lifecycle_stage: deleted
+name: Modelo XGBoost df medias ponderadas sin diferencias
+tags: {}

@@ -1,0 +1,16 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/220531053739985843/a85c0dc150494ba5b83d4ab250b88476/artifacts
+deleted_time: 1742986156639
+end_time: 1742730933377
+entry_point_name: ''
+experiment_id: '220531053739985843'
+lifecycle_stage: deleted
+run_id: a85c0dc150494ba5b83d4ab250b88476
+run_name: uso de Optuna para ajustar hiperparámetros
+run_uuid: a85c0dc150494ba5b83d4ab250b88476
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742730930111
+status: 3
+tags: []
+user_id: mattu

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/566389620710109100/f8c8c23ba20449d1965a6678d59cf453/artifacts
+end_time: 1742984633308
+entry_point_name: ''
+experiment_id: '566389620710109100'
+lifecycle_stage: active
+run_id: f8c8c23ba20449d1965a6678d59cf453
+run_name: Modelo usando RandomizedSearch
+run_uuid: f8c8c23ba20449d1965a6678d59cf453
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742984633269
+status: 3
+tags: []
+user_id: mattu
