@@ -1,0 +1,15 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/833879634940899382/f5546408c8764f338878160627196c0d/artifacts
+end_time: 1742982443741
+entry_point_name: ''
+experiment_id: '833879634940899382'
+lifecycle_stage: active
+run_id: f5546408c8764f338878160627196c0d
+run_name: con k=20 y datos finales
+run_uuid: f5546408c8764f338878160627196c0d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1742982440826
+status: 3
+tags: []
+user_id: mattu
