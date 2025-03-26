@@ -1,6 +1,7 @@
 artifact_location: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/833879634940899382
 creation_time: 1742982427135
 experiment_id: '833879634940899382'
-last_update_time: 1742982427135
+last_update_time: 1742986442631
 lifecycle_stage: active
-name: Modelo XGBoost df medias ponderadas sin diferencias, datos finales
+name: Modelo XGBoost df medias ponderadas (P2) sin diferencias, datos finales
+tags: {}
