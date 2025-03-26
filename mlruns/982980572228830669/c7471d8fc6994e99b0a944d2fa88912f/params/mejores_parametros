@@ -1,0 +1,1 @@
+{'splitter': 'best', 'min_weight_fraction_leaf': 0.14, 'min_samples_split': 2, 'min_samples_leaf': 13, 'min_impurity_decrease': 0, 'max_features': None, 'max_depth': 3, 'criterion': 'entropy', 'class_weight': {np.False_: np.float64(0.8874218207088256), np.True_: np.float64(1.1452914798206277)}}

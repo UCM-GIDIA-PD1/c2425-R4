@@ -1,0 +1,6 @@
+artifact_location: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/982980572228830669
+creation_time: 1742983934753
+experiment_id: '982980572228830669'
+last_update_time: 1742983934753
+lifecycle_stage: active
+name: Prueba con df ponderado P2 usando DecisionTree, datos finales
