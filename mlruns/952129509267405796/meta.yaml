@@ -1,0 +1,6 @@
+artifact_location: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/952129509267405796
+creation_time: 1743072694789
+experiment_id: '952129509267405796'
+last_update_time: 1743072694789
+lifecycle_stage: active
+name: Prueba con df ponderado P2 usando P2_dif LinearRegressor, datos finales
