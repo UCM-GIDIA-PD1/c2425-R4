@@ -1,0 +1,16 @@
+artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/508755913762678894/97ad65709c4d4b19972217531f5ec09b/artifacts
+deleted_time: 1743071919376
+end_time: 1743071865783
+entry_point_name: ''
+experiment_id: '508755913762678894'
+lifecycle_stage: deleted
+run_id: 97ad65709c4d4b19972217531f5ec09b
+run_name: GridSearchCV
+run_uuid: 97ad65709c4d4b19972217531f5ec09b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1743071865750
+status: 4
+tags: []
+user_id: mattu

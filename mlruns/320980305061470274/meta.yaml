@@ -1,0 +1,6 @@
+artifact_location: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/320980305061470274
+creation_time: 1743071931332
+experiment_id: '320980305061470274'
+last_update_time: 1743071931332
+lifecycle_stage: active
+name: Modelo LogisticRegressor df medias ponderadas (P2), datos finales

@@ -1,0 +1,1 @@
+{'C': np.float64(634.0175028452293), 'class_weight': {0: np.float64(0.8874218207088256), 1: np.float64(1.1452914798206277)}, 'l1_ratio': np.float64(0.8586390279075835), 'penalty': 'elasticnet', 'solver': 'saga'}

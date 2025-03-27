@@ -1,0 +1,1 @@
+{'C': 5, 'class_weight': {0: np.float64(0.879041248606466), 1: np.float64(1.1595588235294119)}, 'fit_intercept': True, 'penalty': 'l2', 'solver': 'lbfgs'}
