@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/0/9eb8980b58964d72bbaa452a77c57084/artifacts
+deleted_time: 1743074363801
 end_time: 1742902920032
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 9eb8980b58964d72bbaa452a77c57084
 run_name: uso de Optuna para ajustar hiperparámetros
 run_uuid: 9eb8980b58964d72bbaa452a77c57084

@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/0/54afe102c77949d5a8367d635a28f21f/artifacts
+deleted_time: 1743074359831
 end_time: 1743071281410
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 54afe102c77949d5a8367d635a28f21f
 run_name: con k=25 y victorias/derrotas fuera de las medias, prueba con min_child_weight
   alto

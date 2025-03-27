@@ -1,8 +1,9 @@
 artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/952129509267405796/1e35369d74c7488aae731927f74917d8/artifacts
+deleted_time: 1743073977693
 end_time: 1743072912079
 entry_point_name: ''
 experiment_id: '952129509267405796'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 1e35369d74c7488aae731927f74917d8
 run_name: GridSearchCV
 run_uuid: 1e35369d74c7488aae731927f74917d8
