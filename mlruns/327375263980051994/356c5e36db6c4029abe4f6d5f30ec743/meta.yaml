@@ -1,8 +1,9 @@
 artifact_uri: file:///c:\Users\mattu\OneDrive\Documentos\GitHub\c2425-R4\mlruns/327375263980051994/356c5e36db6c4029abe4f6d5f30ec743/artifacts
+deleted_time: 1743073726023
 end_time: 1742983641982
 entry_point_name: ''
 experiment_id: '327375263980051994'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 356c5e36db6c4029abe4f6d5f30ec743
 run_name: uso de Optuna para ajustar hiperparámetros n_trials=10, sampler seed=21
 run_uuid: 356c5e36db6c4029abe4f6d5f30ec743
