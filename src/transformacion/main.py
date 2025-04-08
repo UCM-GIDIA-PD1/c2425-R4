@@ -4,6 +4,7 @@ from tratamiento_peleas import transformacion_peleas
 from recordsPeleas import recordPeleas
 from nuevas_columnas_peleas_peleadores import transformacion
 from peleasMediasPond import calcular_ultimas_tres
+from dfDif import crearDfDif
 import os
 import pandas as pd 
 
@@ -50,6 +51,8 @@ def main():
     df_peleas_pond = calcular_ultimas_tres(df_peleas)
     # Guardar los DataFrames transformados en 'data/processed'
     df_peleas_pond.to_parquet(os.path.join(ruta_processed,"peleas_ponderadas.parquet")) 
+    df_dif = crearDfDif(df_peleas_pond)
+    df_dif.to_parquet(os.path.join(ruta_processed,"df_dif.parquet"))
 
 
 if __name__ == "__main__":
