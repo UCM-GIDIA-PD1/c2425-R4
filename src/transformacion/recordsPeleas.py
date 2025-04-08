@@ -3,7 +3,7 @@ import numpy as np
 
 def recordPeleas(peleadores,peleas):
     peleadores['name'] = peleadores['name'].str.title()
-    peleas = peleas.iloc[:,2:]
+    peleas = peleas.iloc[:,1:]
     peleas = peleas.sort_values(by='DATE', ascending = False)
     peleadores['record'] = peleadores['record'].apply(lambda x: list(map(int, x.split(" ")[0].split("-"))))
 
@@ -43,8 +43,9 @@ def recordPeleas(peleadores,peleas):
     r['Yoji Anjo'] = [0, 5, 1]
     r['Danillo Villefort'] = [15, 6, 0]
 
-
-
+    print(peleas)
+    
+    
     for idx, row in peleas.iterrows():
         peleador1, peleador2 = row['Peleador_A'], row['Peleador_B']
 

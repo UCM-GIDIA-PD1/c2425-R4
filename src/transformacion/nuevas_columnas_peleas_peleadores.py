@@ -31,18 +31,21 @@ def transformacion(df_peleas_or,df_peleadores_2):
 
     # Función para calcular el factor de oponente en un rango de 1 a 5
     def calcular_factor_oponente(puntos_ganador, puntos_perdedor, ganador=True):
-        if puntos_ganador == 0:
-            return 1  # Evita división por cero
-        
-        ratio = (puntos_perdedor + 100) / (puntos_ganador + 100)
-        ratio = max(0.5, min(ratio, 2.0))
+        try:
+            if puntos_ganador <= -100:
+                return 1  # Previene división por cero o negativos extremos
 
-        min_ratio = 0.5
-        max_ratio = 2.0
+            ratio = (puntos_perdedor + 100) / (puntos_ganador + 100)
+            if ratio < 0:
+                ratio = 0.5  # Clamping extra por seguridad
 
-        factor_oponente = 1 + 9 * ((np.sqrt(ratio) - np.sqrt(min_ratio)) / (np.sqrt(max_ratio) - np.sqrt(min_ratio)))
+            ratio = max(0.5, min(ratio, 2.0))
+            factor_oponente = 1 + 9 * ((np.sqrt(ratio) - np.sqrt(0.5)) / (np.sqrt(2.0) - np.sqrt(0.5)))
 
-        return max(1, min(5, factor_oponente))
+            return max(1, min(5, factor_oponente))
+        except Exception as e:
+            print(f"Error en calcular_factor_oponente: {e}, con puntos_ganador={puntos_ganador}, puntos_perdedor={puntos_perdedor}")
+            return 1
 
     # Cargar los datos
     df_peleas = df_peleas_or
