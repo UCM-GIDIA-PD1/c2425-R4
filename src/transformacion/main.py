@@ -47,9 +47,8 @@ def main():
     df_peleadores.to_parquet(os.path.join(ruta_processed, "peleadores.parquet"), index=False)
     print("Peleas y peleadores guardados")
     print("Procesando peleas con ponderaciones")
-    df_peleas_pond,df_dif_pond = calcular_ultimas_tres(df_peleas)
+    df_peleas_pond = calcular_ultimas_tres(df_peleas)
     # Guardar los DataFrames transformados en 'data/processed'
-    df_dif_pond.to_parquet(os.path.join(ruta_processed,"peleas_ponderadas_dif.parquet")) 
     df_peleas_pond.to_parquet(os.path.join(ruta_processed,"peleas_ponderadas.parquet")) 
 
 
