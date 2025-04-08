@@ -3,7 +3,7 @@ import numpy as np
 
 def recordPeleas(peleadores,peleas):
     peleadores['name'] = peleadores['name'].str.title()
-    peleas = peleas.iloc[:,1:]
+    peleas = peleas.iloc[:,2:]
     peleas = peleas.sort_values(by='DATE', ascending = False)
     peleadores['record'] = peleadores['record'].apply(lambda x: list(map(int, x.split(" ")[0].split("-"))))
 
