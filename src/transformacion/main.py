@@ -39,19 +39,29 @@ def main():
     args = parser.parse_args()
 
     # Transformaciones
-    df_peleas = transformacion_peleas(args.dir_peleas)
-    df_peleadores = transformacion_peleadores(args.dir_peleadores)
-    df_peleas = recordPeleas(df_peleadores,df_peleas)
-    df_peleas,df_peleadores = transformacion(df_peleas,df_peleadores)
-    df_peleadores["Puntos"] = df_peleadores["Puntos"].apply(lambda x: x.real if isinstance(x, complex) else x)
-    df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False)
+
+    df_peleas = transformacion_peleas(args.dir_peleas) #Limpieza básica de peleas
+
+    df_peleadores = transformacion_peleadores(args.dir_peleadores) #Limpieza básica de peleadores
+
+    df_peleas = recordPeleas(df_peleadores,df_peleas)#Creamos variable récord para cada pelea. Será el récord previo a la pelea
+
+    df_peleas,df_peleadores = transformacion(df_peleas,df_peleadores) #Creación de nuevas columnas como Puntos, Racha, etc.
+
+    df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False) 
+
     df_peleadores.to_parquet(os.path.join(ruta_processed, "peleadores.parquet"), index=False)
+
     print("Peleas y peleadores guardados")
     print("Procesando peleas con ponderaciones")
-    df_peleas_pond = calcular_ultimas_tres(df_peleas)
+
+    df_peleas_pond = calcular_ultimas_tres(df_peleas) #Calculamos el dataframe con las últimas 3 peleas ponderadas
+
     # Guardar los DataFrames transformados en 'data/processed'
     df_peleas_pond.to_parquet(os.path.join(ruta_processed,"peleas_ponderadas.parquet")) 
-    df_dif = crearDfDif(df_peleas_pond)
+
+    df_dif = crearDfDif(df_peleas_pond) #Creamos el dataframe de diferencias entre peleadores
+
     df_dif.to_parquet(os.path.join(ruta_processed,"df_dif.parquet"))
 
 
