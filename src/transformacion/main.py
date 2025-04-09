@@ -23,7 +23,7 @@ def main():
     # Concatenar y eliminar duplicados si es necesario
     df_combinado = pd.concat([df_peleas, df_nuevas], ignore_index=True)
 
-    # (Opcional) Eliminar duplicados
+    # Elimino duplicados en caso de que nos hayamos pasado extrayendo
     df_combinado.drop_duplicates(inplace=True)
 
     # Guardar en el mismo archivo original (sobrescribe)
