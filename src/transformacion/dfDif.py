@@ -3,14 +3,8 @@ import os
 
 def crearDfDif(df_peleas):
     """
-    Crea un DataFrame que muestra las diferencias entre dos DataFrames.
-    
-    Args:
-        df1 (pd.DataFrame): Primer DataFrame.
-        df2 (pd.DataFrame): Segundo DataFrame.
-    
-    Returns:
-        pd.DataFrame: DataFrame con las diferencias entre df1 y df2.
+    Crea un DataFrame con las diferencias entre las estadísticas de los peleadores A y B.
+    Se eliminan las columnas originales y se devuelven las diferencias.
     """
 
     df = df_peleas.copy()
