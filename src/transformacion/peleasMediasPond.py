@@ -121,8 +121,6 @@ def calcular_ultimas_tres(df):
                 return ult_pelea["Racha_A"] +1
             elif peleador == ult_pelea["Peleador_B"] and ult_pelea["WINNER"] == 1:
                 return ult_pelea["Racha_B"] +1
-            elif peleador == ult_pelea["Peleador_B"]:
-                return 0
             else:
                 return 0
 
