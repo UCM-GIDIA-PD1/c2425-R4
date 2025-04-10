@@ -47,7 +47,7 @@ def main():
     df_peleas = recordPeleas(df_peleadores,df_peleas)#Creamos variable récord para cada pelea. Será el récord previo a la pelea
 
     df_peleas,df_peleadores = transformacion(df_peleas,df_peleadores) #Creación de nuevas columnas como Puntos, Racha, etc.
-
+    df_peleadores["Puntos"] = df_peleadores["Puntos"].apply(lambda x: x.real if isinstance(x, complex) else x)
     df_peleas.to_parquet(os.path.join(ruta_processed, "peleas.parquet"), index=False) 
 
     df_peleadores.to_parquet(os.path.join(ruta_processed, "peleadores.parquet"), index=False)
