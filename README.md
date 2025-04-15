@@ -1,6 +1,4 @@
- # c2425-P4
-
-
+ # UFC Predictor: Sistema de predicción y recomendación para la UFC
 
 # Funcionamiento mains:
   - Main src ejecuta tanto el código de extracción como de transformación, no necesita parámetros
@@ -8,14 +6,6 @@
   - Main transformación, ejecución por defecto obteniendo los datos de data/raw pero se puede pasar como argumento una dirección en caso de que se quiera obtener los dataframes de otro lugar.
 # Carpeta data en drive: 
 - https://drive.google.com/drive/folders/1jX3HSEBXGX7HC6WhPOpthBHoO4UmwI8O?usp=drive_link
-
-# El miércoles empezamos a usar uv para gestionar los entornos virtuales, es bastante fácil.
-- Este video me he visto yo y se entiende todo bien: https://www.youtube.com/watch?v=zgSQr0d5EVg&ab_channel=MattPalmer
-- Guia para usarlo en notebooks que igual no queda claro en el vídeo.
-- Creas el entorno virtual, pones ese comando y ya debería funcionar los notebooks.
-![image](https://github.com/user-attachments/assets/113b576e-d139-4682-9f43-ccf04eacf940)
-- Guía oficial sobre uso de notebooks con uv: https://docs.astral.sh/uv/guides/integration/jupyter/
-
 
 # **Objetivo**
 Hay dos propuestas:
