@@ -29,6 +29,34 @@ De forma interna referenciamos el primer modelo mencionado como P2 y el segundo 
    * Models:
    * Evaluación:
 
+### 3. Como iniciar el entorno de desarrollo y sus dependencias
+
+Para este proyecto hemos utilizado el gestor de entornos y dependencias uv, que simplifica considerablemente la configuración del entorno de desarrollo.
+
+Pasos para comenzar:
+Clona este repositorio:
+
+```
+git clone https://github.com/UCM-GIDIA-PD1/c2425-R4.git
+cd c2425-R4
+```
+Instala las dependencias con el siguiente comando:
+
+```
+uv sync
+```
+Esto creará automáticamente un entorno virtual y descargará todas las dependencias especificadas.
+
+Ejecuta scripts dentro del entorno con:
+
+```
+uv run script.py
+```
+Esto garantiza que el script se ejecute con la versión correcta de Python y todas las dependencias necesarias, sin necesidad de activarlo manualmente.
+
+💡 Nota: Asegúrate de tener uv instalado antes de ejecutar estos comandos. Puedes encontrar instrucciones de instalación en el repositorio oficial de uv.
+
+
 
 ### . Resultados y evaluación
 
