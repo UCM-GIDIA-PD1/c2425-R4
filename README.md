@@ -7,6 +7,7 @@
 El objetivo de este proyecto es desarrollar dos sistemas de aprendizaje automático. Uno predice el ganador de un combate de la UFC basándose en datos de la pelea para conocer cual es el ganador justo o como una herramienta que puedan usar jueces de la UFC. 
 
 El segundo predice el ganador usando información previa al combate. Este modelo puede ser usado por fans del deporte para conocer cuales son las probabilidades de victoria de cada peleador o en el mundo de las apuestas deportivas. Para ello utilizamos información sobre peleas previas de cada peleador realizando medias ponderadas. Esta información se obtiene de la página oficial de la UFC y UFC Stats que tiene todos los combates históricos.
+
 De forma interna referenciamos el primer modelo mencionado como P2 y el segundo como P1, no es necesario saberlo pero quizás facilita el entendimiento del repositorio y las carpetas.
 
 ### 2. Estructura del repositorio
