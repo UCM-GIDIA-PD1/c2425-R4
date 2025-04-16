@@ -31,7 +31,7 @@ De forma interna referenciamos el primer modelo mencionado como P2 y el segundo 
 
 ### 3. Como iniciar el entorno de desarrollo y sus dependencias
 
-Para este proyecto hemos utilizado el gestor de entornos y dependencias uv, que simplifica considerablemente la configuración del entorno de desarrollo.
+Para este proyecto hemos utilizado el gestor de entornos y dependencias [uv](https://github.com/astral-sh/uv), que simplifica considerablemente la configuración del entorno de desarrollo.
 
 Pasos para comenzar:
 Clona este repositorio:
