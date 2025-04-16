@@ -1,5 +1,38 @@
  # UFC Predictor: Sistema de predicción y recomendación para la UFC
 
+### Proyecto Datos I
+
+### 1. Descripción de los objetivos
+
+El objetivo de este proyecto es desarrollar dos sistemas de aprendizaje automático. Uno predice el ganador de un combate de la UFC basándose en datos de la pelea para conocer cual es el ganador justo o como una herramienta que puedan usar jueces de la UFC. El segundo predice el ganador usando información previa al combate. Este modelo puede ser usado por fans del deporte para conocer cuales son las probabilidades de victoria de cada peleador o en el mundo de las apuestas deportivas. Para ello utilizamos información sobre peleas previas de cada peleador realizando medias ponderadas. Esta información se obtiene de la página oficial de la UFC y UFC Stats que tiene todos los combates históricos.
+
+### 2. Estructura del repositorio
+
+- La carpeta data incluye un .txt con un link a Google Drive para descargarse la carpeta de data con los parquets procesados y los csv extraídos. Los archivos de esta carpeta se deben copiar dentro de la carpeta data ya creada.
+- La carpeta mlruns incluye los diferentes experimentos realizados con diferentes modelos e hiperparámetros.
+- La carpeta src contiene todo el código. En esta carpeta encontramos diferentes carpetas con los módulos y procesos utilizados para realizar el proyecto.
+   * Extracción:
+      - scraper_peleas.py: Extrae información de todos los combates por evento de la UFC de forma cronológica, registramos el ganador, diferentes métricas de cada pelea y los peleadores que pelean en ella. Para obtener la
+        información realizamos web-scraping de [UFC Stats](http://ufcstats.com/statistics/events/completed)
+      - scraper_peleadores.py: Realiza web-scraping de información de peleadores y sus imágenes las cuales usaremos en la página web. La información se extrae de [UFC](https://www.ufc.com/athletes/all)
+      - scraper_fecha_nacimiento.py: Utilizado para extraer las fechas de naciemientos de los peleadores realizando web-scraping de una fuente de datos secundaria llamada [Tapology](https://www.tapology.com/).
+
+### 5. Estructura del código
+
+
+### 6. Resultados y evaluación
+
+
+### 7. Trabajo futuro
+
+### 2. Integrantes 
+ -  Andrés Fernández Ortega
+ -  Francisco José Pastor Ruiz
+ -  Mario Granados Guerruero
+ -  Telmo Aracama Docampo
+ -  Carlos Vallejo Ros
+ -  Mateo Turati Domínguez
+
 # Funcionamiento mains:
   - Main src ejecuta tanto el código de extracción como de transformación, no necesita parámetros
   - Main extracción, ejecución por defecto todas las páginas de las webs, se puede escribir por teclado "peleas", "peleador" y "fechas" para ejecutar solo uno, también se puede poner como argumento las páginas que extrae cada   uno.
@@ -112,45 +145,5 @@ La memoria y la presentación deben estar terminadas para la clase anterior a la
 
 ## **3️⃣ Comentarios y sugerencias**  
 Cualquier mejora adicional que se considere necesaria para el próximo Sprint podéis escribirla. Si alguien no está de acuerdo con algún punto de este documento o tiene problemas con alguna de las instrucciones, es importante comunicarlo para buscar una solución en conjunto.  
-
-# UFC PREDICTOR
-
-### Proyecto Datos I
-
-### 1. Descripción del proyecto
-
-El objetivo de este proyecto es desarrollar dos sistemas de aprendizaje automático. Uno predice el ganador de un combate de la UFC basándose en datos de la pelea. El segundo predice el ganador usando información previa al combate. Para ello utilizamos información sobre peleas previas y peleadores. Esta información se obtiene de la página oficial de la UFC y UFC Stats que tiene todos los combates históricos.
-
-### 2. Integrantes 
- -  Andrés Fernández Ortega
- -  Francisco José Pastor Ruiz
- -  Mario Granados Guerruero
- -  Telmo Aracama Docampo
- -  Carlos Vallejo Ros
-
-### 3. Instrucciones de instalación
-
-
-### 4. Fuentes de datos
-
-- [UFC Stats](http://ufcstats.com/statistics/events/completed)
-
-Para extraer todas las peleas con su información respectiva, golpes por peleador, porcentajes de knockdowns etc.
-
-- [UFC](https://www.ufc.com/athletes/all)
-
-Para extraer información de los luchadores y sus fotos, las cuales usaremos para crear la web.
-
-- [Tapology](https://www.tapology.com/)
-
-La usamos como fuente secundaria para obtener la edad del luchador, entre otras características.
-
-### 5. Estructura del código
-
-
-### 6. Resultados y evaluación
-
-
-### 7. Trabajo futuro
 
 
