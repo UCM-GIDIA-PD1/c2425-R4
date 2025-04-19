@@ -8,8 +8,12 @@ ruta_peleadores = os.path.join(base_dir, "data", "raw", "peleadores.csv")
 ruta_processed = os.path.join(base_dir, "data", "processed")
 ruta_json = os.path.join(ruta_processed, "imagenes.json")
 
+
 # Leer el archivo CSV
 df = pd.read_csv(ruta_peleadores)
+
+df['Nombre'] = df['Nombre'].fillna("Nan")
+df['Imagen'] = df['Imagen'].fillna("Nan")
 
 # Asegurarse de que las columnas correctas están presentes
 if 'Nombre' in df.columns and 'Imagen' in df.columns:
