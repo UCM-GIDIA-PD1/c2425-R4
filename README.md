@@ -1,4 +1,4 @@
- # UFC Predictor: Sistema de predicción y recomendación para la UFC
+ # UFC Predictor: Sistema de predicción para la UFC
 
 ### Proyecto Datos I
 
