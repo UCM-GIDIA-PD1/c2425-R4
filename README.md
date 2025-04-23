@@ -66,7 +66,7 @@ Esto garantiza que el script se ejecute con la versión correcta de Python y tod
 ### . Integrantes 
  -  Andrés Fernández Ortega
  -  Francisco José Pastor Ruiz
- -  Mario Granados Guerruero
+ -  Mario Granados Guerrero
  -  Telmo Aracama Docampo
  -  Carlos Vallejo Ros
  -  Mateo Turati Domínguez
