@@ -66,6 +66,28 @@ Esto garantiza que el script se ejecute con la versión correcta de Python y tod
 
 ### 4. Instrucciones para ejecutar los scripts del proyecto
 
+💡 Nota: Es necesario haber inicializado el entorno virtual con sus dependencias previamente.
+
+* Extracción:
+  > Este `main.py` realiza todo el proceso de extracción. Se encuentra en la ruta `src\extraccion`. Este script se encarga de realizar web-scraping de todas las fuentes de datos que utilizamos. Para ello se debe ejecutar incluyendo como parámetro que datos queremos extraer que pueden ser "peleas", "peleadores" o "fechas". La ejecución del `main.py` es similar para los tres. Primero entramos a la carpeta donde se encuentra el script (se puede ejecutar también desde la raíz incluyendo el path).
+```
+cd src
+cd extraccion
+```
+> Despues ejecutamos el main con el parámetro que queramos extraer que puede ser peleas, peleadores o fechas.
+```
+uv run main.py peleas
+```
+> En caso de que se quieran se pueden añadir más parametros. Esos parámetros son diferentes en el caso de las diferentes fuentes, por ello explicamos para cada caso cuales son.
+ * Peleas:
+    * --pagina_inicio: Tipo entero, indica la página por la que queremos empezar a extraer
+    * --pagina_final: Tipo entero, indica la página en la que queremos parar de extraer
+ * Peleadores:
+    * --pagina_inicio: Tipo entero, indica la página por la que queremos empezar a extraer
+    * --pagina_final: Tipo entero, indica la página en la que queremos parar de extraer
+  * Fechas:
+    * --fila_inicio: Tipo entero, fila del dataset de peleadores por el que queremos empezar a extraer su información adicional (fecha de nacimiento, altura etc).
+    * --fila_final: Tipo, entero, fila del dataset de peleadores en el que acaba la extracción. Recomendamos extraer como mucho 200 filas cada tanda. Sino corremos el riesgo de que bloqueen la IP y no podamos continuar extrayendo durante un periodo de tiempo.
 
 ### . Resultados y evaluación
 
