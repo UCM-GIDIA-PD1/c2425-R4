@@ -110,4 +110,5 @@ uv ran main.py
  -  Telmo Aracama Docampo
  -  Carlos Vallejo Ros
  -  Mateo Turati Domínguez
+   
 Mención especial y agradecimientos a nuestro profesor Antonio Alejandro Sánchez Ruiz-Granados por su constante ayuda y supervisión del proyecto a lo largo del desarrollo del proyecto.
