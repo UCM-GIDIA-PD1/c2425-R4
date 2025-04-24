@@ -103,13 +103,14 @@ uv ran main.py
 ### . Resultados y evaluación
 
 
-### . Integrantes 
+### 6. Equipo de desarrollo
  -  Andrés Fernández Ortega
  -  Francisco José Pastor Ruiz
  -  Mario Granados Guerrero
  -  Telmo Aracama Docampo
  -  Carlos Vallejo Ros
  -  Mateo Turati Domínguez
+Mención especial y agradecimientos a nuestro profesor Antonio Alejandro Sánchez Ruiz-Granados por su constante ayuda y supervisión del proyecto a lo largo del desarrollo del proyecto.
 
 # Funcionamiento mains:
   - Main src ejecuta tanto el código de extracción como de transformación, no necesita parámetros
