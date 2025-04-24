@@ -74,7 +74,7 @@ Esto garantiza que el script se ejecute con la versión correcta de Python y tod
 cd src
 cd extraccion
 ```
-2. Despues ejecutamos el main con el parámetro que queramos extraer que puede ser peleas, peleadores o fechas.
+2. Después ejecutamos el main con el parámetro que queramos extraer que puede ser peleas, peleadores o fechas.
 ```
 uv run main.py peleas
 ```
@@ -86,8 +86,19 @@ uv run main.py peleas
     * --pagina_inicio: Tipo entero, indica la página por la que queremos empezar a extraer
     * --pagina_final: Tipo entero, indica la página en la que queremos parar de extraer
   * Fechas:
-    * --fila_inicio: Tipo entero, fila del dataset de peleadores por el que queremos empezar a extraer su información adicional (fecha de nacimiento, altura etc).
+    * --fila_inicio: Tipo entero, fila del dataset de peleadores por el que queremos empezar a extraer información sobre el peleador adicional.
     * --fila_final: Tipo, entero, fila del dataset de peleadores en el que acaba la extracción. Recomendamos extraer como mucho 200 filas cada tanda. Sino corremos el riesgo de que bloqueen la IP y no podamos continuar extrayendo durante un periodo de tiempo.
+
+* Transformación:
+1. Este `main.py` realiza la limpieza, transformacion y creación de variables que usaran los modelos para predecir los resultados. Se encuentra en la ruta `src\transformacion`. Primero entramos a la carpeta donde se encuentra el script (se puede ejecutar también desde la raíz incluyendo el path).
+```
+cd src
+cd transformacion
+```
+2. Después ejecutamos el main. Si no se añaden parámetros extraerá los datos `raw` de la carpeta `data`. En caso de que se quiera introducir un directorio de peleas o peleadores diferente se podría cambiar usando el parámetro `--dir_peleas` o `dir_peleadores`.
+```
+uv ran main.py
+``` 
 
 ### . Resultados y evaluación
 
