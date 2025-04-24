@@ -69,6 +69,9 @@ Esto garantiza que el script se ejecute con la versión correcta de Python y tod
 💡 Nota: Es necesario haber inicializado el entorno virtual con sus dependencias previamente.
 
 * Extracción:
+
+💡 Nota: La extracción puede tomar bastante tiempo. En caso de no querer realizarla existe un documento `data/data.txt` que contiene el link con una carpeta drive con los datos ya extraídos.
+
 1. Este `main.py` realiza todo el proceso de extracción. Se encuentra en la ruta `src\extraccion`. Este script se encarga de realizar web-scraping de todas las fuentes de datos que utilizamos. Para ello se debe ejecutar incluyendo como parámetro que datos queremos extraer que pueden ser "peleas", "peleadores" o "fechas". La ejecución del `main.py` es similar para los tres. Primero entramos a la carpeta donde se encuentra el script (se puede ejecutar también desde la raíz incluyendo el path).
 ```
 cd src
