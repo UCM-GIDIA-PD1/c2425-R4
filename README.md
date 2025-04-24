@@ -32,8 +32,10 @@ De forma interna referenciamos el primer modelo mencionado como P2 y el segundo 
         Para realizar análisis lo separamos en cuatro notebooks diferentes. En `analisis_peleas.ipynb` y `analisis_peleadores.ipynb` realizamos una exploración inicial de el dataset de peleas y peleadores con visualizaciones. También realizamos el notebook `analisis_peleas_ponderadas.ipynb`, este notebook lo usamos para ver las distribuciones de las variables en el dataset creado en el script de transformaciones con medias ponderadas. También estudiamos la correlación de las variables con la variable respuesta. Por último, también realizamos `analisis_relaciones_variables_peleas.ipynb` en el cual estudiamos la relación de diferentes variables y sus correlaciones con las variables respuesta.
    * Models:
 
-        Para realizar los diferentes modelos organizamos la carpeta model en tres carpetas. Una para los modelos de P1 otra para los modelos de P2 y otra para los modelos de P2 con las variables como diferencias entre los peleadores. En cada uno de estas carpetas encontramos los modelos de `XGBoost`, `LogisticRegression` y `TreeClassifier` para cada modelo. En el caso de los modelos usando diferencias no usamos árboles de decisión ya que estos los usamos para realizar un análisis exploratorio. En esta carpeta también encontramos los notebooks para realizar las particiones de datos, respetando la secuencia temporal en caso de que sea necesario.
+        Para realizar los diferentes modelos organizamos la carpeta model en tres carpetas. Una para los modelos con los datos de las peleas (P1), otra para los modelos de previos a las peleas (P2) y otra para los modelos de P2 con las variables como diferencias entre los peleadores. En cada uno de estas carpetas encontramos los modelos de `XGBoost`, `LogisticRegression` y `TreeClassifier` para cada modelo. En el caso de los modelos usando diferencias no usamos árboles de decisión ya que estos los usamos para realizar un análisis exploratorio. En esta carpeta también encontramos los notebooks para realizar las particiones de datos, respetando la secuencia temporal en caso de que sea necesario.
    * Evaluación:
+ 
+        En cuanto a la carpeta de evaluación, encontramos dos subcarpetas que separan las evaluaciones por objetivo del modelo. Es decir, encontramos una carpeta para la evaluación de los modelos que predicen con datos de la pelea y otra carpeta para los modelos que predicen con datos previos a la pelea. En cada carpeta encontramos un notebook de evaluación, en el cual se comparan todos los modelos creados con ese objetivo en la fase de modelaje y se escoje el que obtiene mejores resultados. También encontramos otro notebook en el cual se pone a prueba a los modelos con nuevos datos más recientes para probar el funcionamiento de los modelos.
 
 ### 3. Como iniciar el entorno de desarrollo y sus dependencias
 
@@ -62,6 +64,7 @@ Esto garantiza que el script se ejecute con la versión correcta de Python y tod
 
 💡 Nota: Asegúrate de tener uv instalado antes de ejecutar estos comandos. Puedes encontrar instrucciones de instalación en el repositorio oficial de uv.
 
+### 4. Instrucciones para ejecutar los scripts del proyecto
 
 
 ### . Resultados y evaluación
