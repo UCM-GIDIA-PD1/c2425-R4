@@ -117,6 +117,19 @@ uv ran main.py
 
   En cuanto a la evaluación con nuevos datos, los cuales corresponden a los eventos ocurridos desde la última extración hasta la última fase del proyecto, también fueron buenos manteniendo un Accuracy y F1-Score prácticamente idénticos a los de la última evaluación. En este caso se obtuvo un Accuracy al rededor de 0.95 y un F1-Score de 0.945.
 
+* Modelo con datos previos a la pelea:
+
+  En cuánto al modelo que predice peleas futuras, los mejores resultados se obtuvieron con el modelo `XGBoost` con las variables representadas como diferencias entre los peleadores. En este caso también creamos un Baseline, el cual se basaba en que siempre ganaba el `Peleador_A` que es el favorito o que tiene un puesto superior en el ranking.
+
+  | Modelo | Accuracy | F1-Score |
+  | --- | --- | --- |
+  | XGBoost| 0.6025 | 0.056 |
+  | Baseline | 0.54 | 0.00 |
+
+En este caso los resultados no son tan buenos. Aún así conseguimos mejorar el Accuracy del baseline más de un 6% y una clara mejora para predecir los combates en los que gana el Peleador_B, el cual suele ser no favorito.
+
+Tras obtener nuevos datos volvimos a poner a prueba al modelo. Sorprendentemente, obtuvimos un mejor Accuracy con los nuevos datos, cercano a 64%. También mejoró el F1-Score llegando a 62%. 
+
 
 ### 6. Equipo de desarrollo
  -  Andrés Fernández Ortega
