@@ -115,7 +115,7 @@ uv ran main.py
 
   Los resultados finales fueron bastante buenos mejorando notablemente el basline.
 
-  En cuanto a la evaluación con nuevos datos, los cuales corresponden a los eventos ocurridos desde la última extración hasta la última fase del proyecto, también fueron buenos manteniendo un Accuracy y F1-Score prácticamente idénticos a los de la última evaluación. 
+  En cuanto a la evaluación con nuevos datos, los cuales corresponden a los eventos ocurridos desde la última extración hasta la última fase del proyecto, también fueron buenos manteniendo un Accuracy y F1-Score prácticamente idénticos a los de la última evaluación. En este caso se obtuvo un Accuracy al rededor de 0.95 y un F1-Score de 0.945.
 
 
 ### 6. Equipo de desarrollo
