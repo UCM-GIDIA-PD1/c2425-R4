@@ -103,7 +103,16 @@ cd transformacion
 uv ran main.py
 ``` 
 
-### . Resultados y evaluación
+### 5. Resultados y evaluación
+
+* Modelo con datos de la pelea:
+
+  En este caso el modelo que mejor desempeño obtuvo fue el modelo `XGBoost`, realizando ajuste de hiperparámetros usando `GridSearchCV`. A continuación mostramos las métricas del mejor modelo comparado con el baseline (gana quien de más golpes):
+
+  | Modelo | Accuracy | F1-Score |
+  | --- | --- | --- |
+  | XGBoost| |
+  | Baseline | |
 
 
 ### 6. Equipo de desarrollo
