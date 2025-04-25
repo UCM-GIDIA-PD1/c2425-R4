@@ -107,12 +107,15 @@ uv ran main.py
 
 * Modelo con datos de la pelea:
 
-  En este caso el modelo que mejor desempeño obtuvo fue el modelo `XGBoost`, realizando ajuste de hiperparámetros usando `GridSearchCV`. A continuación mostramos las métricas del mejor modelo comparado con el baseline (gana quien de más golpes):
-
+  En este caso, el modelo que obtuvo el mejor desempeño fue `XGBoost`, tras un ajuste de hiperparámetros utilizando `GridSearchCV`. A continuación, se presentan las métricas del mejor modelo en comparación con el baseline (que predice como ganador a quien da más golpes):
   | Modelo | Accuracy | F1-Score |
   | --- | --- | --- |
-  | XGBoost| |
-  | Baseline | |
+  | XGBoost| 0.954  | 0.944 |
+  | Baseline | 0.70 | 0.65 |
+
+  Los resultados finales fueron bastante buenos mejorando notablemente el basline.
+
+  En cuanto a la evaluación con nuevos datos, los cuales corresponden a los eventos ocurridos desde la última extración hasta la última fase del proyecto, también fueron buenos manteniendo un Accuracy y F1-Score prácticamente idénticos a los de la última evaluación. 
 
 
 ### 6. Equipo de desarrollo
