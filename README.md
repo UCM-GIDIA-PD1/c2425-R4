@@ -124,7 +124,7 @@ uv ran main.py
 
   | Modelo | Accuracy | F1-Score |
   | --- | --- | --- |
-  | XGBoost| 0.6025 | 0.056 |
+  | XGBoost| 0.6025 | 0.56 |
   | Baseline | 0.54 | 0.00 |
 
 En este caso los resultados no son tan buenos. Aún así conseguimos mejorar el Accuracy del baseline más de un 6% y una clara mejora para predecir los combates en los que gana el Peleador_B, el cual suele ser no favorito.
