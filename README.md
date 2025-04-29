@@ -101,7 +101,7 @@ cd transformacion
 ```
 2. Después ejecutamos el main. Si no se añaden parámetros extraerá los datos `raw` de la carpeta `data`. En caso de que se quiera introducir un directorio de peleas o peleadores diferente se podría cambiar usando el parámetro `--dir_peleas` o `dir_peleadores`.
 ```
-uv ran main.py
+uv run main.py
 ``` 
 
 ### 5. Resultados y evaluación
