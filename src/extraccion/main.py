@@ -8,7 +8,6 @@ import pandas as pd
 
 
 def main():
-
     # Obtener la ruta del script actual
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     ruta_peleas = os.path.join(base_dir, "data", "raw", "nuevas_peleas.csv")

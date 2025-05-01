@@ -2,6 +2,7 @@ import os
 import pandas as pd
 
 def unir():
+    """Función que une los distintos .csv generados"""
     # Ruta de la carpeta con los archivos CSV
     base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
     carpeta = os.path.join(base_dir, "data", "raw", "nacimiento_peleadores")
