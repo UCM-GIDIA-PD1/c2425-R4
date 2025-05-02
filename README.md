@@ -3,6 +3,14 @@
 
 ### Proyecto Datos I
 
+## Índice
+
+1. [Descripción de los objetivos](#1-descripción-de-los-objetivos)
+2. [Estructura del repositorio](#2-estructura-del-repositorio)
+3. [Cómo iniciar el entorno de desarrollo y sus dependencias](#3-como-iniciar-el-entorno-de-desarrollo-y-sus-dependencias)
+4. [Instrucciones para ejecutar los scripts del proyecto](#4-instrucciones-para-ejecutar-los-scripts-del-proyecto)
+5. [Resultados y evaluación](#5-resultados-y-evaluación)
+
 ### 1. Descripción de los objetivos
 
 El objetivo de este proyecto es desarrollar dos sistemas de aprendizaje automático. Uno predice el ganador de un combate de la UFC basándose en datos de la pelea para conocer cuál es el ganador justo o cómo una herramienta que puedan usar jueces de la UFC. 
