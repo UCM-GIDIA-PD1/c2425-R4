@@ -10,6 +10,7 @@
 3. [Cómo iniciar el entorno de desarrollo y sus dependencias](#3-como-iniciar-el-entorno-de-desarrollo-y-sus-dependencias)
 4. [Instrucciones para ejecutar los scripts del proyecto](#4-instrucciones-para-ejecutar-los-scripts-del-proyecto)
 5. [Resultados y evaluación](#5-resultados-y-evaluación)
+6. [Equipo de desarrollo](#6-equipo-de-desarrollo)
 
 ### 1. Descripción de los objetivos
 
