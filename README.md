@@ -99,7 +99,7 @@ uv run main.py peleas
     * --pagina_inicio: Tipo entero, indica la página por la que queremos empezar a extraer.
     * --pagina_final: Tipo entero, indica la página en la que queremos parar de extraer.
   * Fechas:
-    * --fila_inicio: Tipo entero, fila del dataset de peleadores por el que queremos empezar a extraer información sobre el peleador adicional.
+    * --fila_inicio: Tipo entero, fila del dataset de peleadores por el que queremos empezar a extraer información sobre el peleador adicional. (Si no hay dataframe de peleadores o introduces una fila errónea fallará)
     * --fila_final: Tipo, entero, fila del dataset de peleadores en el que acaba la extracción. Recomendamos extraer como mucho 200 filas cada tanda. Sino corremos el riesgo de que bloqueen la IP y no podamos continuar extrayendo durante un periodo de tiempo.
 
 * Transformación:
@@ -114,6 +114,8 @@ uv run main.py
 ``` 
 
 ### 5. Resultados y evaluación
+
+💡 Nota: Se obtienen resultados diferentes ejecutando en Mac o en Windows. La evaluación en nuestro caso lo ejecutamos en Windows.
 
 * Modelo con datos de la pelea:
 
