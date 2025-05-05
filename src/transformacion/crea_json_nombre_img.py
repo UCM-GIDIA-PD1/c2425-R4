@@ -1,3 +1,6 @@
+# Este archivo crea un json con el nombre del peleador y su imagen
+# para ser posteriormente empleado en la pagina web
+
 import pandas as pd
 import json
 import os
